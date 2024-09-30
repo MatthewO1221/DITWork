@@ -1,0 +1,11 @@
+music1_0_intro.ogg x2
+
+-- main body loop
+{
+	music1_1_part1.ogg x2
+		-- can break loop and go to outro here
+	music1_2_part1to2.ogg x1
+	music1_3_part2.ogg x2
+}
+
+music1_4_outro.wav x1

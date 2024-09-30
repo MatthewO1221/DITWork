@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <ProjectGuid>{92D9B5C1-14AA-42B5-A676-6D7D5A030325}</ProjectGuid>
+    <RootNamespace>ProjectColor</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(ProjectDir)AE\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)FMOD\inc</IncludePath>
+    <LibraryPath>$(ProjectDir)AE\lib;$(ProjectDir)\FMOD\lib;$(LibraryPath)</LibraryPath>
+    <OutDir>$(ProjectDir)$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(ProjectDir)AE\include;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)AE\lib;$(ProjectDir)\FMOD\lib;$(LibraryPath)</LibraryPath>
+    <OutDir>$(ProjectDir)$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_CONSOLE;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>false</ConformanceMode>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <CompileAs>CompileAsC</CompileAs>
+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <StringPooling>true</StringPooling>
+      <SmallerTypeCheck>true</SmallerTypeCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <OptimizeReferences>false</OptimizeReferences>
+      <EnableCOMDATFolding>false</EnableCOMDATFolding>
+      <DataExecutionPrevention>true</DataExecutionPrevention>
+      <AdditionalDependencies>$(ProjectDir)FMOD\lib\fmod_vc.lib;$(ProjectDir)FMOD\lib\fmodL_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <PostBuildEvent>
+      <Command>xcopy "$(ProjectDir)\AE\lib\glew32.dll" "$(OutDir)" /Y
+xcopy "$(ProjectDir)\FMOD\lib\fmod.dll" "$(OutDir)" /Y
+xcopy "$(ProjectDir)\FMOD\lib\fmodL.dll" "$(OutDir)" /Y
+xcopy "$(ProjectDir)\AE\lib\Alpha_Engine_D.dll" "$(OutDir)" /Y</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_CONSOLE;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <StringPooling>true</StringPooling>
+      <CompileAs>CompileAsC</CompileAs>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <DataExecutionPrevention>true</DataExecutionPrevention>
+      <AdditionalDependencies>$(ProjectDir)FMOD\lib\fmod_vc.lib;$(ProjectDir)FMOD\lib\fmodL_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <PostBuildEvent>
+      <Command>xcopy "$(ProjectDir)\AE\lib\glew32.dll" "$(OutDir)" /Y
+xcopy "$(ProjectDir)\FMOD\lib\fmod.dll" "$(OutDir)" /Y
+xcopy "$(ProjectDir)\FMOD\lib\fmodL.dll" "$(OutDir)" /Y
+xcopy "$(ProjectDir)\AE\lib\Alpha_Engine.dll" "$(OutDir)" /Y</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\Hud.c" />
+    <ClCompile Include="Source\AABB.c" />
+    <ClCompile Include="Source\Animation.c" />
+    <ClCompile Include="Source\Audio.c" />
+    <ClCompile Include="Source\Brush.c" />
+    <ClCompile Include="Source\Button.c" />
+    <ClCompile Include="Source\Camera.c" />
+    <ClCompile Include="Source\ConfigHelper.c" />
+    <ClCompile Include="Source\Debug.c" />
+    <ClCompile Include="Source\DisplayHelper.c" />
+    <ClCompile Include="Source\EnemyAI.c" />
+    <ClCompile Include="Source\EnemyAnimations.c" />
+    <ClCompile Include="Source\Engine.c" />
+    <ClCompile Include="Source\GameObject.c" />
+    <ClCompile Include="Source\GameplayInstance.c" />
+    <ClCompile Include="Source\GameStateCredits.c" />
+    <ClCompile Include="Source\GameStateEditor.c" />
+    <ClCompile Include="Source\GameStateMain.c" />
+    <ClCompile Include="Source\GameStateManager.c" />
+    <ClCompile Include="Source\GameStateMenuTest.c" />
+    <ClCompile Include="Source\GameStateSplash.c" />
+    <ClCompile Include="Source\GameStateSwitcher.c" />
+    <ClCompile Include="Source\GameStateTest.c" />
+    <ClCompile Include="Source\GameStateTable.c" />
+    <ClCompile Include="Source\GameStateTestBrody.c" />
+    <ClCompile Include="Source\GameStateTestDerek.c" />
+    <ClCompile Include="Source\GameStateTestEmily.c" />
+    <ClCompile Include="Source\GameStateTestMatthew.c" />
+    <ClCompile Include="Source\GameStateTestRishabh.c" />
+    <ClCompile Include="Source\GameStateTitle.c" />
+    <ClCompile Include="Source\Level.c" />
+    <ClCompile Include="Source\Main.c" />
+    <ClCompile Include="Source\MathHelper.c" />
+    <ClCompile Include="Source\Matrix2D.c" />
+    <ClCompile Include="Source\Mesh.c" />
+    <ClCompile Include="Source\Paint.c" />
+    <ClCompile Include="Source\Particle.c" />
+    <ClCompile Include="Source\ParticleEmitter.c" />
+    <ClCompile Include="Source\PauseScreen.c" />
+    <ClCompile Include="Source\Physics.c" />
+    <ClCompile Include="Source\Player Controller.c" />
+    <ClCompile Include="Source\Player Movement.c" />
+    <ClCompile Include="Source\Player.c" />
+    <ClCompile Include="Source\Random.c" />
+    <ClCompile Include="Source\RunningParticles.c" />
+    <ClCompile Include="Source\Serialization.c" />
+    <ClCompile Include="Source\Sprite.c" />
+    <ClCompile Include="Source\SpriteSource.c" />
+    <ClCompile Include="Source\stdafx.c" />
+    <ClCompile Include="Source\System.c" />
+    <ClCompile Include="Source\Tile.c" />
+    <ClCompile Include="Source\Transform.c" />
+    <ClCompile Include="Source\Vector2D.c" />
+    <ClCompile Include="Source\World.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\Hud.h" />
+    <ClInclude Include="Source\AABB.h" />
+    <ClInclude Include="Source\Animation.h" />
+    <ClInclude Include="Source\Audio.h" />
+    <ClInclude Include="Source\Brush.h" />
+    <ClInclude Include="Source\Button.h" />
+    <ClInclude Include="Source\Camera.h" />
+    <ClInclude Include="Source\ConfigHelper.h" />
+    <ClInclude Include="Source\Debug.h" />
+    <ClInclude Include="Source\DisplayHelper.h" />
+    <ClInclude Include="Source\EnemyAI.h" />
+    <ClInclude Include="Source\EnemyAnimations.h" />
+    <ClInclude Include="Source\Engine.h" />
+    <ClInclude Include="Source\GameObject.h" />
+    <ClInclude Include="Source\GameplayInstance.h" />
+    <ClInclude Include="Source\GameStateCredits.h" />
+    <ClInclude Include="Source\GameStateEditor.h" />
+    <ClInclude Include="Source\GameStateMain.h" />
+    <ClInclude Include="Source\GameStateManager.h" />
+    <ClInclude Include="Source\GameStateMenuTest.h" />
+    <ClInclude Include="Source\GameStateSplash.h" />
+    <ClInclude Include="Source\GameStateSwitcher.h" />
+    <ClInclude Include="Source\GameStateTest.h" />
+    <ClInclude Include="Source\GameStateTable.h" />
+    <ClInclude Include="Source\GameStateTestBrody.h" />
+    <ClInclude Include="Source\GameStateTestDerek.h" />
+    <ClInclude Include="Source\GameStateTestEmily.h" />
+    <ClInclude Include="Source\GameStateTestMatthew.h" />
+    <ClInclude Include="Source\GameStateTestRishabh.h" />
+    <ClInclude Include="Source\GameStateTitle.h" />
+    <ClInclude Include="Source\Level.h" />
+    <ClInclude Include="Source\MathHelper.h" />
+    <ClInclude Include="Source\Matrix2D.h" />
+    <ClInclude Include="Source\Mesh.h" />
+    <ClInclude Include="Source\Paint.h" />
+    <ClInclude Include="Source\Particle.h" />
+    <ClInclude Include="Source\ParticleEmitter.h" />
+    <ClInclude Include="Source\PauseScreen.h" />
+    <ClInclude Include="Source\Physics.h" />
+    <ClInclude Include="Source\Player Controller.h" />
+    <ClInclude Include="Source\Player Movement.h" />
+    <ClInclude Include="Source\Player.h" />
+    <ClInclude Include="Source\Random.h" />
+    <ClInclude Include="Source\RunningParticles.h" />
+    <ClInclude Include="Source\Serialization.h" />
+    <ClInclude Include="Source\Sprite.h" />
+    <ClInclude Include="Source\SpriteSource.h" />
+    <ClInclude Include="Source\stdafx.h" />
+    <ClInclude Include="Source\System.h" />
+    <ClInclude Include="Source\targetver.h" />
+    <ClInclude Include="Source\Tile.h" />
+    <ClInclude Include="Source\Transform.h" />
+    <ClInclude Include="Source\Vector2D.h" />
+    <ClInclude Include="Source\World.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

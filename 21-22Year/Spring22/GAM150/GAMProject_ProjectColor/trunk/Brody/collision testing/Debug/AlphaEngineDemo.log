@@ -1,0 +1,9 @@
+﻿  AABB.c
+C:\Users\thebr\Desktop\Work\digipen\gam150\alpha engine demo - Copy\Source\AABB.c(142,49): error C2220: the following warning is treated as an error
+C:\Users\thebr\Desktop\Work\digipen\gam150\alpha engine demo - Copy\Source\AABB.c(142,49): warning C4100: 'tile2': unreferenced formal parameter
+C:\Users\thebr\Desktop\Work\digipen\gam150\alpha engine demo - Copy\Source\AABB.c(142,33): warning C4100: 'tile1': unreferenced formal parameter
+  Main_CS230.c
+  Generating Code...
+C:\Users\thebr\Desktop\Work\digipen\gam150\alpha engine demo - Copy\Source\Main_CS230.c(119): error C4700: uninitialized local variable 'pMesh2' used
+C:\Users\thebr\Desktop\Work\digipen\gam150\alpha engine demo - Copy\Source\Main_CS230.c(331): warning C4701: potentially uninitialized local variable 'collisiontile' used
+C:\Users\thebr\Desktop\Work\digipen\gam150\alpha engine demo - Copy\Source\Main_CS230.c(331): error C4703: potentially uninitialized local pointer variable 'collisiontile' used

@@ -1,0 +1,12 @@
+GameObject
+SpaceshipHoming
+Transform
+0 0
+0
+100 80
+Physics
+0 0
+0 0
+Sprite
+0
+1

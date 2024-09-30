@@ -1,0 +1,39 @@
+﻿  GameStateLevel2.c
+C:\Users\rishi\OneDrive\Desktop\GAM150 Project\trunk\Rishabh\Player Controller Testing\Source\GameStateLevel2.c(113,36): error C2220: the following warning is treated as an error
+C:\Users\rishi\OneDrive\Desktop\GAM150 Project\trunk\Rishabh\Player Controller Testing\Source\GameStateLevel2.c(113,36): warning C4013: 'GameObjectGetSprite' undefined; assuming extern returning int
+C:\Users\rishi\OneDrive\Desktop\GAM150 Project\trunk\Rishabh\Player Controller Testing\Source\GameStateLevel2.c(113,58): warning C4047: 'function': 'SpritePtr' differs in levels of indirection from 'int'
+C:\Users\rishi\OneDrive\Desktop\GAM150 Project\trunk\Rishabh\Player Controller Testing\Source\GameStateLevel2.c(113,36): warning C4024: 'SpriteSetMesh': different types for formal and actual parameter 1
+C:\Users\rishi\OneDrive\Desktop\GAM150 Project\trunk\Rishabh\Player Controller Testing\Source\GameStateLevel2.c(127,59): warning C4047: 'function': 'SpritePtr' differs in levels of indirection from 'int'
+C:\Users\rishi\OneDrive\Desktop\GAM150 Project\trunk\Rishabh\Player Controller Testing\Source\GameStateLevel2.c(127,37): warning C4024: 'SpriteSetAlpha': different types for formal and actual parameter 1
+C:\Users\rishi\OneDrive\Desktop\GAM150 Project\trunk\Rishabh\Player Controller Testing\Source\GameStateLevel2.c(131,59): warning C4047: 'function': 'SpritePtr' differs in levels of indirection from 'int'
+C:\Users\rishi\OneDrive\Desktop\GAM150 Project\trunk\Rishabh\Player Controller Testing\Source\GameStateLevel2.c(131,37): warning C4024: 'SpriteSetAlpha': different types for formal and actual parameter 1
+C:\Users\rishi\OneDrive\Desktop\GAM150 Project\trunk\Rishabh\Player Controller Testing\Source\GameStateLevel2.c(135,18): warning C4013: 'GameObjectUpdate' undefined; assuming extern returning int
+C:\Users\rishi\OneDrive\Desktop\GAM150 Project\trunk\Rishabh\Player Controller Testing\Source\GameStateLevel2.c(136,16): warning C4013: 'GameObjectDraw' undefined; assuming extern returning int
+C:\Users\rishi\OneDrive\Desktop\GAM150 Project\trunk\Rishabh\Player Controller Testing\Source\GameStateLevel2.c(159,16): warning C4013: 'GameObjectFree' undefined; assuming extern returning int
+  Player Movement.c
+C:\Users\rishi\OneDrive\Desktop\GAM150 Project\trunk\Rishabh\Player Controller Testing\Source\Player Movement.c(27,44): error C2220: the following warning is treated as an error
+C:\Users\rishi\OneDrive\Desktop\GAM150 Project\trunk\Rishabh\Player Controller Testing\Source\Player Movement.c(27,44): warning C4013: 'GameObjectGetPhysics' undefined; assuming extern returning int
+C:\Users\rishi\OneDrive\Desktop\GAM150 Project\trunk\Rishabh\Player Controller Testing\Source\Player Movement.c(28,50): warning C4013: 'GameObjectGetTransform' undefined; assuming extern returning int
+C:\Users\rishi\OneDrive\Desktop\GAM150 Project\trunk\Rishabh\Player Controller Testing\Source\Player Movement.c(32,43): warning C4013: 'PhysicsGetVelocity' undefined; assuming extern returning int
+C:\Users\rishi\OneDrive\Desktop\GAM150 Project\trunk\Rishabh\Player Controller Testing\Source\Player Movement.c(32,23): error C2100: illegal indirection
+C:\Users\rishi\OneDrive\Desktop\GAM150 Project\trunk\Rishabh\Player Controller Testing\Source\Player Movement.c(33,51): warning C4013: 'TransformGetTranslation' undefined; assuming extern returning int
+C:\Users\rishi\OneDrive\Desktop\GAM150 Project\trunk\Rishabh\Player Controller Testing\Source\Player Movement.c(33,26): error C2100: illegal indirection
+C:\Users\rishi\OneDrive\Desktop\GAM150 Project\trunk\Rishabh\Player Controller Testing\Source\Player Movement.c(38,22): warning C4013: 'PhysicsSetVelocity' undefined; assuming extern returning int
+C:\Users\rishi\OneDrive\Desktop\GAM150 Project\trunk\Rishabh\Player Controller Testing\Source\Player Movement.c(55,26): warning C4013: 'PhysicsSetAcceleration' undefined; assuming extern returning int
+C:\Users\rishi\OneDrive\Desktop\GAM150 Project\trunk\Rishabh\Player Controller Testing\Source\Player Movement.c(62,27): warning C4013: 'TransformSetTranslation' undefined; assuming extern returning int
+C:\Users\rishi\OneDrive\Desktop\GAM150 Project\trunk\Rishabh\Player Controller Testing\Source\Player Movement.c(27,1): warning C4047: 'initializing': 'PhysicsPtr' differs in levels of indirection from 'int'
+C:\Users\rishi\OneDrive\Desktop\GAM150 Project\trunk\Rishabh\Player Controller Testing\Source\Player Movement.c(28,1): warning C4047: 'initializing': 'TransformPtr' differs in levels of indirection from 'int'
+C:\Users\rishi\OneDrive\Desktop\GAM150 Project\trunk\Rishabh\Player Controller Testing\Source\Player Movement.c(32,1): error C2440: 'initializing': cannot convert from 'int' to 'Vector2D'
+C:\Users\rishi\OneDrive\Desktop\GAM150 Project\trunk\Rishabh\Player Controller Testing\Source\Player Movement.c(33,1): error C2440: 'initializing': cannot convert from 'int' to 'Vector2D'
+  Sprite.c
+C:\Users\rishi\OneDrive\Desktop\GAM150 Project\trunk\Rishabh\Player Controller Testing\Source\Sprite.c(130,47): error C2220: the following warning is treated as an error
+C:\Users\rishi\OneDrive\Desktop\GAM150 Project\trunk\Rishabh\Player Controller Testing\Source\Sprite.c(130,47): warning C4013: 'TransformGetTranslation' undefined; assuming extern returning int
+C:\Users\rishi\OneDrive\Desktop\GAM150 Project\trunk\Rishabh\Player Controller Testing\Source\Sprite.c(130,60): error C2223: left of '->x' must point to struct/union
+C:\Users\rishi\OneDrive\Desktop\GAM150 Project\trunk\Rishabh\Player Controller Testing\Source\Sprite.c(130,99): error C2223: left of '->y' must point to struct/union
+C:\Users\rishi\OneDrive\Desktop\GAM150 Project\trunk\Rishabh\Player Controller Testing\Source\Sprite.c(130,133): warning C4013: 'TransformGetRotation' undefined; assuming extern returning int
+C:\Users\rishi\OneDrive\Desktop\GAM150 Project\trunk\Rishabh\Player Controller Testing\Source\Sprite.c(130,144): warning C4244: 'function': conversion from 'int' to 'f32', possible loss of data
+C:\Users\rishi\OneDrive\Desktop\GAM150 Project\trunk\Rishabh\Player Controller Testing\Source\Sprite.c(130,164): warning C4013: 'TransformGetScale' undefined; assuming extern returning int
+C:\Users\rishi\OneDrive\Desktop\GAM150 Project\trunk\Rishabh\Player Controller Testing\Source\Sprite.c(130,177): error C2223: left of '->x' must point to struct/union
+C:\Users\rishi\OneDrive\Desktop\GAM150 Project\trunk\Rishabh\Player Controller Testing\Source\Sprite.c(130,210): error C2223: left of '->y' must point to struct/union
+C:\Users\rishi\OneDrive\Desktop\GAM150 Project\trunk\Rishabh\Player Controller Testing\Source\Sprite.c(130,23): error C2198: 'AEGfxSetFullTransform': too few arguments for call
+  Generating Code...

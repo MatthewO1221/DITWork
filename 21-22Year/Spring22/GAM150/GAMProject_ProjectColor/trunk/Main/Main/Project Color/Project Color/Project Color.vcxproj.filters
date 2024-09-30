@@ -1,0 +1,366 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="GameObject">
+      <UniqueIdentifier>{1e961c5b-382f-4804-8ec5-b70a6b4279a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Components">
+      <UniqueIdentifier>{7238f82d-4661-4225-b5c6-cacd9d365709}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine">
+      <UniqueIdentifier>{1ccc3e9d-d18f-4372-89ce-9f4a684f9cfd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Player">
+      <UniqueIdentifier>{2c8f55c4-9044-402e-bbae-03f74dc76584}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AI">
+      <UniqueIdentifier>{f5b15419-31d3-41bd-bdfb-c3f9884e90e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tools">
+      <UniqueIdentifier>{e33d38aa-b0bd-4576-b6e2-2fc5cf0af3c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameStates">
+      <UniqueIdentifier>{17a6bf84-a343-406e-aafe-3a78ab472cb3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level">
+      <UniqueIdentifier>{135eabc2-2ef4-471c-a46b-72f285f2b6bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Serialization">
+      <UniqueIdentifier>{a4cd87a3-6d24-4160-a3d2-fc6d0cd61139}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI">
+      <UniqueIdentifier>{41ed951b-4f79-412a-b857-4cff0ae8ee88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Audio">
+      <UniqueIdentifier>{5cfac100-4dd9-4298-813d-184c579e28ff}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\GameObject.c">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Sprite.c">
+      <Filter>GameObject\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SpriteSource.c">
+      <Filter>GameObject\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Transform.c">
+      <Filter>GameObject\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Physics.c">
+      <Filter>GameObject\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Mesh.c">
+      <Filter>GameObject\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\AABB.c">
+      <Filter>GameObject\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameStateManager.c">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameStateTable.c">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameStateCredits.c">
+      <Filter>GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameStateEditor.c">
+      <Filter>GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameStateMain.c">
+      <Filter>GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameStateTest.c">
+      <Filter>GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameStateTitle.c">
+      <Filter>GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Player Movement.c">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Player Controller.c">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Brush.c">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\System.c">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\World.c">
+      <Filter>Level</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine.c">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EnemyAI.c">
+      <Filter>AI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Paint.c">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Vector2D.c">
+      <Filter>Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\stdafx.c">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Main.c">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameStateTestBrody.c">
+      <Filter>GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameStateTestDerek.c">
+      <Filter>GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameStateTestEmily.c">
+      <Filter>GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameStateTestMatthew.c">
+      <Filter>GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameStateTestRishabh.c">
+      <Filter>GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameStateSwitcher.c">
+      <Filter>Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameplayInstance.c">
+      <Filter>Level</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Level.c">
+      <Filter>Level</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Tile.c">
+      <Filter>Level</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Serialization.c">
+      <Filter>Serialization</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Debug.c">
+      <Filter>Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\MathHelper.c">
+      <Filter>Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Camera.c">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Animation.c">
+      <Filter>GameObject\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Matrix2D.c">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Player.c">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Button.c">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameStateSplash.c">
+      <Filter>GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EnemyAnimations.c">
+      <Filter>AI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameStateMenuTest.c">
+      <Filter>GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ConfigHelper.c">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\DisplayHelper.c">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Particle.c">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ParticleEmitter.c">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\RunningParticles.c">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Audio.c">
+      <Filter>Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Random.c">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Hud.c">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PauseScreen.c">
+      <Filter>UI</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\GameObject.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Mesh.h">
+      <Filter>GameObject\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Physics.h">
+      <Filter>GameObject\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Sprite.h">
+      <Filter>GameObject\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\SpriteSource.h">
+      <Filter>GameObject\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Transform.h">
+      <Filter>GameObject\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\AABB.h">
+      <Filter>GameObject\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameStateManager.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameStateTable.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameStateCredits.h">
+      <Filter>GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameStateEditor.h">
+      <Filter>GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameStateMain.h">
+      <Filter>GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameStateTest.h">
+      <Filter>GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameStateTitle.h">
+      <Filter>GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Player Controller.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Player Movement.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Brush.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\System.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\World.h">
+      <Filter>Level</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EnemyAI.h">
+      <Filter>AI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Paint.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Vector2D.h">
+      <Filter>Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\stdafx.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\targetver.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameStateTestBrody.h">
+      <Filter>GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameStateTestDerek.h">
+      <Filter>GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameStateTestEmily.h">
+      <Filter>GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameStateTestMatthew.h">
+      <Filter>GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameStateTestRishabh.h">
+      <Filter>GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameStateSwitcher.h">
+      <Filter>Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameplayInstance.h">
+      <Filter>Level</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Level.h">
+      <Filter>Level</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Tile.h">
+      <Filter>Level</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Serialization.h">
+      <Filter>Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Debug.h">
+      <Filter>Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\MathHelper.h">
+      <Filter>Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Camera.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Animation.h">
+      <Filter>GameObject\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Matrix2D.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Player.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Button.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameStateSplash.h">
+      <Filter>GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EnemyAnimations.h">
+      <Filter>AI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameStateMenuTest.h">
+      <Filter>GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ConfigHelper.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\DisplayHelper.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\RunningParticles.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Particle.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ParticleEmitter.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Audio.h">
+      <Filter>Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Random.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Hud.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PauseScreen.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

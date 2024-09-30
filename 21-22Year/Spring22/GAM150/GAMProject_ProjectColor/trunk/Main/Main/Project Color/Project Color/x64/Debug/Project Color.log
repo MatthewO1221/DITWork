@@ -1,0 +1,170 @@
+﻿  AABB.c
+  Brush.c
+  Debug.c
+  EnemyAI.c
+C:\Users\chaos\Documents\DIT Work\Project Color\trunk\Main\Main\Project Color\Project Color\Source\EnemyAI.c(142,50): warning C4047: '==': 'EnemyPtr *' differs in levels of indirection from 'EnemyPtr'
+C:\Users\chaos\Documents\DIT Work\Project Color\trunk\Main\Main\Project Color\Project Color\Source\EnemyAI.c(242,29): warning C4047: '=': 'EnemyPtr' differs in levels of indirection from 'EnemyPtr *'
+C:\Users\chaos\Documents\DIT Work\Project Color\trunk\Main\Main\Project Color\Project Color\Source\EnemyAI.c(280,31): warning C4113: 'void (__cdecl *)(EnemyPtr,tempPlayerPtr,float)' differs in parameter lists from 'void (__cdecl *)(EnemyPtr,float)'
+C:\Users\chaos\Documents\DIT Work\Project Color\trunk\Main\Main\Project Color\Project Color\Source\EnemyAI.c(356,62): warning C4133: 'function': incompatible types - from 'tempPlayerPtr' to 'GameObjectPtr'
+C:\Users\chaos\Documents\DIT Work\Project Color\trunk\Main\Main\Project Color\Project Color\Source\EnemyAI.c(453,24): warning C4047: 'return': 'EnemyPtr' differs in levels of indirection from 'EnemyPtr *'
+  Engine.c
+  GameObject.c
+  GameplayInstance.c
+  GameStateCredits.c
+  GameStateEditor.c
+  GameStateMain.c
+  GameStateManager.c
+  GameStateSwitcher.c
+  GameStateTest.c
+  GameStateTable.c
+  GameStateTestBrody.c
+  GameStateTestDerek.c
+  GameStateTestEmily.c
+  GameStateTestMatthew.c
+  GameStateTestRishabh.c
+  GameStateTitle.c
+  Generating Code...
+  Compiling...
+  Level.c
+  Main.c
+  MathHelper.c
+  Mesh.c
+  Paint.c
+  Physics.c
+  Player Controller.c
+  Player Movement.c
+  Serialization.c
+  Sprite.c
+  SpriteSource.c
+  stdafx.c
+  System.c
+  Tile.c
+  Transform.c
+  Vector2D.c
+  World.c
+  Generating Code...
+AABB.obj : error LNK2019: unresolved external symbol __imp_AESysPrintf referenced in function DefineSquareMesh
+GameStateTestRishabh.obj : error LNK2001: unresolved external symbol __imp_AESysPrintf
+Mesh.obj : error LNK2001: unresolved external symbol __imp_AESysPrintf
+Paint.obj : error LNK2001: unresolved external symbol __imp_AESysPrintf
+AABB.obj : error LNK2019: unresolved external symbol __imp_AEGfxMeshStart referenced in function DefineSquareMesh
+GameStateTestRishabh.obj : error LNK2001: unresolved external symbol __imp_AEGfxMeshStart
+Mesh.obj : error LNK2001: unresolved external symbol __imp_AEGfxMeshStart
+Paint.obj : error LNK2001: unresolved external symbol __imp_AEGfxMeshStart
+AABB.obj : error LNK2019: unresolved external symbol __imp_AEGfxTriAdd referenced in function DefineSquareMesh
+GameStateTestRishabh.obj : error LNK2001: unresolved external symbol __imp_AEGfxTriAdd
+Mesh.obj : error LNK2001: unresolved external symbol __imp_AEGfxTriAdd
+Paint.obj : error LNK2001: unresolved external symbol __imp_AEGfxTriAdd
+AABB.obj : error LNK2019: unresolved external symbol __imp_AEGfxMeshEnd referenced in function DefineSquareMesh
+GameStateTestRishabh.obj : error LNK2001: unresolved external symbol __imp_AEGfxMeshEnd
+Mesh.obj : error LNK2001: unresolved external symbol __imp_AEGfxMeshEnd
+Paint.obj : error LNK2001: unresolved external symbol __imp_AEGfxMeshEnd
+Level.obj : error LNK2001: unresolved external symbol __imp_AEGfxMeshFree
+Paint.obj : error LNK2001: unresolved external symbol __imp_AEGfxMeshFree
+Tile.obj : error LNK2001: unresolved external symbol __imp_AEGfxMeshFree
+World.obj : error LNK2001: unresolved external symbol __imp_AEGfxMeshFree
+AABB.obj : error LNK2001: unresolved external symbol __imp_AEGfxMeshFree
+GameStateTestDerek.obj : error LNK2001: unresolved external symbol __imp_AEGfxMeshFree
+GameStateTestMatthew.obj : error LNK2001: unresolved external symbol __imp_AEGfxMeshFree
+GameStateTestRishabh.obj : error LNK2001: unresolved external symbol __imp_AEGfxMeshFree
+Brush.obj : error LNK2019: unresolved external symbol __imp_AERadToDeg referenced in function rotateBrush
+Sprite.obj : error LNK2001: unresolved external symbol __imp_AERadToDeg
+Paint.obj : error LNK2001: unresolved external symbol __imp_AEClamp
+Sprite.obj : error LNK2001: unresolved external symbol __imp_AEClamp
+Brush.obj : error LNK2001: unresolved external symbol __imp_AEClamp
+GameStateTestDerek.obj : error LNK2001: unresolved external symbol __imp_AEClamp
+GameStateTestMatthew.obj : error LNK2001: unresolved external symbol __imp_AEClamp
+Main.obj : error LNK2001: unresolved external symbol __imp_AEClamp
+Brush.obj : error LNK2019: unresolved external symbol __imp_AEGfxConvertScreenCoordinatesToWorld referenced in function rotateBrush
+Brush.obj : error LNK2019: unresolved external symbol __imp_AEInputCheckTriggered referenced in function swipeBrush
+GameStateSwitcher.obj : error LNK2001: unresolved external symbol __imp_AEInputCheckTriggered
+Player Movement.obj : error LNK2001: unresolved external symbol __imp_AEInputCheckTriggered
+Brush.obj : error LNK2019: unresolved external symbol __imp_AEInputGetCursorPosition referenced in function rotateBrush
+GameStateTestMatthew.obj : error LNK2001: unresolved external symbol __imp_AEInputGetCursorPosition
+Sprite.obj : error LNK2001: unresolved external symbol __imp_AEGfxSetRenderMode
+Tile.obj : error LNK2001: unresolved external symbol __imp_AEGfxSetRenderMode
+World.obj : error LNK2001: unresolved external symbol __imp_AEGfxSetRenderMode
+Debug.obj : error LNK2001: unresolved external symbol __imp_AEGfxSetRenderMode
+EnemyAI.obj : error LNK2001: unresolved external symbol __imp_AEGfxSetRenderMode
+Paint.obj : error LNK2001: unresolved external symbol __imp_AEGfxSetRenderMode
+Player Movement.obj : error LNK2001: unresolved external symbol __imp_AEGfxSetRenderMode
+World.obj : error LNK2001: unresolved external symbol __imp_AEGfxSetPosition
+Debug.obj : error LNK2001: unresolved external symbol __imp_AEGfxSetPosition
+EnemyAI.obj : error LNK2001: unresolved external symbol __imp_AEGfxSetPosition
+Paint.obj : error LNK2001: unresolved external symbol __imp_AEGfxSetPosition
+Tile.obj : error LNK2001: unresolved external symbol __imp_AEGfxSetPosition
+Sprite.obj : error LNK2001: unresolved external symbol __imp_AEGfxSetTransparency
+Tile.obj : error LNK2001: unresolved external symbol __imp_AEGfxSetTransparency
+World.obj : error LNK2001: unresolved external symbol __imp_AEGfxSetTransparency
+Debug.obj : error LNK2001: unresolved external symbol __imp_AEGfxSetTransparency
+EnemyAI.obj : error LNK2001: unresolved external symbol __imp_AEGfxSetTransparency
+Paint.obj : error LNK2001: unresolved external symbol __imp_AEGfxSetTransparency
+Player Movement.obj : error LNK2001: unresolved external symbol __imp_AEGfxSetTransparency
+Sprite.obj : error LNK2001: unresolved external symbol __imp_AEGfxMeshDraw
+Tile.obj : error LNK2001: unresolved external symbol __imp_AEGfxMeshDraw
+World.obj : error LNK2001: unresolved external symbol __imp_AEGfxMeshDraw
+Debug.obj : error LNK2001: unresolved external symbol __imp_AEGfxMeshDraw
+EnemyAI.obj : error LNK2001: unresolved external symbol __imp_AEGfxMeshDraw
+Paint.obj : error LNK2001: unresolved external symbol __imp_AEGfxMeshDraw
+Player Movement.obj : error LNK2001: unresolved external symbol __imp_AEGfxMeshDraw
+Tile.obj : error LNK2001: unresolved external symbol __imp_AEGfxTextureLoad
+Debug.obj : error LNK2001: unresolved external symbol __imp_AEGfxTextureLoad
+GameStateTestDerek.obj : error LNK2001: unresolved external symbol __imp_AEGfxTextureLoad
+GameStateTestMatthew.obj : error LNK2001: unresolved external symbol __imp_AEGfxTextureLoad
+GameStateTestRishabh.obj : error LNK2001: unresolved external symbol __imp_AEGfxTextureLoad
+Paint.obj : error LNK2001: unresolved external symbol __imp_AEGfxTextureUnload
+Tile.obj : error LNK2001: unresolved external symbol __imp_AEGfxTextureUnload
+Debug.obj : error LNK2001: unresolved external symbol __imp_AEGfxTextureUnload
+GameStateTestDerek.obj : error LNK2001: unresolved external symbol __imp_AEGfxTextureUnload
+GameStateTestMatthew.obj : error LNK2001: unresolved external symbol __imp_AEGfxTextureUnload
+GameStateTestRishabh.obj : error LNK2001: unresolved external symbol __imp_AEGfxTextureUnload
+Sprite.obj : error LNK2001: unresolved external symbol __imp_AEGfxTextureSet
+Tile.obj : error LNK2001: unresolved external symbol __imp_AEGfxTextureSet
+World.obj : error LNK2001: unresolved external symbol __imp_AEGfxTextureSet
+Debug.obj : error LNK2001: unresolved external symbol __imp_AEGfxTextureSet
+EnemyAI.obj : error LNK2001: unresolved external symbol __imp_AEGfxTextureSet
+Paint.obj : error LNK2001: unresolved external symbol __imp_AEGfxTextureSet
+Player Movement.obj : error LNK2001: unresolved external symbol __imp_AEGfxTextureSet
+EnemyAI.obj : error LNK2019: unresolved external symbol __imp_AEFrameRateControllerGetFrameCount referenced in function FleyeMove
+Paint.obj : error LNK2001: unresolved external symbol __imp_AEFrameRateControllerGetFrameCount
+GameStateTestRishabh.obj : error LNK2001: unresolved external symbol __imp_AESysSetWindowTitle
+GameStateTitle.obj : error LNK2001: unresolved external symbol __imp_AESysSetWindowTitle
+System.obj : error LNK2001: unresolved external symbol __imp_AESysSetWindowTitle
+GameStateTestBrody.obj : error LNK2001: unresolved external symbol __imp_AESysSetWindowTitle
+GameStateTestDerek.obj : error LNK2001: unresolved external symbol __imp_AESysSetWindowTitle
+GameStateTestEmily.obj : error LNK2001: unresolved external symbol __imp_AESysSetWindowTitle
+GameStateTestMatthew.obj : error LNK2001: unresolved external symbol __imp_AESysSetWindowTitle
+GameStateCredits.obj : error LNK2001: unresolved external symbol __imp_AESysSetWindowTitle
+GameStateEditor.obj : error LNK2001: unresolved external symbol __imp_AESysSetWindowTitle
+GameStateMain.obj : error LNK2001: unresolved external symbol __imp_AESysSetWindowTitle
+GameStateTest.obj : error LNK2001: unresolved external symbol __imp_AESysSetWindowTitle
+GameStateTestDerek.obj : error LNK2019: unresolved external symbol __imp_AEGfxSetBackgroundColor referenced in function GameStateTestDerekInit
+GameStateTestMatthew.obj : error LNK2001: unresolved external symbol __imp_AEGfxSetBackgroundColor
+GameStateTestRishabh.obj : error LNK2001: unresolved external symbol __imp_AEGfxSetBackgroundColor
+GameStateTestDerek.obj : error LNK2019: unresolved external symbol __imp_AEGfxSetCamPosition referenced in function FollowTarget
+GameStateTestMatthew.obj : error LNK2001: unresolved external symbol __imp_AEGfxSetCamPosition
+GameStateTestDerek.obj : error LNK2019: unresolved external symbol __imp_AEGfxGetCamPosition referenced in function FollowTarget
+GameStateTestDerek.obj : error LNK2019: unresolved external symbol __imp_AEGfxSetBlendMode referenced in function GameStateTestDerekInit
+GameStateTestMatthew.obj : error LNK2001: unresolved external symbol __imp_AEGfxSetBlendMode
+GameStateTestRishabh.obj : error LNK2001: unresolved external symbol __imp_AEGfxSetBlendMode
+GameStateTestDerek.obj : error LNK2019: unresolved external symbol __imp_AEInputCheckCurr referenced in function GameStateTestDerekUpdate
+GameStateTestMatthew.obj : error LNK2001: unresolved external symbol __imp_AEInputCheckCurr
+Player Movement.obj : error LNK2001: unresolved external symbol __imp_AEInputCheckCurr
+Main.obj : error LNK2019: unresolved external symbol __imp_AEFrameRateControllerGetFrameTime referenced in function WinMain
+Paint.obj : error LNK2001: unresolved external symbol __imp_AEFrameRateControllerGetFrameTime
+Paint.obj : error LNK2019: unresolved external symbol __imp_AESysAddCustomCallBack referenced in function InitPaintSystem
+Paint.obj : error LNK2019: unresolved external symbol __imp_AEGfxTextureLoadFromMemory referenced in function InitPaintSystem
+Player Movement.obj : error LNK2019: unresolved external symbol __imp_AEGfxSetFullTransform referenced in function PlayerMovementUpdate
+Sprite.obj : error LNK2001: unresolved external symbol __imp_AEGfxSetFullTransform
+Sprite.obj : error LNK2019: unresolved external symbol __imp_AEGfxSetBlendColor referenced in function SpriteDraw
+System.obj : error LNK2019: unresolved external symbol __imp_AESysInit referenced in function SystemInit
+System.obj : error LNK2019: unresolved external symbol __imp_AESysReset referenced in function SystemInit
+System.obj : error LNK2019: unresolved external symbol __imp_AESysUpdate referenced in function SystemUpdate
+System.obj : error LNK2019: unresolved external symbol __imp_AESysExit referenced in function SystemShutdown
+System.obj : error LNK2019: unresolved external symbol __imp_AESysDoesWindowExist referenced in function SystemUpdate
+System.obj : error LNK2019: unresolved external symbol __imp_AESysFrameStart referenced in function SystemUpdate
+System.obj : error LNK2019: unresolved external symbol __imp_AESysFrameEnd referenced in function SystemDraw
+System.obj : error LNK2019: unresolved external symbol __imp_AEInputUpdate referenced in function SystemUpdate
+MSVCRTD.lib(exe_main.obj) : error LNK2019: unresolved external symbol main referenced in function "int __cdecl invoke_main(void)" (?invoke_main@@YAHXZ)
+C:\Users\chaos\Documents\DIT Work\Project Color\trunk\Main\Main\Project Color\Project Color\AE\lib\Alpha_Engine_D.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+C:\Users\chaos\Documents\DIT Work\Project Color\trunk\Main\Main\Project Color\x64\Debug\Project Color.exe : fatal error LNK1120: 38 unresolved externals

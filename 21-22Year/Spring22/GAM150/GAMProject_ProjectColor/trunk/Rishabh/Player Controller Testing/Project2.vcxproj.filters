@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Engine">
+      <UniqueIdentifier>{029e481d-a349-414d-8ab4-5d625aee7140}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{441702e7-464c-4436-8b65-1eeccb71892b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\GameStates">
+      <UniqueIdentifier>{0fc2ef2e-d98c-4889-a1c2-72ec1c09f16d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\GameObjects">
+      <UniqueIdentifier>{df0b0d3a-08c1-4f7b-9315-3ce247fb50f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\GameObjects\Graphics">
+      <UniqueIdentifier>{b4f05833-7b58-4457-94c2-d951b07921d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\GameObjects\Transform">
+      <UniqueIdentifier>{3646720a-0a0a-44d1-bb70-4f037e317d42}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\GameObjects\Physics">
+      <UniqueIdentifier>{dac29061-d2c7-4829-af50-6e79415a84da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Math">
+      <UniqueIdentifier>{799248e7-360e-4a26-b8d4-3bed58e49acc}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\GameStateStub.c">
+      <Filter>Game\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameStateManager.c">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\stdafx.c">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Stub.c" />
+    <ClCompile Include="Source\Engine.c">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameStateTable.c">
+      <Filter>Game\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Main.c" />
+    <ClCompile Include="Source\Trace.c">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\System.c">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Sprite.c">
+      <Filter>Engine\GameObjects\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SpriteSource.c">
+      <Filter>Engine\GameObjects\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Mesh.c">
+      <Filter>Engine\GameObjects\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Physics.c">
+      <Filter>Engine\GameObjects\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Transform.c">
+      <Filter>Engine\GameObjects\Transform</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameObject.c">
+      <Filter>Engine\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Vector2D.c">
+      <Filter>Engine\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Stream.c">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameObjectFactory.c">
+      <Filter>Engine\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameStateDemo.c">
+      <Filter>Game\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameStateSandbox.c">
+      <Filter>Game\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameStateLevel1.c">
+      <Filter>Game\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameStateLevel2.c">
+      <Filter>Game\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Brush.c" />
+    <ClCompile Include="Source\Player Controller.c" />
+    <ClCompile Include="Source\Player Movement.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\GameStateStub.h">
+      <Filter>Game\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameStateManager.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\stdafx.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\targetver.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Stub.h" />
+    <ClInclude Include="Source\Engine.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameStateTable.h">
+      <Filter>Game\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Trace.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\System.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Sprite.h">
+      <Filter>Engine\GameObjects\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\SpriteSource.h">
+      <Filter>Engine\GameObjects\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Mesh.h">
+      <Filter>Engine\GameObjects\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Physics.h">
+      <Filter>Engine\GameObjects\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Transform.h">
+      <Filter>Engine\GameObjects\Transform</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameObject.h">
+      <Filter>Engine\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Vector2D.h">
+      <Filter>Engine\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Stream.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameObjectFactory.h">
+      <Filter>Engine\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameStateDemo.h">
+      <Filter>Game\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameStateSandbox.h">
+      <Filter>Game\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameStateLevel1.h">
+      <Filter>Game\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameStateLevel2.h">
+      <Filter>Game\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Brush.h" />
+    <ClInclude Include="Source\Player Controller.h" />
+    <ClInclude Include="Source\Player Movement.h" />
+  </ItemGroup>
+</Project>

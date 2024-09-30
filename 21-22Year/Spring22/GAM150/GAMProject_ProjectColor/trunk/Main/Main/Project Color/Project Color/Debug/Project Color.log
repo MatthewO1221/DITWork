@@ -1,0 +1,64 @@
+﻿  Hud.c
+  AABB.c
+  Animation.c
+  Audio.c
+  Brush.c
+  Button.c
+  Camera.c
+  ConfigHelper.c
+  Debug.c
+  DisplayHelper.c
+  EnemyAI.c
+  EnemyAnimations.c
+  Engine.c
+  GameObject.c
+  GameplayInstance.c
+  GameStateCredits.c
+  GameStateEditor.c
+  GameStateMain.c
+  GameStateManager.c
+  GameStateMenuTest.c
+  GameStateSplash.c
+  GameStateSwitcher.c
+  GameStateTest.c
+  GameStateTable.c
+  GameStateTestBrody.c
+  GameStateTestDerek.c
+  GameStateTestEmily.c
+  GameStateTestMatthew.c
+  GameStateTestRishabh.c
+  GameStateTitle.c
+  Level.c
+  Main.c
+  MathHelper.c
+  Matrix2D.c
+  Mesh.c
+  Paint.c
+  Particle.c
+  ParticleEmitter.c
+  PauseScreen.c
+  Physics.c
+  Player Controller.c
+  Player Movement.c
+  Player.c
+  Random.c
+  RunningParticles.c
+  Serialization.c
+  Sprite.c
+  SpriteSource.c
+  stdafx.c
+  System.c
+  Tile.c
+  Transform.c
+  Vector2D.c
+  World.c
+C:\Users\chaos\Documents\DIT Work\Project Color\trunk\Main\Main\Project Color\Project Color\\FMOD\lib\FMODL.dll : warning LNK4003: invalid library format; library ignored
+  Project Color.vcxproj -> C:\Users\chaos\Documents\DIT Work\Project Color\trunk\Main\Main\Project Color\Project Color\Debug\Project Color.exe
+  C:\Users\chaos\Documents\DIT Work\Project Color\trunk\Main\Main\Project Color\Project Color\\AE\lib\glew32.dll
+  1 File(s) copied
+  C:\Users\chaos\Documents\DIT Work\Project Color\trunk\Main\Main\Project Color\Project Color\\FMOD\lib\fmod.dll
+  1 File(s) copied
+  C:\Users\chaos\Documents\DIT Work\Project Color\trunk\Main\Main\Project Color\Project Color\\FMOD\lib\fmodL.dll
+  1 File(s) copied
+  C:\Users\chaos\Documents\DIT Work\Project Color\trunk\Main\Main\Project Color\Project Color\\AE\lib\Alpha_Engine_D.dll
+  1 File(s) copied

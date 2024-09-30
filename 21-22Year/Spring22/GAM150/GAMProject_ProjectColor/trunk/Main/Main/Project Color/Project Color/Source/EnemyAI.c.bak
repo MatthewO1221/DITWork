@@ -1,0 +1,571 @@
+#include "stdafx.h"
+#include "EnemyAI.h"
+#include "AABB.h"
+#include "Level.h"
+#include "Debug.h"
+#include "Sprite.h"
+#include "Mesh.h"
+#include "Tile.h"
+#include "SpriteSource.h"
+static EnemyPtr enemyList[MaxSpawnedEnemies]; //List of all currently spawned enemies
+
+
+static AEGfxVertexList* enemyMesh;
+static AEGfxTexture* enemyTexture;
+static SpriteSourcePtr enemySpriteSource;
+
+
+//Controls what each enemy state does and when the enemy
+//switches between states
+void Existing(EnemyPtr enemy, GameObjectPtr player, AABB* levelTiles)
+{
+	if (enemy->gameObject == NULL || player == NULL || levelTiles == NULL)
+		return;
+
+	//Get various things
+	TransformPtr enemyTransform = GameObjectGetTransform(enemy->gameObject);
+	Vector2D* translation = TransformGetTranslation(enemyTransform);
+	Vector2D* playerTranslation = TransformGetTranslation(GameObjectGetTransform(player));
+	Vector2D* scale = TransformGetScale(enemyTransform);
+
+	AABB collider = GameObjectGetCollider(enemy->gameObject);
+
+	if (enemy->enemyType == Slime)
+	{
+		GroundedCheck(enemy, levelTiles); //Do a grounded check if enemy is a slime
+	}
+
+
+	//Keep collider in the right spot
+	//collider->left = translation->x;
+	//collider->right = collider->left + scale->x;
+	//collider->bottom = translation->y - 164;
+	//collider->top = collider->bottom + scale->y;
+
+#if DEBUG_MODE
+	// Set render mode.
+	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
+
+	// Set the position.
+	//AEGfxSetFullTransform(collider->left, collider->bottom, 0, 1, 1);
+	AEGfxSetFullTransform(collider->WorldPos.x, collider->WorldPos.y, 0, 1, 1);
+
+	// Render the texture.
+	AEGfxTextureSet(GetBoundingBox(), 0.0F, 0.0F);
+
+	// Set transparency.
+	AEGfxSetTransparency(0.5F);
+
+	// Draw the mesh.
+	AEGfxMeshDraw(SpriteGetMesh(GameObjectGetSprite(enemy->gameObject)), AE_GFX_MDM_TRIANGLES);
+#endif
+
+	//if (CheckPlayerCollision(enemy, player))
+	//{
+	//	Damage(enemy, player);
+	//}
+
+	//Region for patrol logic
+#pragma region IdleMode 
+	if (enemy->mode == Idle) //If enemy is set to idle
+	{
+		enemy->movement(enemy, player, enemy->speed); //Call enemy's movement function
+	}
+#pragma endregion
+
+	//Region for following logic
+#pragma region FollowMode
+	if (enemy->mode == Following)
+	{
+
+		//If player is to the right
+		if (translation->x < playerTranslation->x)
+		{
+
+			enemy->movement(enemy, player, enemy->speed); //Move towards player
+
+		}
+		else if (translation->x > playerTranslation->x) //If player is to the left
+		{
+
+			enemy->movement(enemy, player, -enemy->speed);
+
+		}
+	}
+#pragma endregion
+
+	//Region for dying logic
+#pragma region DyingMode
+	//If the enemy is dying
+	if (enemy->mode == Dying)
+	{
+		Death(enemy); //Die
+	}
+#pragma endregion
+
+	//Region for dead logic
+#pragma region DeadMode
+	//Not yet
+	if (enemy->mode == Dead)
+	{
+		//Do nothing
+	}
+#pragma endregion
+
+	//Region for respawning logic
+#pragma region RespawningMode
+	//Not yet
+	if (enemy->mode == Respawning)
+	{
+
+	}
+#pragma endregion
+
+	//Region which controls changing of enemy modes
+#pragma region StateControl
+	if (enemy->health <= 0 && enemy->mode != Dead) //If the enemy has 0 or less health
+	{
+		enemy->mode = Dying; //Enemy is dying
+	}
+	else if (InRange(enemy, DistToPlayer(enemy, player))) //If the player is in range
+	{
+		enemy->mode = Following; //Start following player
+	}
+	else if (!InRange(enemy, DistToPlayer(enemy, player))) //If the player is not in range
+	{
+		enemy->mode = Idle; //Go back to idle
+	}
+
+
+#pragma endregion
+
+}
+//Wow, you found Waldo
+//Damage the player
+void Damage(EnemyPtr enemy, tempPlayerPtr player)
+{
+	player->health -= enemy->damage;
+}
+
+//Is the player in range
+bool InRange(EnemyPtr enemy, float dist)
+{
+	//If the dist to the player is less than the range
+	if (dist <= enemy->range && enemy)
+	{
+		return TRUE; //Player is in range
+	}
+
+	return FALSE; //Player is not in range
+}
+
+//Kill enemy
+void Death(EnemyPtr enemy)
+{
+	if (enemy) //If pointer is valid
+	{
+		for (int i = 0; i < MaxSpawnedEnemies; i++) //Go through enemy list
+		{
+			if (enemyList[i] == GetEnemyName(enemy->name)) //If you find the right enemy
+			{
+				enemyList[i] = NULL; //Set that list spot to NULL
+			}
+		}
+		GameObjectFree(&enemy->gameObject); //Free enemy game object and everything attached to it
+		free(enemy); //Free the enemy
+		enemy = NULL; //Set the pointer to NULL
+	}
+
+}
+
+//Get distance to the player
+float DistToPlayer(EnemyPtr enemy, GameObjectPtr player)
+{
+	if (enemy && player)
+	{
+		//Get transform and translation
+		TransformPtr transform = GameObjectGetTransform(enemy->gameObject);
+		const Vector2D* translation = TransformGetTranslation(transform);
+		const Vector2D* playerTranslation = TransformGetTranslation(GameObjectGetTransform(player));
+
+		//Distance formula, does not account for obstacles
+		float dist = sqrtf(powf(translation->x - playerTranslation->x, 2.0f) +
+			(powf(translation->y - playerTranslation->y, 2.0f)));
+
+		return dist; //Return distance
+	}
+
+	return 0;
+}
+
+//Calloc a new enemy pointer
+EnemyPtr MakeEnemy(void)
+{
+	//Allocate a new enemy
+	EnemyPtr newEnemy = calloc(1, sizeof(struct Enemy));
+
+	if (newEnemy) //If successful
+	{
+		return newEnemy; //Return new enemy
+	}
+
+	return 0;
+}
+
+//Handles making a new enemy and setting all the enemy's values, including adding it to the list
+EnemyPtr SpawnEnemy(enum EnemyType type, enum Colors color, Vector2D spawnPos, char enemyName[])
+{
+	int canSpawn = 0;
+	for (int i = 0; i < MaxSpawnedEnemies; i++)
+	{
+		if (enemyList[i] == NULL)
+		{
+			canSpawn = 1;
+		}
+	}
+
+	if (canSpawn == 1)
+	{
+		EnemyPtr newEnemy = MakeEnemy(); //Make a new enemy
+		newEnemy->gameObject = GameObjectCreate(); //Make a new game object for the enemy
+
+		GameObjectAddPhysics(newEnemy->gameObject, PhysicsCreate()); //Make new physics for game object
+		GameObjectAddTransform(newEnemy->gameObject, TransformCreate()); //Make new transform for game object
+		GameObjectAddSprite(newEnemy->gameObject, SpriteCreate());
+		enemyMesh = MeshCreateQuad(TILE_SIZE * 0.5f, TILE_SIZE * 0.5f, 1.0f, 1.0f, "Enemy Mesh");
+		SpriteSetMesh(GameObjectGetSprite(newEnemy->gameObject), enemyMesh);
+		Vector2D scale = { DefaultSlimeScale, DefaultSlimeScale };
+		TransformSetScale(GameObjectGetTransform(newEnemy->gameObject), &scale);
+
+		strcpy_s(newEnemy->name, sizeof(newEnemy->name), enemyName);
+		GameObjectSetName(newEnemy->gameObject, enemyName);
+
+		newEnemy->color = color; //Set enemy color
+
+
+		//Set enemy current position and spawn position
+		TransformSetTranslation(GameObjectGetTransform(newEnemy->gameObject), &spawnPos);
+		newEnemy->spawnPos = spawnPos;
+
+		//Make a new collider for the enemy
+<<<<<<< .mine
+		AABB newAABB = FromPoints(0, 128, 128, 0);
+||||||| .r160
+		AABB newAABB = FromPoints(0, 64, 64, 0);
+=======
+		AABB newAABB = FromPoints(spawnPos, TILE_SIZE, TILE_SIZE, 0, 0);
+>>>>>>> .r162
+		GameObjectAddCollider(newEnemy->gameObject, newAABB);
+
+		updateAABBPosition(GameObjectGetCollider(newEnemy->gameObject), GameObjectGetTransform(newEnemy->gameObject));
+
+		//Depending on the type of enemy initialize variables to certain values
+		switch (type)
+		{
+		case Slime:
+			DefaultSlime(newEnemy);
+			break;
+
+		case Fleye:
+			DefaultFleye(newEnemy);
+			break;
+
+		}
+
+		SpriteSetSpriteSource(GameObjectGetSprite(newEnemy->gameObject), enemySpriteSource);
+		//Go through list of enemies and add this one to first empty slot
+		for (int i = 0; i < MaxSpawnedEnemies; i++)
+		{
+			if (enemyList[i] == NULL)
+			{
+				enemyList[i] = newEnemy;
+				break;
+			}
+		}
+
+		return newEnemy;
+
+	}
+
+	return 0;
+}
+
+//Sets all default slime values
+void DefaultSlime(EnemyPtr enemy)
+{
+	if (enemy) //If pointer is valid
+	{
+		//Set all variables to default values
+		enemy->health = DefaultSlimeHealth;
+		enemy->damage = DefaultSlimeDamage;
+		enemy->speed = DefaultSlimeSpeed;
+		enemy->range = DefaultSlimeRange;
+		enemy->jumpH = DefaultSlimeJumpHeight;
+		enemy->movement = &SlimeJump; //Set movement function pointer
+		enemyTexture = AEGfxTextureLoad("./Assets/Tiles/green_slime_spawn.png");
+		enemySpriteSource = SpriteSourceCreate(1, 1, enemyTexture);
+		//PhysicsSetAcceleration(GameObjectGetPhysics(enemy->gameObject), &Gravity);
+	}
+}
+
+//Sets all default fleye values
+void DefaultFleye(EnemyPtr enemy)
+{
+	if (enemy) //If pointer is valid
+	{
+		//Set all variables to default values
+		enemy->health = DefaultFleyeHealth;
+		enemy->damage = DefaultFleyeDamage;
+		enemy->speed = DefaultFleyeSpeed;
+		enemy->range = DefaultFleyeRange;
+		enemy->jumpH = DefaultFleyeFlapHeight;
+		enemy->movement = &FleyeMove; //Set movement function pointer
+		PhysicsSetAcceleration(GameObjectGetPhysics(enemy->gameObject), &Gravity);
+	}
+}
+
+
+//Movement function for slime enemies
+void SlimeJump(EnemyPtr enemy, GameObjectPtr player, float xDir)
+{
+	UNREFERENCED_PARAMETER(player);
+	if (enemy) //If pointer is valid
+	{
+		//Get physics, transform, and collider
+		PhysicsPtr physics = GameObjectGetPhysics(enemy->gameObject);
+		TransformPtr transform = GameObjectGetTransform(enemy->gameObject);
+		AABB collider = GameObjectGetCollider(enemy->gameObject);
+
+		if (physics && transform && collider) //If pointers are valid
+		{
+			//Make variables for new velocity and acceleration, set them to current values
+			Vector2D velocity = *PhysicsGetVelocity(physics);
+
+
+			//Every "SlimeJumpRate"th frame && if colliding with floor
+			if (AEFrameRateControllerGetFrameCount() % SlimeJumpRate == 0 && enemy->floorCollision)
+			{
+				velocity.y = DefaultSlimeJumpHeight; //Do a jump
+				PhysicsSetAcceleration(physics, &Gravity);
+				AESysPrintf("Jump");
+			}
+			else if (enemy->floorCollision) //If not the right frame but still on ground
+			{
+				AESysPrintf("Grounded");
+				//Don't fall through ground
+				velocity.x = 0.0f;
+				velocity.y = 0.0f;
+				PhysicsSetAcceleration(physics, &noGravity);
+
+			}
+
+			if (!enemy->floorCollision) //If not grounded
+			{
+				AESysPrintf("Airborne");
+				velocity.x = xDir;
+
+			}
+
+			PhysicsSetVelocity(physics, &velocity);
+
+
+		}
+	}
+}
+
+void FleyeMove(EnemyPtr enemy, GameObjectPtr player, float xDir)
+{
+	if (enemy) //If pointer is valid
+	{
+		//Get physics, transform, and collider
+		PhysicsPtr physics = GameObjectGetPhysics(enemy->gameObject);
+		TransformPtr transform = GameObjectGetTransform(enemy->gameObject);
+		AABB collider = GameObjectGetCollider(enemy->gameObject);
+
+		if (physics && transform && collider) //If pointers are valid
+		{
+			//Make variables for new velocity and acceleration, set them to current values
+			Vector2D velocity = *PhysicsGetVelocity(physics);
+			Vector2D pos = *TransformGetTranslation(GameObjectGetTransform(enemy->gameObject));
+			//Every "FleyeFlapRate"th frame
+			if (enemy->mode == Following && DistToPlayer(enemy, player) <= DefaultFleyeAttackDist)
+			{
+				float angle = acosf((Vector2DDotProduct(TransformGetTranslation(transform), TransformGetTranslation(GameObjectGetTransform(player))))
+					/ (Vector2DLength(TransformGetTranslation(transform)) * Vector2DLength(TransformGetTranslation(GameObjectGetTransform(player)))));
+
+				Vector2D dirVect = { cosf(angle), sinf(angle) };
+
+				Vector2DScale(&velocity, &dirVect, 5.0f);
+			}
+			else if (pos.y <= enemy->spawnPos.y - 100.0f)
+			{
+				velocity.y = DefaultFleyeFlapHeight;
+			}
+
+
+
+
+
+		}
+	}
+
+}
+
+//Draws the given enemy
+void DrawEnemy(EnemyPtr enemy)
+{
+	if (enemy->gameObject == NULL || SpriteGetMesh(GameObjectGetSprite(enemy->gameObject)) == NULL) //If pointers aren't valid
+		return;
+
+	// Set render mode.
+	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
+
+	// Set the position.
+	TransformPtr transform = GameObjectGetTransform(enemy->gameObject);
+	Vector2D translation = *TransformGetTranslation(transform);
+	AEGfxSetPosition(translation.x, translation.y);
+
+	// Render the texture.
+	AEGfxTextureSet(SpriteSourceGetTexture(SpriteGetSpriteSource(GameObjectGetSprite(enemy->gameObject))), 0.0F, 0.0F);
+
+	// Set transparency.
+	AEGfxSetTransparency(1.0F);
+
+	// Draw the mesh.
+	AEGfxMeshDraw(SpriteGetMesh(GameObjectGetSprite(enemy->gameObject)), AE_GFX_MDM_TRIANGLES);
+}
+
+//Checks if the enemy is touching the ground
+void GroundedCheck(EnemyPtr enemy, AABB* levelTiles)
+{
+	if (levelTiles && enemy) //If pointers are valid
+	{
+		//Get collider and translation
+		AABB collider = GameObjectGetCollider(enemy->gameObject);
+
+		for (int y = 0; y < MAX_LEVEL_HEIGHT; ++y)
+		{
+			for (int x = 0; x < MAX_LEVEL_WIDTH; ++x) //Iterate through all tiles in level
+			{
+				if (CheckCollisionDirect(collider, levelTiles[y * MAX_LEVEL_WIDTH + x]) == Right) //If colliding with a tile at the bottom
+				{
+					enemy->floorCollision = TRUE; //Set floor collision to true and stay above tile
+<<<<<<< .mine
+||||||| .r160
+					translation->y = levelTiles[y * MAX_LEVEL_WIDTH + x]->top + 140;
+=======
+					//translation->y = levelTiles[y * MAX_LEVEL_WIDTH + x]->top + 140;
+>>>>>>> .r162
+					return;
+				}
+				else
+				{
+					enemy->floorCollision = FALSE; //Not colliding
+				}
+			}
+		}
+	}
+
+}
+
+//Check if enemy is colliding with player
+bool CheckPlayerCollision(EnemyPtr enemy, GameObjectPtr player)
+{
+	if (enemy && player) //If pointers are valid
+	{
+		//Get player and enemy colliders
+		AABB eCollider = GameObjectGetCollider(enemy->gameObject);
+		AABB pCollider = GameObjectGetCollider(player);
+
+		if (CheckAABBCollision(eCollider, pCollider)) //If enemy and players are colliding
+		{
+			return TRUE;
+		}
+		else
+		{
+			return FALSE;
+		}
+
+	}
+
+	return FALSE;
+}
+
+//Get enemy with a specific name from enemy list
+EnemyPtr GetEnemyName(char name[16])
+{
+	for (int i = 0; i < MaxSpawnedEnemies; i++) //Iterate through enemy list
+	{
+		if (enemyList[i]->name == name) //If found the right name
+		{
+			return enemyList[i]; //Return the right enemy
+		}
+	}
+
+	return 0;
+}
+
+//Get enemy at specific index of enemy list
+EnemyPtr GetEnemyIndex(int index)
+{
+	if (index < MaxSpawnedEnemies && &enemyList[index] != NULL) //If the index is a valid enemy
+	{
+		return enemyList[index]; //Return the right enemy
+	}
+
+	return 0;
+}
+
+//Kill all enemies
+void DespawnAll()
+{
+	for (int i = 0; i < MaxSpawnedEnemies; i++) //Iterate through enemy list
+	{
+		Death(GetEnemyIndex(i)); //Kill all enemies
+	}
+}
+
+void UnloadAll()
+{
+	for (int i = 0; i < MaxSpawnedEnemies; i++)
+	{
+		if (GetEnemyIndex(i) != NULL)
+		{
+			if (SpriteGetMesh(GameObjectGetSprite(GetEnemyIndex(i)->gameObject)) != NULL)
+			{
+				AEGfxMeshFree(SpriteGetMesh(GameObjectGetSprite(enemyList[i]->gameObject)));
+			}
+			if (SpriteSourceGetTexture(SpriteGetSpriteSource(GameObjectGetSprite(enemyList[i]->gameObject))) != NULL)
+			{
+				AEGfxTextureUnload(
+					SpriteSourceGetTexture(SpriteGetSpriteSource(GameObjectGetSprite(enemyList[i]->gameObject))));
+			}
+		}
+
+
+	}
+}
+
+void UpdateAllEnemies(GameObjectPtr player, AABB* levelTiles)
+{
+	for (int i = 0; i < MaxSpawnedEnemies; i++)
+	{
+		if (GetEnemyIndex(i) != NULL)
+		{
+			Existing(GetEnemyIndex(i), player, levelTiles);
+		}
+		
+	}
+}
+
+void DrawAllEnemies()
+{
+	for (int i = 0; i < MaxSpawnedEnemies; i++)
+	{
+		if (GetEnemyIndex(i) != NULL)
+		{
+			DrawEnemy(GetEnemyIndex(i));
+		}
+		
+	}
+}

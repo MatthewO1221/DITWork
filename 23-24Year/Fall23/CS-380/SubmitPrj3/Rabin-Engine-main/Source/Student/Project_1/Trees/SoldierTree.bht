@@ -1,0 +1,6 @@
+TREENAME(SoldierTree)
+TREENODE(C_Selector, 0)
+TREENODE(D_Delay, 1)
+TREENODE(L_AttackSwarm, 2)
+TREENODE(L_MoveToClosestPerson, 1)
+TREENODE(L_Idle, 1)

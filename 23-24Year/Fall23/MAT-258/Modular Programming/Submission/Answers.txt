@@ -1,0 +1,34 @@
+1. Correct message is "Why do you like games" with an offset of 19
+
+2. MATHEMATICSASANEXPRESSIONOFTHEHUMANMINDREFLECTSTHEACTIVEWILLTHECONTEMPLATIVEREASONANDTHEDESIREFORAESTHETICPERFECTIONITSBASICELEMENTSARELOGICANDINTUITIONANALYSISANDCONSTRUCTIONGENERALITYANDINDIVIDUALITY
+Frequency of A is: 19
+Frequency of B is: 10
+Frequency of C is: 3
+Frequency of D is: 0
+Frequency of E is: 9
+Frequency of F is: 14
+Frequency of G is: 21
+Frequency of H is: 4
+Frequency of I is: 3
+Frequency of J is: 1
+Frequency of K is: 1
+Frequency of L is: 3
+Frequency of M is: 0
+Frequency of N is: 19
+Frequency of O is: 1
+Frequency of P is: 10
+Frequency of Q is: 8
+Frequency of R is: 25
+Frequency of S is: 4
+Frequency of T is: 2
+Frequency of U is: 7
+Frequency of V is: 22
+Frequency of W is: 0
+Frequency of X is: 0
+Frequency of Y is: 9
+The most frequent letter is: R
+Offset is 13
+
+3. Output is 901960
+
+4. Outputs incorrect value of 307781

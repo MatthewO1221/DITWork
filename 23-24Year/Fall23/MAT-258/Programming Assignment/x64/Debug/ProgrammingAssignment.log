@@ -1,0 +1,3 @@
+﻿  Logic.cpp
+C:\Users\KingLoui1221\Documents\DIT Stuff\Repo\DigipenWork\23-24Year\Fall23\MAT-258\Programming Assignment\programmingassignment\Logic.cpp(10,20): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+  ProgrammingAssignment.vcxproj -> C:\Users\KingLoui1221\Documents\DIT Stuff\Repo\DigipenWork\23-24Year\Fall23\MAT-258\Programming Assignment\x64\Debug\ProgrammingAssignment.exe

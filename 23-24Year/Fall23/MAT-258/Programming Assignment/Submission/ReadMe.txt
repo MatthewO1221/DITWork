@@ -1,0 +1,1 @@
+Simply run the exe and follow the prompts, be sure to input only ints when asked for a number and only single chars when asked for a character

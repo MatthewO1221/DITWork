@@ -1,0 +1,6 @@
+#include "../Source/Student/Project_1/Trees/Example.bht"
+#include "../Source/Student/Project_1/Trees/HiveTree.bht"
+#include "../Source/Student/Project_1/Trees/Idle.bht"
+#include "../Source/Student/Project_1/Trees/PersonTree.bht"
+#include "../Source/Student/Project_1/Trees/SoldierTree.bht"
+#include "../Source/Student/Project_1/Trees/SwarmTree.bht"

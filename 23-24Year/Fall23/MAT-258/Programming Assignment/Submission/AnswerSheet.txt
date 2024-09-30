@@ -1,0 +1,31 @@
+Dice:
+
+(a) n = 2, k = 6, s = 7
+answer: The number of outcomes with a sum of 7 is: 6
+The probability of rolling the sum of 7 is: 6/36 or 16.6667%
+
+(b) n = 10, k = 6, s = 18
+answer: The number of outcomes with a sum of 18 is: 23760
+The probability of rolling the sum of 18 is: 23760/60466176 or 0.0392947%
+
+(c) n = 10, k = 10, s = 10
+answer: The number of outcomes with a sum of 10 is: 1
+The probability of rolling the sum of 10 is: 1/10000000000 or 1e-08%
+
+(d) n = 15, k = 4, s = 50
+answer: The number of outcomes with a sum of 50 is: 1392456
+The probability of rolling the sum of 50 is: 1392456/1073741824 or 0.129683%
+
+Monty Hall:
+
+(a) n = 3, k = 1
+answer: The player won the car 643 times out of 1000. Thus their estimated probability of winning with this many doors and opened doors is: 643/1000 or 64.3%
+
+(b) n = 10, k = 1
+answer: The player won the car 113 times out of 1000. Thus their estimated probability of winning with this many doors and opened doors is: 113/1000 or 11.3%
+
+(c) n = 10, k = 8
+answer: The player won the car 898 times out of 1000. Thus their estimated probability of winning with this many doors and opened doors is: 898/1000 or 89.8%
+
+(d) n = 10, k = 4
+answer: The player won the car 182 times out of 1000. Thus their estimated probability of winning with this many doors and opened doors is: 182/1000 or 18.2%

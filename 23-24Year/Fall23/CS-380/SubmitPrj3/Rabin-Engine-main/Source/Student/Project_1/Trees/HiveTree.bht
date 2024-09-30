@@ -1,0 +1,6 @@
+TREENAME(HiveTree)
+TREENODE(C_ParallelSequencer, 0)
+TREENODE(D_Delay, 1)
+TREENODE(L_RandomColor, 2)
+TREENODE(D_Delay, 1)
+TREENODE(L_SpawnSwarmling, 2)

@@ -1,0 +1,7 @@
+TREENAME(SwarmTree)
+TREENODE(C_Selector, 0)
+TREENODE(L_DepositAtHive, 1)
+TREENODE(C_Sequencer, 1)
+TREENODE(L_Spin, 2)
+TREENODE(L_SwarmWander, 2)
+TREENODE(L_SwarmAttack, 1)

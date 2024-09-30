@@ -1,0 +1,6 @@
+TREENAME(PersonTree)
+TREENODE(C_Selector, 0)
+TREENODE(C_ParallelSequencer, 1)
+TREENODE(L_FleeSwarm, 2)
+TREENODE(L_Rock, 2)
+TREENODE(L_Idle, 1)

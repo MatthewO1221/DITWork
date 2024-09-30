@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://cwggrjasr5mlf"]
+
+[ext_resource type="Script" path="res://MapStuff/MapGenerator.gd" id="1_0rb7n"]
+[ext_resource type="PackedScene" uid="uid://dawx31at8fpl1" path="res://MapStuff/floor_tile.tscn" id="2_r8rha"]
+[ext_resource type="PackedScene" uid="uid://m84c61s184g6" path="res://MapStuff/wall_tile.tscn" id="3_8avub"]
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_rbmh8"]
+tile_data = PackedInt32Array(0, 0, 65536, 65536, 0, 65536, 131072, 0, 65536, 196608, 0, 65536, 1, 0, 65536, 65537, 0, 65536, 131073, 0, 65536, 196609, 0, 65536, 2, 0, 65536, 65538, 0, 65536, 131074, 0, 65536, 196610, 0, 65536, 3, 0, 65536, 65539, 0, 65536, 131075, 0, 65536, 196611, 0, 65536)
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_8fh5t"]
+scenes/1/scene = ExtResource("2_r8rha")
+scenes/2/scene = ExtResource("3_8avub")
+
+[sub_resource type="TileSet" id="TileSet_uwcu1"]
+tile_size = Vector2i(2, 2)
+sources/0 = SubResource("TileSetScenesCollectionSource_8fh5t")
+pattern_0 = SubResource("TileMapPattern_rbmh8")
+
+[node name="MapGenerator" type="Node2D" node_paths=PackedStringArray("tileMap", "camera")]
+script = ExtResource("1_0rb7n")
+tileMap = NodePath("TileMap")
+timeToWait = 0.01
+camera = NodePath("Camera2D")
+zoomOut = 1
+zoomIn = 5
+maxCorridorLength = 9
+minCorridorLength = 1
+mapSize = 100
+branchChance = 0.05
+roomChance = 0.05
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_uwcu1")
+format = 2
+
+[node name="Layer1" type="TileMapLayer" parent="TileMap"]
+use_parent_material = true
+tile_set = SubResource("TileSet_uwcu1")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(5, 5)

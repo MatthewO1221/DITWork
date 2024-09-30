@@ -1,0 +1,139 @@
+Find and replace.
+=================
+
+A very useful operation available in every text editor (even Notepad).
+Given current text, find all occurrences of a given substring and replace 
+with another substring. 
+
+Examples:
+abcdefg  replace abc --> 123
+123defg
+
+abcdefg  replace abc --> 12345
+12345defg
+
+abcdefg  replace abc --> 1
+1defg
+
+abcdabcg  replace abc --> 12345
+12345d12345g
+
+Note that matching is always performed left-to-right:
+aaaaa  replace aaa --> 123
+123aa
+
+Find-and-replace using a second buffer is straight-forward.
+
+For this assignment to make it more interesting, you will implement
+find-and-replace IN-PLACE.  That is - in the same buffer: you are not allowed
+to use dynamically allocated memory (no new/malloc/realloc/...).
+
+Initial text will be represented by a raw character array (therefore not
+resizable) and 2 integers: 
+1) the number of characters in the text and (str_size)
+2) the size of the buffer (buffer_size). buffer_size >= str_size
+3) there will be NO NEWLINE CHARACTER in the end of the text. Which means that buffer_size == str_size
+
+The find and replace strings will be provided as raw constant arrays and
+corresponding text sizes (find_size and repl_size).
+
+
+Note that repl_size may be greater than find_size (i.e. replacement string is
+longer), which means that find-and-replace operation is growing the
+string. Since the buffer containing the string has a fixed size, the operation
+may fail. Note that return value of the function allows us to signal the
+client that operation failed - see below.
+
+Examples: dots show available, but not used positions in the buffer.
+
+abcdabcd...  replace abc --> 123
+123d123d...
+return value is a tuple (true, 8), where 8 is the length of the resulting string
+
+abcdabcd...  replace abc --> 12
+12d12d.....
+return value is a tuple (true, 6)
+
+abcdabcd...  replace abc --> 1234
+1234d1234d.
+return value is a tuple (true, 10)
+
+abcdabcd...  replace abc --> 12345
+12345d12345d  <<---- buffer overrun (should be predicted), operation is
+impossible
+return tuple containing false in the first position: (false, anything)
+
+
+Tests 0..17 are testing the correctness of your implementation, so your O(N^2)
+implementation (which shifts several times) should pass those tests.
+
+Note: O(N^2) algorithm is usually an algorithm that have 2 nested loops
+each having about N iterations. Like
+for ( int i=0; i<N; ++i ) {
+    for ( int j=0; j<N; ++j ) {
+    }
+}
+OR
+for ( int i=0; i<N; ++i ) {
+    int j=0;
+    while ( ++j<N/2 ) { ... }
+}
+
+Tests 18,19 have 2^15 replacements and will take several seconds with O(N^2) algorithm.
+
++---------------+
+|Small challenge|
++---------------+
+Can you implement a "strong guarantee" (terminology is from exception safety):
+replacement will either succeed, or the string will not be changed.
+This will NOT be tested.
+
++---------+
+|Challenge|
++---------+
+It is possible to implement find-and-replace in O(N) time. Tests 18,19 will run in 0.01s
+This will be tested and has extra credit.
+
++-----------------+
+|Another challenge| 
++-----------------+
+You probably have 2 cases. One for shifting characters left when find string is
+longer than the replacement string, and another for shifting right. Can you
+"merge" as much code as possible?
+This can be tested by hand only. If you did this - email me.
+
+
+More examples:
+      +-----------------------------+
+str = |this is an example string    |
+      +-----------------------------+
+notice 4 position available in the end of the str
+
+1) replace "is" with "DDD"
+result 
+      +-----------------------------+
+str = |thDDD DDD an example string  |  return (true, 27)
+      +-----------------------------+
+
+
+2) replace "i" with "DDD"
+notice that replacing "i" with "DDD" is impossible
+if you make all 3 substitution, the result will be a buffer overrun
+      +-----------------------------+
+str = |thDDDs DDDs an example strDDDng| 
+      +-----------------------------+
+and you will loose points on memory test.
+what should happen - you should PREDICT that overrun will happen
+for example you can make 1st substitution
+      +-----------------------------+
+str = |thDDDs is an example string  | 
+      +-----------------------------+
+you can make 2nd substitution
+      +-----------------------------+
+str = |thDDDs DDDs an example string| 
+      +-----------------------------+
+but before making the 3d you should notice that there is not enough space and return (false,0)
+the state of the string does not matter, so do not "undo"
+
+If you can predict "not enough space" before you start substitutions, then 
+you have a strong guarantee (see above), return (false, original str size)

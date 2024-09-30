@@ -1,0 +1,20 @@
+There will be kickoff meetings the next 3 fridays, these are where the team meets with professors and dicusses what we're going to do for our game. We only have to do one, they'll just be doing them the next 3 weeks.
+
+Week 5 is presentation week, we only have 1 per semester
+
+Weeks 9 and 10 are pre-grading, the whole team will meet with the professors to basically give them an update and get feedback
+
+After weeks 9 and 10 there will be optional pre-grading sessions to get feedback
+
+We'll be getting a checklist next week for our week 5 presentations
+
+There are still a few artists not in a team, they will be assigned to teams with 3 artists
+
+WE NEED TO USE SOURCE CONTROL
+
+Everything needs to be in SVN (including all BFA and BAGD work), except source code which can be in Digipen's Git repo
+
+The programmers are required to use Visual Studio 2022 and the designers are required to use Unity 2021.3.1f1
+
+We have to maintain a schedule, we can use trello for this and the whole team has to use it
+

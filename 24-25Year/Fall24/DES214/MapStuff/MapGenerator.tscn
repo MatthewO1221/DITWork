@@ -1,20 +1,22 @@
-[gd_scene load_steps=7 format=3 uid="uid://cwggrjasr5mlf"]
+[gd_scene load_steps=8 format=3 uid="uid://cwggrjasr5mlf"]
 
 [ext_resource type="Script" path="res://MapStuff/MapGenerator.gd" id="1_0rb7n"]
 [ext_resource type="PackedScene" uid="uid://dawx31at8fpl1" path="res://MapStuff/floor_tile.tscn" id="2_r8rha"]
 [ext_resource type="PackedScene" uid="uid://m84c61s184g6" path="res://MapStuff/wall_tile.tscn" id="3_8avub"]
+[ext_resource type="PackedScene" uid="uid://cletve5nto6k6" path="res://MapStuff/entrance_tile.tscn" id="4_yxvnu"]
 
-[sub_resource type="TileMapPattern" id="TileMapPattern_rbmh8"]
-tile_data = PackedInt32Array(0, 0, 65536, 65536, 0, 65536, 131072, 0, 65536, 196608, 0, 65536, 1, 0, 65536, 65537, 0, 65536, 131073, 0, 65536, 196609, 0, 65536, 2, 0, 65536, 65538, 0, 65536, 131074, 0, 65536, 196610, 0, 65536, 3, 0, 65536, 65539, 0, 65536, 131075, 0, 65536, 196611, 0, 65536)
+[sub_resource type="TileMapPattern" id="TileMapPattern_ln6pl"]
+tile_data = PackedInt32Array(0, 0, 65536, 65536, 0, 65536, 131072, 0, 65536, 196608, 0, 65536, 1, 0, 65536, 65537, 0, 65536, 131073, 0, 65536, 196609, 0, 65536, 2, 0, 196608, 65538, 0, 65536, 131074, 0, 65536, 196610, 0, 65536, 3, 0, 65536, 65539, 0, 65536, 131075, 0, 65536, 196611, 0, 65536)
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_8fh5t"]
 scenes/1/scene = ExtResource("2_r8rha")
 scenes/2/scene = ExtResource("3_8avub")
+scenes/3/scene = ExtResource("4_yxvnu")
 
 [sub_resource type="TileSet" id="TileSet_uwcu1"]
 tile_size = Vector2i(2, 2)
 sources/0 = SubResource("TileSetScenesCollectionSource_8fh5t")
-pattern_0 = SubResource("TileMapPattern_rbmh8")
+pattern_0 = SubResource("TileMapPattern_ln6pl")
 
 [node name="MapGenerator" type="Node2D" node_paths=PackedStringArray("tileMap", "camera")]
 script = ExtResource("1_0rb7n")

@@ -1,3 +1,13 @@
+#TODO
+#Make room placement shift to entrance tile
+#Make rooms rotate to place properly
+#Make some interesting varied rooms
+#Make interesting corridor rooms
+#Create Biome Mode Structs
+
+
+
+
 extends Node2D
 
 #reference to tilemap object
@@ -10,7 +20,7 @@ extends Node2D
 @export_group("")
 
 #tiletype enum
-enum TileType {Floor = 1, Wall = 2}
+enum TileType {Empty = -1, Floor = 1, Wall = 2, Entrance = 3}
 
 #time to wait for slowing things down
 
@@ -23,11 +33,24 @@ var directionMap = {
 	3: Directions.W
 }
 
+enum TileTransform {
+	ROTATE_0 = 0,
+	ROTATE_90 = TileSetAtlasSource.TRANSFORM_TRANSPOSE | TileSetAtlasSource.TRANSFORM_FLIP_H,
+	ROTATE_180 = TileSetAtlasSource.TRANSFORM_FLIP_V | TileSetAtlasSource.TRANSFORM_FLIP_H,
+	ROTATE_270 = TileSetAtlasSource.TRANSFORM_FLIP_V | TileSetAtlasSource.TRANSFORM_TRANSPOSE,
+}
+
 #The four directions to choose from, mapped to the values used by the tileset
 enum Directions {N = TileSet.CELL_NEIGHBOR_TOP_SIDE, 
 E = TileSet.CELL_NEIGHBOR_RIGHT_SIDE,
 S = TileSet.CELL_NEIGHBOR_BOTTOM_SIDE,
 W = TileSet.CELL_NEIGHBOR_LEFT_SIDE}
+
+class Room:
+	var Index: int
+	var Offset: Vector2i
+	var Rotation: TileTransform
+	
 
 
 
@@ -134,28 +157,42 @@ func SpawnRoom(coords: Vector2i) -> void:
 	var roomToPlace = ChooseRoom(coords)
 	
 	if roomToPlace != null:
-		tileMap.set_pattern(0, coords, roomToPlace)
+		tileMap.set_pattern(0, coords + roomToPlace.Offset, tileMap.tile_set.get_pattern(roomToPlace.Index))
 	
-func CheckRoom(coords: Vector2i, room: int) -> bool:
+func CheckRoom(coords: Vector2i, room: Room) -> bool:
 	
-	var roomToCheck = tileMap.tile_set.get_pattern(room)
+	var roomToCheck = tileMap.tile_set.get_pattern(room.Index)
 	var roomTiles = roomToCheck.get_used_cells()
+	var placement = coords + room.Offset
 	
 	for i in roomTiles:
-		var curTile = tileMap.map_pattern(coords, i, roomToCheck)
-		if tileMap.get_cell_source_id(0, curTile) != -1:
+		var curTile = tileMap.map_pattern(placement, i, roomToCheck)
+		if tileMap.get_cell_source_id(0, curTile) != TileType.Empty:
 			return false
 			
 	return true
 	
-func ChooseRoom(coords: Vector2i) -> TileMapPattern:
+func ChooseRoom(coords: Vector2i) -> Room:
+	var returnRoom: Room
 	var patternsCount = tileMap.tile_set.get_patterns_count()
 	for i in range(10):
 		var randRoom = randi_range(0, patternsCount - 1)
-		if CheckRoom(coords, randRoom):
-			return tileMap.tile_set.get_pattern(randRoom)
+		returnRoom.Index = randRoom
+		if CheckRoom(coords, GetRoomShift(returnRoom)):
+			
+			return returnRoom
 	
-	return tileMap.tile_set.get_pattern(0)
+	return null
+	
+	
+func GetRoomShift(room: Room) -> Room:
+	var pattern = tileMap.tile_set.get_pattern(room.Index)
+	
+	for i in pattern.get_used_cells():
+		if pattern.get_cell_source_id(i) == TileType.Entrance:
+			room.Offset = i
+	
+	return room
 
 #endregion
 	

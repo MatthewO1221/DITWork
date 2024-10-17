@@ -40,14 +40,6 @@ enum DensityModes
 	Cluttered
 }
 
-enum GenerationStage
-{
-	Rooms,
-	Corridors,
-	Branches,
-	Enemies,
-	Powerups
-}
 
 class Mode:
 	var name: String
@@ -66,6 +58,7 @@ class Mode:
 class Region:
 	var name: String
 	var totalTiles: int
+	var area: Rect2i
 
 
 #Maps the directions to numbers to make random generation easier
@@ -110,11 +103,8 @@ class Room:
 @export_group("")
 
 #Important Globals
-var stillGenerating = true
 var currentTile = Vector2i(0,0)
-var currentTimer: float
 var branchList: Array
-var generationStage: GenerationStage
 var generatingCorridor = false
 
 
@@ -129,7 +119,7 @@ func Generate() -> void:
 	var testMode = Mode.new()
 	testMode.name = "TestMode"
 	testMode.roomList = {testRoom = 0}
-	testMode.roomAmount = DensityModes.Regular
+	testMode.roomAmount = DensityModes.Cluttered
 	testMode.minCorridorLength = 5
 	testMode.maxCorridorLength = 10
 	testMode.branchChance = 0.1
@@ -137,17 +127,18 @@ func Generate() -> void:
 	var testRegion = Region.new()
 	testRegion.name = "TestRegion"
 	testRegion.totalTiles = mapSize ** 2
+	testRegion.area = Rect2i(-mapSize, -mapSize, mapSize * 2, mapSize * 2)
 	
-	if generationStage == GenerationStage.Rooms:
-		SpawnRooms(testMode, testRegion)
-		generationStage = GenerationStage.Corridors
-		
+	#Place rooms in the level
+	SpawnRooms(testMode, testRegion)
+	
+	#Replace all entrance tiles with floors and place them in entrance list
+	entranceList.append_array(SweepEntrances())
 	
 	
-	if generationStage == GenerationStage.Corridors:
-		entranceList.append_array(SweepEntrances())
-		OrganizeEntrances()
-		ConnectEntrances(testMode)
+	OrganizeEntrances()
+	
+	ConnectEntrances(testMode, testRegion)
 		
 	
 	
@@ -176,29 +167,51 @@ func Generate() -> void:
 		
 
 
-func ConnectEntrances(mode: Mode) -> void:
+func ConnectEntrances(mode: Mode, region: Region) -> void:
+	
+	var aStar = AStarGrid2D.new()
+	
+	aStar.region = region.area
+	aStar.cell_size = tileMap.tile_set.tile_size
+	
+			
+	aStar.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
+	
+	aStar.update()
+	
+	for tile in roomTiles:
+		aStar.set_point_solid(tile, true)
+		
+	for entrance in entranceList:
+		aStar.set_point_solid(entrance, false)
+	
+	
+		
+	#for tile in allTiles:
+		#var neighbors = [Vector2i(1, 0), Vector2i(-1, 0), Vector2i(0, 1), Vector2i(0, -1)]
+		#for neighbor in neighbors:
+			#var neighbor_pos = tile + neighbor
+			#if aStar.has_point(neighbor_pos) and not aStar.is_point_solid(neighbor_pos):
+				#aStar.connect_points(tile, neighbor_pos)
+		
+	
+	
 	for entrance in entranceList:
 		entranceList.pop_front()
-		ConnectTwoEntrances(mode, entrance)
+		ConnectTwoEntrances(mode, entrance, aStar)
 		
 		
-func ConnectTwoEntrances(mode: Mode, tile: Vector2i) -> void:
+func ConnectTwoEntrances(mode: Mode, tile: Vector2i, grid: AStarGrid2D) -> void:
 		var nextEntrance = entranceList.front()
 		
 		if nextEntrance == null:
 			return
 		
-		var current = tile
+		var path = grid.get_id_path(tile, nextEntrance)
 		
-		while current != nextEntrance:
-			if current.x != nextEntrance.x and IsValidNeighbor(current, TileSet.CELL_NEIGHBOR_RIGHT_SIDE):
-				PlaceTileInDirection(mode, current, Directions.E)
-				current = tileMap.get_neighbor_cell(current, TileSet.CELL_NEIGHBOR_RIGHT_SIDE)
-				
-			elif current.y != nextEntrance.y and IsValidNeighbor(current, TileSet.CELL_NEIGHBOR_BOTTOM_SIDE):
-				PlaceTileInDirection(mode, current, Directions.S)
-				current = tileMap.get_neighbor_cell(current, TileSet.CELL_NEIGHBOR_BOTTOM_SIDE)
-		
+		for tiles in path:
+			PlaceTile(mode, tiles)
+			
 		
 		
 
@@ -311,12 +324,16 @@ func PlaceRoom(room: TileMapPattern, coords: Vector2i, rotation: TileTransform) 
 	
 	tileMap.set_pattern(0, coords, placedRoom)
 	
+	sleep()
+	
 
 func PlaceTile(mode: Mode, coords: Vector2i) -> void:
 	tileMap.set_cell(0, coords, 3, Vector2i(1,1))
+	corridorTiles.append(coords)
 	var rando = randf_range(0, 1.0)
 	if rando < mode.branchChance:
 		branchList.push_front(coords)
+	sleep()
 	
 	
 func PlaceTileInDirection(mode: Mode, coords:Vector2i, dir: Directions) -> void:
@@ -335,8 +352,12 @@ func PlaceCorridor(mode: Mode, coords: Vector2i, dir: Directions) -> Vector2i:
 func IsValidNeighbor(parent: Vector2i, dir: TileSet.CellNeighbor) -> bool:
 	var newTile = tileMap.get_neighbor_cell(parent, dir)
 	
+	if !IsValidPlacement(newTile):
+		return false
+	
 	for i in range(4):
-		if !IsValidPlacement(tileMap.get_neighbor_cell(newTile, directionMap[i])) && tileMap.get_neighbor_cell(newTile, directionMap[i]) != parent:
+		var adjacentTile = tileMap.get_neighbor_cell(newTile, directionMap[i])
+		if corridorTiles.has(adjacentTile):
 			return false
 	
 	return true
@@ -505,32 +526,18 @@ func RotateRoom(pattern: TileMapPattern, rotation: TileTransform) -> TileMapPatt
 	
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	generationStage = GenerationStage.Rooms
-	currentTimer = timeToWait
 	camera.zoom = Vector2(zoomIn, zoomIn)
+	Generate()
 	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	currentTimer -= delta
-	
-	if currentTimer > 0:
-		return
-	
-	
-	currentTimer = timeToWait
-	
-	if stillGenerating:
-		Generate()
+	pass
 
 func _input(event: InputEvent) -> void:
 	if InputMap.event_is_action(event, "Reset") && event.is_action_pressed("Reset"):
-		tileMap.clear_layer(0)
-		stillGenerating = true
-		generationStage = GenerationStage.Rooms
-		currentTile = Vector2i(0,0)
-		branchList.clear()
+		reset()
 	if InputMap.event_is_action(event, "Zoom") && event.is_action_pressed("Zoom"):
 		if camera.zoom.x == zoomIn:
 			camera.zoom = Vector2(zoomOut, zoomOut)
@@ -538,5 +545,16 @@ func _input(event: InputEvent) -> void:
 			camera.zoom = Vector2(zoomIn, zoomIn)
 		
 
+func sleep() -> void:
+	await get_tree().create_timer(timeToWait).timeout
 	
-	
+func reset() -> void:
+	currentTile = Vector2i(0,0)
+	branchList.clear()
+	generatingCorridor = false
+	roomTiles.clear()
+	corridorTiles.clear()
+	entranceList.clear()
+	tileMap.clear_layer(0)
+	currentTile = Vector2i(0,0)
+	Generate()

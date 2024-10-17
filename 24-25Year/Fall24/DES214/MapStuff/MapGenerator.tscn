@@ -289,7 +289,7 @@ pattern_0 = SubResource("TileMapPattern_tnhjm")
 [node name="MapGenerator" type="Node2D" node_paths=PackedStringArray("tileMap", "camera")]
 script = ExtResource("1_0rb7n")
 tileMap = NodePath("TileMap")
-timeToWait = 1.0
+timeToWait = 0.01
 camera = NodePath("Camera2D")
 zoomOut = 1
 zoomIn = 5

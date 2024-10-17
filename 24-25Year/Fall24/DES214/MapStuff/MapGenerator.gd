@@ -44,6 +44,7 @@ enum GenerationStage
 {
 	Rooms,
 	Corridors,
+	Branches,
 	Enemies,
 	Powerups
 }
@@ -116,6 +117,13 @@ var branchList: Array
 var generationStage: GenerationStage
 var generatingCorridor = false
 
+
+var roomTiles: Array
+
+var corridorTiles: Array
+
+var entranceList: Array
+
 func Generate() -> void:
 	
 	var testMode = Mode.new()
@@ -137,13 +145,10 @@ func Generate() -> void:
 	
 	
 	if generationStage == GenerationStage.Corridors:
-		branchList.append_array(SweepEntrances())
+		entranceList.append_array(SweepEntrances())
+		OrganizeEntrances()
+		ConnectEntrances(testMode)
 		
-		if generatingCorridor:
-			GenerateCorridor(testMode)
-		else:
-			currentTile = branchList.pop_front()
-			generatingCorridor = true
 	
 	
 	
@@ -171,6 +176,32 @@ func Generate() -> void:
 		
 
 
+func ConnectEntrances(mode: Mode) -> void:
+	for entrance in entranceList:
+		entranceList.pop_front()
+		ConnectTwoEntrances(mode, entrance)
+		
+		
+func ConnectTwoEntrances(mode: Mode, tile: Vector2i) -> void:
+		var nextEntrance = entranceList.front()
+		
+		if nextEntrance == null:
+			return
+		
+		var current = tile
+		
+		while current != nextEntrance:
+			if current.x != nextEntrance.x and IsValidNeighbor(current, TileSet.CELL_NEIGHBOR_RIGHT_SIDE):
+				PlaceTileInDirection(mode, current, Directions.E)
+				current = tileMap.get_neighbor_cell(current, TileSet.CELL_NEIGHBOR_RIGHT_SIDE)
+				
+			elif current.y != nextEntrance.y and IsValidNeighbor(current, TileSet.CELL_NEIGHBOR_BOTTOM_SIDE):
+				PlaceTileInDirection(mode, current, Directions.S)
+				current = tileMap.get_neighbor_cell(current, TileSet.CELL_NEIGHBOR_BOTTOM_SIDE)
+		
+		
+		
+
 func GenerateCorridor(mode: Mode) -> void:
 	var placeCorridor = false
 	
@@ -196,6 +227,23 @@ func SweepEntrances() -> Array[Vector2i]:
 	return allTiles
 		
 		
+func OrganizeEntrances() -> void:
+	var newList = entranceList
+	
+	newList.sort_custom(OrganizeTiles)
+		
+	entranceList = newList
+		
+
+func OrganizeTiles(t1: Vector2i, t2: Vector2i) -> bool:
+	if t1.x < t2.x:
+		return true
+	elif t1.x == t2.x and t1.y > t2.y:
+		return true
+	
+	
+	return false
+
 func SpawnRooms(mode: Mode, region: Region) -> void:
 	var roomList = mode.roomList
 	var roomDensity = mode.roomAmount
@@ -215,6 +263,8 @@ func SpawnRooms(mode: Mode, region: Region) -> void:
 				PlaceRoom(roomToTry, placeTile, rotation)
 				var tileCount = roomToTry.get_size().x * roomToTry.get_size().y
 				tilesPlaced += tileCount
+				
+				
 				break
 		
 		
@@ -254,6 +304,10 @@ func GetRandomRoom(mode: Mode) -> TileMapPattern:
 func PlaceRoom(room: TileMapPattern, coords: Vector2i, rotation: TileTransform) -> void:
 	var placedRoom = RotateRoom(room, rotation)
 	
+	var tiles = placedRoom.get_used_cells()
+	
+	for tile in tiles:
+		roomTiles.append(tileMap.map_pattern(coords, tile, placedRoom))
 	
 	tileMap.set_pattern(0, coords, placedRoom)
 	
@@ -294,7 +348,11 @@ func IsValidPlacement(spot: Vector2i) -> bool:
 	if spot.x > mapSize || spot.x < -mapSize || spot.y > mapSize || spot.y < -mapSize:
 		return false
 	
-	if id == -1 || (id == 3 && atlasCoords == Vector2i(1,1)):
+	if roomTiles.has(spot):
+		return true 
+	
+	
+	if id == -1:
 		return true
 	else:
 		return false

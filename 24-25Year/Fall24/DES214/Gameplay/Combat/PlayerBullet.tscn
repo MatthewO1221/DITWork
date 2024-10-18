@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bjqdya8i1jwiy"]
+
+[ext_resource type="Script" path="res://Gameplay/Combat/player_bullet.gd" id="1_e21wy"]
+[ext_resource type="Texture2D" uid="uid://bfbhhqux6e74c" path="res://icon.svg" id="2_hschf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_axp0x"]
+
+[node name="PlayerBullet" type="Node2D"]
+script = ExtResource("1_e21wy")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+scale = Vector2(9.58829, 9.48064)
+shape = SubResource("CircleShape2D_axp0x")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_hschf")

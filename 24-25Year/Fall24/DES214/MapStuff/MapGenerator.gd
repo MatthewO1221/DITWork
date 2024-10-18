@@ -118,11 +118,12 @@ func Generate() -> void:
 	
 	var testMode = Mode.new()
 	testMode.name = "TestMode"
-	testMode.roomList = {testRoom = 0}
+	testMode.roomList = {room1 = 0, room2 = 1, room3 = 2, room4 = 3, room5 = 4}
 	testMode.roomAmount = DensityModes.Cluttered
+	testMode.corridorAmount = DensityModes.Cluttered
 	testMode.minCorridorLength = 5
 	testMode.maxCorridorLength = 10
-	testMode.branchChance = 0.1
+	testMode.branchChance = 0.05
 	
 	var testRegion = Region.new()
 	testRegion.name = "TestRegion"
@@ -139,6 +140,8 @@ func Generate() -> void:
 	OrganizeEntrances()
 	
 	ConnectEntrances(testMode, testRegion)
+	
+	CreateBranches(testMode, testRegion)
 		
 	
 	
@@ -174,7 +177,8 @@ func ConnectEntrances(mode: Mode, region: Region) -> void:
 	aStar.region = region.area
 	aStar.cell_size = tileMap.tile_set.tile_size
 	
-			
+	aStar.default_compute_heuristic = AStarGrid2D.HEURISTIC_MANHATTAN
+	aStar.default_estimate_heuristic = AStarGrid2D.HEURISTIC_MANHATTAN
 	aStar.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
 	
 	aStar.update()
@@ -196,13 +200,15 @@ func ConnectEntrances(mode: Mode, region: Region) -> void:
 		
 	
 	
-	for entrance in entranceList:
-		entranceList.pop_front()
-		ConnectTwoEntrances(mode, entrance, aStar)
+	for i in range(entranceList.size()):
+		if i == entranceList.size() - 1:
+			break
+		ConnectTwoEntrances(mode, entranceList[i], entranceList[i + 1] ,aStar)
 		
 		
-func ConnectTwoEntrances(mode: Mode, tile: Vector2i, grid: AStarGrid2D) -> void:
-		var nextEntrance = entranceList.front()
+func ConnectTwoEntrances(mode: Mode, tile: Vector2i, nextEntrance: Vector2i, grid: AStarGrid2D) -> void:
+		
+		
 		
 		if nextEntrance == null:
 			return
@@ -213,7 +219,32 @@ func ConnectTwoEntrances(mode: Mode, tile: Vector2i, grid: AStarGrid2D) -> void:
 			PlaceTile(mode, tiles)
 			
 		
+func CreateBranches(mode: Mode, region: Region) -> void:
+	
+	while !branchList.is_empty():
+		var branch = branchList.pop_front()
+		SpawnBranch(branch, mode, region)
 		
+		match mode.corridorAmount:
+			DensityModes.Sparse when float(corridorTiles.size())/region.totalTiles >= 0.25:
+				break
+			DensityModes.Regular when float(corridorTiles.size())/region.totalTiles >= 0.5:
+				break
+			DensityModes.Cluttered when float(corridorTiles.size())/region.totalTiles >= 0.75:
+				break
+		
+
+func SpawnBranch(branch: Vector2i, mode: Mode, region: Region) -> void:
+	var currentTile = branch
+	
+	for i in range(10):
+		var dir = randi_range(0,3)
+		
+		var length = randi_range(mode.minCorridorLength, mode.maxCorridorLength)
+		
+		for j in range(length):
+			if IsValidNeighbor(currentTile, directionMap[dir]):
+				currentTile = PlaceTileInDirection(mode, currentTile, directionMap[dir])
 
 func GenerateCorridor(mode: Mode) -> void:
 	var placeCorridor = false
@@ -327,7 +358,7 @@ func PlaceRoom(room: TileMapPattern, coords: Vector2i, rotation: TileTransform) 
 	sleep()
 	
 
-func PlaceTile(mode: Mode, coords: Vector2i) -> void:
+func PlaceTile(mode: Mode, coords: Vector2i) -> Vector2i:
 	tileMap.set_cell(0, coords, 3, Vector2i(1,1))
 	corridorTiles.append(coords)
 	var rando = randf_range(0, 1.0)
@@ -335,9 +366,11 @@ func PlaceTile(mode: Mode, coords: Vector2i) -> void:
 		branchList.push_front(coords)
 	sleep()
 	
+	return coords
 	
-func PlaceTileInDirection(mode: Mode, coords:Vector2i, dir: Directions) -> void:
-	PlaceTile(mode, GetCoordsInDir(coords, dir))
+	
+func PlaceTileInDirection(mode: Mode, coords:Vector2i, dir: Directions) -> Vector2i:
+	return PlaceTile(mode, GetCoordsInDir(coords, dir))
 	
 func PlaceCorridor(mode: Mode, coords: Vector2i, dir: Directions) -> Vector2i:
 	var length = randi_range(mode.minCorridorLength, mode.maxCorridorLength)
@@ -357,7 +390,7 @@ func IsValidNeighbor(parent: Vector2i, dir: TileSet.CellNeighbor) -> bool:
 	
 	for i in range(4):
 		var adjacentTile = tileMap.get_neighbor_cell(newTile, directionMap[i])
-		if corridorTiles.has(adjacentTile):
+		if corridorTiles.has(adjacentTile) and adjacentTile != parent:
 			return false
 	
 	return true
@@ -370,7 +403,7 @@ func IsValidPlacement(spot: Vector2i) -> bool:
 		return false
 	
 	if roomTiles.has(spot):
-		return true 
+		return false
 	
 	
 	if id == -1:

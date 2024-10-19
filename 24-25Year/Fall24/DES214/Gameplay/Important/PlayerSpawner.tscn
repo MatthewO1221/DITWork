@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://blex6md0l6wdi"]
+
+[node name="PlayerSpawner" type="Node2D"]

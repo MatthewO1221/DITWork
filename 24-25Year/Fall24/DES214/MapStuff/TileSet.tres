@@ -1,9 +1,10 @@
-[gd_resource type="TileSet" load_steps=19 format=3 uid="uid://bdya4hpffhf6b"]
+[gd_resource type="TileSet" load_steps=20 format=3 uid="uid://bdya4hpffhf6b"]
 
 [ext_resource type="PackedScene" uid="uid://dawx31at8fpl1" path="res://MapStuff/floor_tile.tscn" id="1_56isw"]
 [ext_resource type="PackedScene" uid="uid://m84c61s184g6" path="res://MapStuff/wall_tile.tscn" id="2_mrbxb"]
 [ext_resource type="PackedScene" uid="uid://cletve5nto6k6" path="res://MapStuff/entrance_tile.tscn" id="3_lykk4"]
 [ext_resource type="PackedScene" uid="uid://hc112c2cjdjj" path="res://MapStuff/MapItems/BrazierLight.tscn" id="4_yi24a"]
+[ext_resource type="PackedScene" uid="uid://br0kxiwxs0r0m" path="res://MapStuff/regionTile.tscn" id="5_hj2ek"]
 [ext_resource type="Texture2D" uid="uid://pt2ajrgky667" path="res://MapStuff/tilemap.png" id="5_mqo20"]
 [ext_resource type="Texture2D" uid="uid://c7ppte87pw2vj" path="res://MapStuff/tileset.png" id="6_i82d8"]
 [ext_resource type="Texture2D" uid="uid://cjggqu3xuk2ij" path="res://MapStuff/DungeonStarter.png" id="7_yldt3"]
@@ -30,6 +31,7 @@ scenes/1/scene = ExtResource("1_56isw")
 scenes/2/scene = ExtResource("2_mrbxb")
 scenes/3/scene = ExtResource("3_lykk4")
 scenes/4/scene = ExtResource("4_yi24a")
+scenes/5/scene = ExtResource("5_hj2ek")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v08rx"]
 resource_name = "Dungeon"
@@ -212,12 +214,15 @@ texture = ExtResource("7_yldt3")
 2:0/0 = 0
 3:0/0 = 0
 4:0/0 = 0
+4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 5:0/0 = 0
+5:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:1/0 = 0
 1:1/0 = 0
 2:1/0 = 0
 3:1/0 = 0
 4:1/0 = 0
+4:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 5:1/0 = 0
 0:2/0 = 0
 1:2/0 = 0
@@ -298,6 +303,8 @@ resource_name = "Items"
 scenes/1/scene = ExtResource("8_e4blj")
 
 [resource]
+physics_layer_0/collision_layer = 31
+physics_layer_0/collision_mask = 31
 sources/0 = SubResource("TileSetScenesCollectionSource_8fh5t")
 sources/1 = SubResource("TileSetAtlasSource_v08rx")
 sources/2 = SubResource("TileSetAtlasSource_65j2a")

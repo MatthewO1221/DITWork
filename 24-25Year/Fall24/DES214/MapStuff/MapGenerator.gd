@@ -61,9 +61,12 @@ class Mode:
 	var maxCorridorLength: int
 	var branchChance: float
 	var corridorTypes: Array
+	var widen = false
 
 
 class Region:
+	
+	
 	var name: String
 	var totalTiles: int
 	var area: Rect2i
@@ -120,50 +123,151 @@ var roomTiles: Array
 
 var corridorTiles: Array
 
+var wallTiles: Array
+
 var entranceList: Array
 
 var isPanning: bool
 var lastMousePosition
 
+var regions: Array
+
 func Generate() -> void:
 	
-	var testMode = Mode.new()
-	testMode.name = "TestMode"
-	testMode.roomList = {room1 = 0, room2 = 1, room3 = 2, room4 = 3, room5 = 4}
-	testMode.roomAmount = DensityModes.Cluttered
-	testMode.corridorAmount = DensityModes.Cluttered
-	testMode.minCorridorLength = 5
-	testMode.maxCorridorLength = 10
-	testMode.branchChance = 0.05
-	testMode.corridorTypes.append(CorridorTypes.Spiral)
-	#testMode.corridorTypes.append(CorridorTypes.Snaking)
-	
-	var testRegion = Region.new()
-	testRegion.name = "TestRegion"
-	testRegion.totalTiles = mapSize ** 2
-	testRegion.area = Rect2i(-mapSize, -mapSize, mapSize * 2, mapSize * 2)
-	
-	#Place rooms in the level
-	SpawnRooms(testMode, testRegion)
-	
-	#Replace all entrance tiles with floors and place them in entrance list
-	entranceList.append_array(SweepEntrances())
+	var modes = CreateModes()
 	
 	
-	OrganizeEntrances()
 	
-	ConnectEntrances(testMode, testRegion)
-	
-	CreateBranches(testMode, testRegion)
+	for region in regions:
+		var curMode = modes.pop_front()
 		
+		#Place rooms in the level
+		SpawnRooms(curMode, region)
 	
+		#Replace all entrance tiles with floors and place them in entrance list
+		entranceList.append_array(SweepEntrances())
+	
+	
+		OrganizeEntrances()
+	
+		ConnectEntrances(curMode, region)
+	
+		CreateBranches(curMode, region)
 		
 		
+		
+		
+		PlaceWalls()
+		
+		if curMode.widen:
+			WidenAllCorridors(curMode, region)
+		
+	
+	
+func CreateModes() -> Array:
+	var modeArray: Array
+	
+	var dev1 = Mode.new()
+	
+	dev1.name = "Development1"
+	dev1.roomList = {lShaped = 0, smallRoom = 1, alcoves = 2, largeRoom = 3, columns = 4}
+	dev1.roomAmount = DensityModes.Regular
+	dev1.corridorAmount = DensityModes.Cluttered
+	dev1.minCorridorLength = 3
+	dev1.maxCorridorLength = 10
+	dev1.branchChance = 0.2
+	dev1.corridorTypes.append(CorridorTypes.Snaking)
+	
+	
+	modeArray.push_back(dev1)
+	
+	var dev2 = Mode.new()
+	
+	dev2.name = "Development2"
+	dev2.roomList = {lShaped = 0, smallRoom = 1, alcoves = 2, largeRoom = 3, columns = 4}
+	dev2.roomAmount = DensityModes.Sparse
+	dev2.corridorAmount = DensityModes.Cluttered
+	dev2.minCorridorLength = 8
+	dev2.maxCorridorLength = 16
+	dev2.branchChance = 0.1
+	dev2.corridorTypes.append(CorridorTypes.Spiral)
+	
+	modeArray.push_back(dev2)
+	
+	var dev3 = Mode.new()
+	
+	dev3.name = "Development3"
+	dev3.roomList = {lShaped = 0, smallRoom = 1, alcoves = 2, largeRoom = 3, columns = 4}
+	dev3.roomAmount = DensityModes.Regular
+	dev3.corridorAmount = DensityModes.Cluttered
+	dev3.minCorridorLength = 15
+	dev3.maxCorridorLength = 20
+	dev3.branchChance = 0.2
+	dev3.corridorTypes.append(CorridorTypes.DrunkWalk)
+	dev3.widen = true
+	
+	
+	modeArray.push_back(dev3)
+	#var name: String
+	#var roomList: Dictionary
+	#var roomAmount: DensityModes
+	#var corridorList: Dictionary
+	#var corridorAmount: DensityModes
+	#var enemyList: Dictionary
+	#var lootList: Dictionary
+	#
+	#var minCorridorLength: int
+	#var maxCorridorLength: int
+	#var branchChance: float
+	#var corridorTypes: Array
+	
+	return modeArray
 
+func CreateRegions() -> Array:
+	var regionTiles = tileMapLayer.get_used_cells_by_id(0, Vector2i(-1,-1), 5)
+	
+	var regionArray: Array
+	
+	regionTiles.sort_custom(OrganizeTiles)
+	var i = 1
+	
+	while !regionTiles.is_empty():
+		var lowerLeft = regionTiles.pop_front()
+		var topRight = regionTiles.pop_front()
+		
+		regionArray.push_back(NewRegion("Development" + str(i), lowerLeft, topRight))
+		i += 1
+		tileMapLayer.erase_cell(lowerLeft)
+		tileMapLayer.erase_cell(topRight)
+		
+	return regionArray
+
+func NewRegion(name: String, bottomLeft: Vector2i, topRight: Vector2i) -> Region:
+	var newRegion = Region.new()
+	
+	newRegion.name = name
+	
+	var newRect = Rect2i(bottomLeft.x, topRight.y, topRight.x - bottomLeft.x, bottomLeft.y - topRight.y)
+	
+	newRegion.area = newRect
+	
+	newRegion.totalTiles = newRect.get_area()
+	
+	return newRegion
 
 func ConnectEntrances(mode: Mode, region: Region) -> void:
 	
 	var aStar = AStarGrid2D.new()
+	var aStarWhole = AStarGrid2D.new()
+	
+	aStarWhole.region = tileMapLayer.get_used_rect()
+	aStarWhole.cell_size = tileMapLayer.tile_set.tile_size
+	
+	aStarWhole.default_compute_heuristic = AStarGrid2D.HEURISTIC_MANHATTAN
+	aStarWhole.default_estimate_heuristic = AStarGrid2D.HEURISTIC_MANHATTAN
+	aStarWhole.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
+	
+	aStarWhole.update()
 	
 	aStar.region = region.area
 	aStar.cell_size = tileMapLayer.tile_set.tile_size
@@ -176,16 +280,22 @@ func ConnectEntrances(mode: Mode, region: Region) -> void:
 	
 	for tile in roomTiles:
 		aStar.set_point_solid(tile, true)
+		aStarWhole.set_point_solid(tile, true)
 		
 	for entrance in entranceList:
 		aStar.set_point_solid(entrance, false)
+		aStarWhole.set_point_solid(entrance, false)
 		
 	
 	
 	for i in range(entranceList.size()):
 		if i == entranceList.size() - 1:
 			break
-		ConnectTwoEntrances(mode, entranceList[i], entranceList[i + 1] ,aStar)
+		if i == 0:
+			ConnectTwoEntrances(mode, entranceList[i], entranceList[i + 1] ,aStarWhole)
+		else:
+			ConnectTwoEntrances(mode, entranceList[i], entranceList[i + 1] ,aStar)
+		
 		
 		
 func ConnectTwoEntrances(mode: Mode, tile: Vector2i, nextEntrance: Vector2i, grid: AStarGrid2D) -> void:
@@ -203,6 +313,9 @@ func ConnectTwoEntrances(mode: Mode, tile: Vector2i, nextEntrance: Vector2i, gri
 		
 func CreateBranches(mode: Mode, region: Region) -> void:
 	
+	#Make regions connect
+	
+	
 	while !branchList.is_empty():
 		var branch = branchList.pop_front()
 		SpawnBranch(branch, mode, region)
@@ -212,7 +325,7 @@ func CreateBranches(mode: Mode, region: Region) -> void:
 				break
 			DensityModes.Regular when float(corridorTiles.size())/region.totalTiles >= 0.5:
 				break
-			DensityModes.Cluttered when float(corridorTiles.size())/region.totalTiles >= 0.75:
+			DensityModes.Cluttered when float(corridorTiles.size())/region.totalTiles >= 0.9:
 				break
 		
 
@@ -224,14 +337,14 @@ func SpawnBranch(branch: Vector2i, mode: Mode, region: Region) -> void:
 	
 	match branchType:
 		CorridorTypes.DrunkWalk:
-			SpawnDrunkCorridor(branch, mode)
+			SpawnDrunkCorridor(branch, mode, region)
 		CorridorTypes.Snaking:
-			SpawnSnakingCorridor(branch, mode)
+			SpawnSnakingCorridor(branch, mode, region)
 		CorridorTypes.Spiral:
-			SpawnSpiralCorridor(branch, mode)
+			SpawnSpiralCorridor(branch, mode, region)
 	
 
-func SpawnDrunkCorridor(start: Vector2i, mode: Mode) -> void:
+func SpawnDrunkCorridor(start: Vector2i, mode: Mode, region: Region) -> void:
 	var length = randi_range(mode.minCorridorLength, mode.maxCorridorLength)
 	var tile = start
 	
@@ -240,11 +353,11 @@ func SpawnDrunkCorridor(start: Vector2i, mode: Mode) -> void:
 		for j in range(10):
 			var dir = randi_range(0,3)
 		
-			if IsValidNeighbor(tile, directionMap[dir]):
+			if IsValidNeighbor(tile, directionMap[dir], region):
 				tile = await PlaceTileInDirection(mode, tile, directionMap[dir])
 				break
 	
-func SpawnSnakingCorridor(start: Vector2i, mode: Mode) -> void:
+func SpawnSnakingCorridor(start: Vector2i, mode: Mode, region: Region) -> void:
 	var horizontal = true
 	var dir
 	var turns = randi_range(2,7)
@@ -257,12 +370,12 @@ func SpawnSnakingCorridor(start: Vector2i, mode: Mode) -> void:
 			dir = [TileSet.CellNeighbor.CELL_NEIGHBOR_TOP_SIDE, TileSet.CellNeighbor.CELL_NEIGHBOR_BOTTOM_SIDE].pick_random()
 			
 		for j in range(length):
-			if IsValidNeighbor(tile, dir):
+			if IsValidNeighbor(tile, dir, region):
 				tile = await PlaceTileInDirection(mode, tile, dir)
 		horizontal = !horizontal
 	
 	
-func SpawnSpiralCorridor(start: Vector2i, mode: Mode) -> void:
+func SpawnSpiralCorridor(start: Vector2i, mode: Mode, region: Region) -> void:
 	var tile = start
 	
 	var dir = randi_range(0,3)
@@ -270,7 +383,7 @@ func SpawnSpiralCorridor(start: Vector2i, mode: Mode) -> void:
 	
 	for i in range(10):
 		for j in range(length):
-			if IsValidNeighbor(tile, directionMap[dir]):
+			if IsValidNeighbor(tile, directionMap[dir], region):
 				tile = PlaceTileInDirection(mode, tile, directionMap[dir])
 				
 				
@@ -285,8 +398,47 @@ func SpawnSpiralCorridor(start: Vector2i, mode: Mode) -> void:
 				dir = 0
 		
 	
-func WidenAllCorridors() -> void:
-	pass
+
+func WidenAllCorridors(mode: Mode, region: Region) -> void:
+	var allWalls = tileMapLayer.get_used_cells_by_id(3, Vector2i(5,0))
+	
+	var directions = [TileSet.CELL_NEIGHBOR_TOP_SIDE, 
+	TileSet.CELL_NEIGHBOR_RIGHT_SIDE,
+	TileSet.CELL_NEIGHBOR_BOTTOM_SIDE,
+	TileSet.CELL_NEIGHBOR_LEFT_SIDE]
+	
+	for wall in allWalls:
+		var numNeighbors = 0
+		for direction in directions:
+			if region.area.has_point(wall):
+				var neighbor = tileMapLayer.get_neighbor_cell(wall, direction)
+			
+				if tileMapLayer.get_cell_source_id(neighbor) == 3 and tileMapLayer.get_cell_atlas_coords(neighbor) == Vector2i(1,1):
+					numNeighbors += 1
+		if numNeighbors >= 3:
+			tileMapLayer.set_cell(wall, 3, Vector2i(1,1))
+			corridorTiles.append(wall)
+	
+func PlaceWalls() -> void:
+	var allFloors = tileMapLayer.get_used_cells_by_id(3, Vector2i(1,1))
+	
+	var directions = [TileSet.CELL_NEIGHBOR_TOP_SIDE, 
+	TileSet.CELL_NEIGHBOR_TOP_RIGHT_CORNER,
+	TileSet.CELL_NEIGHBOR_RIGHT_SIDE,
+	TileSet.CELL_NEIGHBOR_BOTTOM_RIGHT_CORNER,
+	TileSet.CELL_NEIGHBOR_BOTTOM_SIDE,
+	TileSet.CELL_NEIGHBOR_BOTTOM_LEFT_CORNER,
+	TileSet.CELL_NEIGHBOR_LEFT_SIDE,
+	TileSet.CELL_NEIGHBOR_TOP_LEFT_CORNER]
+	
+	for floor in allFloors:
+		for direction in directions:
+			var neighbor = tileMapLayer.get_neighbor_cell(floor, direction)
+			
+			if tileMapLayer.get_cell_source_id(neighbor) == -1:
+				tileMapLayer.set_cell(neighbor, 3, Vector2i(5,0))
+				wallTiles.push_back(neighbor)
+		
 	
 func SweepEntrances() -> Array[Vector2i]:
 	var allTiles = tileMapLayer.get_used_cells_by_id(0, Vector2i(-1,-1), 3)
@@ -327,7 +479,7 @@ func SpawnRooms(mode: Mode, region: Region) -> void:
 		for i in range(10):
 			var roomToTry = GetRandomRoom(mode)
 			var rotation = TileTransform.values().pick_random()
-			var canBePlaced = CheckRoom(placeTile, roomToTry, rotation)
+			var canBePlaced = CheckRoom(placeTile, roomToTry, rotation, region)
 			
 			if canBePlaced:
 				PlaceRoom(roomToTry, placeTile, rotation)
@@ -354,8 +506,10 @@ func SpawnRooms(mode: Mode, region: Region) -> void:
 func GetRandomTile(region: Region) -> Vector2i:
 	var returnTile: Vector2i
 	
-	returnTile.x = randi_range(-mapSize, mapSize)
-	returnTile.y = randi_range(-mapSize, mapSize)
+	var rect = region.area
+	
+	returnTile.x = randi_range(rect.position.x, rect.position.x + rect.size.x - 1)
+	returnTile.y = randi_range(rect.position.y, rect.position.y + rect.size.y - 1)
 	
 	return returnTile
 
@@ -402,10 +556,10 @@ func PlaceTileInDirection(mode: Mode, coords:Vector2i, dir: Directions) -> Vecto
 	
 	
 
-func IsValidNeighbor(parent: Vector2i, dir: TileSet.CellNeighbor) -> bool:
+func IsValidNeighbor(parent: Vector2i, dir: TileSet.CellNeighbor, region: Region) -> bool:
 	var newTile = tileMapLayer.get_neighbor_cell(parent, dir)
 	
-	if !IsValidPlacement(newTile):
+	if !IsValidPlacement(newTile, region):
 		return false
 	
 	for i in range(4):
@@ -415,11 +569,11 @@ func IsValidNeighbor(parent: Vector2i, dir: TileSet.CellNeighbor) -> bool:
 	
 	return true
 
-func IsValidPlacement(spot: Vector2i) -> bool:
+func IsValidPlacement(spot: Vector2i, region: Region) -> bool:
 	var id = tileMapLayer.get_cell_source_id(spot)
 	var atlasCoords = tileMapLayer.get_cell_atlas_coords(spot)
 	
-	if spot.x > mapSize || spot.x < -mapSize || spot.y > mapSize || spot.y < -mapSize:
+	if !region.area.has_point(spot):
 		return false
 	
 	if roomTiles.has(spot):
@@ -451,7 +605,7 @@ func GetCoordsInDir(coords: Vector2i, dir: Directions) -> Vector2i:
 	
 	
 	
-func CheckRoom(coords: Vector2i, room: TileMapPattern, rotation: TileTransform) -> bool:
+func CheckRoom(coords: Vector2i, room: TileMapPattern, rotation: TileTransform, region: Region) -> bool:
 	
 	var rotatedRoom = RotateRoom(room, rotation)
 	var roomTiles = rotatedRoom.get_used_cells()
@@ -463,7 +617,7 @@ func CheckRoom(coords: Vector2i, room: TileMapPattern, rotation: TileTransform) 
 	
 	for i in roomTiles:
 		var curTile = tileMapLayer.map_pattern(coords, i, rotatedRoom)
-		if tileMapLayer.get_cell_source_id(curTile) != TileType.Empty || curTile.x >= mapSize || curTile.x <= -mapSize || curTile.y >= mapSize || curTile.y <= - mapSize:
+		if tileMapLayer.get_cell_source_id(curTile) != TileType.Empty or !region.area.has_point(curTile):
 			return false
 		
 	return true
@@ -518,6 +672,7 @@ func RotateRoom(pattern: TileMapPattern, rotation: TileTransform) -> TileMapPatt
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	camera.zoom = Vector2(zoomIn, zoomIn)
+	regions = CreateRegions()
 	Generate()
 	
 
@@ -569,9 +724,22 @@ func reset() -> void:
 	currentTile = Vector2i(0,0)
 	branchList.clear()
 	generatingCorridor = false
+	
+	for tile in corridorTiles:
+		tileMapLayer.erase_cell(tile)
+		
+	for tile in roomTiles:
+		tileMapLayer.erase_cell(tile)
+		
+	for wall in wallTiles:
+		tileMapLayer.erase_cell(wall)
+		
 	roomTiles.clear()
 	corridorTiles.clear()
 	entranceList.clear()
-	tileMapLayer.clear_layer(0)
+	
+	
+	tileMapLayer.set_cell(Vector2i(52, 1), 0, Vector2i(0,0), 3)
+	
 	currentTile = Vector2i(0,0)
 	Generate()

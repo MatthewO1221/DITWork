@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=20 format=3 uid="uid://bdya4hpffhf6b"]
+[gd_resource type="TileSet" load_steps=21 format=3 uid="uid://bdya4hpffhf6b"]
 
 [ext_resource type="PackedScene" uid="uid://dawx31at8fpl1" path="res://MapStuff/floor_tile.tscn" id="1_56isw"]
 [ext_resource type="PackedScene" uid="uid://m84c61s184g6" path="res://MapStuff/wall_tile.tscn" id="2_mrbxb"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://hc112c2cjdjj" path="res://MapStuff/MapItems/BrazierLight.tscn" id="4_yi24a"]
 [ext_resource type="PackedScene" uid="uid://br0kxiwxs0r0m" path="res://MapStuff/regionTile.tscn" id="5_hj2ek"]
 [ext_resource type="Texture2D" uid="uid://pt2ajrgky667" path="res://MapStuff/tilemap.png" id="5_mqo20"]
+[ext_resource type="PackedScene" uid="uid://cjiv358nvw4xw" path="res://MapStuff/SpecialEntrance.tscn" id="6_fuvt3"]
 [ext_resource type="Texture2D" uid="uid://c7ppte87pw2vj" path="res://MapStuff/tileset.png" id="6_i82d8"]
 [ext_resource type="Texture2D" uid="uid://cjggqu3xuk2ij" path="res://MapStuff/DungeonStarter.png" id="7_yldt3"]
 [ext_resource type="PackedScene" uid="uid://ctnvdtxg5e2yq" path="res://MapStuff/MapItems/Chest.tscn" id="8_e4blj"]
@@ -32,6 +33,7 @@ scenes/2/scene = ExtResource("2_mrbxb")
 scenes/3/scene = ExtResource("3_lykk4")
 scenes/4/scene = ExtResource("4_yi24a")
 scenes/5/scene = ExtResource("5_hj2ek")
+scenes/6/scene = ExtResource("6_fuvt3")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v08rx"]
 resource_name = "Dungeon"

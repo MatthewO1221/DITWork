@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cjiv358nvw4xw"]
+
+[node name="FloorTile" type="Node2D"]
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+scale = Vector2(8, 8)
+color = Color(0.910221, 9.95344e-05, 0.725537, 1)
+polygon = PackedVector2Array(1, -1, -1, -1, -1, 1, 1, 1)

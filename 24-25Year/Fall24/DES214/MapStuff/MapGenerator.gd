@@ -59,7 +59,7 @@ class Mode:
 	
 	var minCorridorLength: int
 	var maxCorridorLength: int
-	var branchChance: float
+	var branchChance := 0.0
 	var corridorTypes: Array
 	var widen = false
 
@@ -127,6 +127,10 @@ var wallTiles: Array
 
 var entranceList: Array
 
+var entexitList: Array
+
+var specialEntrances: Array
+
 var isPanning: bool
 var lastMousePosition
 
@@ -157,12 +161,26 @@ func Generate() -> void:
 		
 		
 		
-		PlaceWalls()
+		
 		
 		if curMode.widen:
 			WidenAllCorridors(curMode, region)
-		
+			
 	
+	
+	entexitList.append_array(specialEntrances)
+	
+	OrganizeSpecialEntrances()
+	
+	var wholeRegion = Region.new()
+	
+	wholeRegion.area = tileMapLayer.get_used_rect()
+	
+	ConnectSpecialEntrances(Mode.new(), wholeRegion)
+	
+	
+		
+	PlaceWalls()
 	
 func CreateModes() -> Array:
 	var modeArray: Array
@@ -258,16 +276,9 @@ func NewRegion(name: String, bottomLeft: Vector2i, topRight: Vector2i) -> Region
 func ConnectEntrances(mode: Mode, region: Region) -> void:
 	
 	var aStar = AStarGrid2D.new()
-	var aStarWhole = AStarGrid2D.new()
 	
-	aStarWhole.region = tileMapLayer.get_used_rect()
-	aStarWhole.cell_size = tileMapLayer.tile_set.tile_size
 	
-	aStarWhole.default_compute_heuristic = AStarGrid2D.HEURISTIC_MANHATTAN
-	aStarWhole.default_estimate_heuristic = AStarGrid2D.HEURISTIC_MANHATTAN
-	aStarWhole.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
 	
-	aStarWhole.update()
 	
 	aStar.region = region.area
 	aStar.cell_size = tileMapLayer.tile_set.tile_size
@@ -280,21 +291,53 @@ func ConnectEntrances(mode: Mode, region: Region) -> void:
 	
 	for tile in roomTiles:
 		aStar.set_point_solid(tile, true)
-		aStarWhole.set_point_solid(tile, true)
+		
 		
 	for entrance in entranceList:
 		aStar.set_point_solid(entrance, false)
-		aStarWhole.set_point_solid(entrance, false)
+		
 		
 	
 	
 	for i in range(entranceList.size()):
 		if i == entranceList.size() - 1:
 			break
-		if i == 0:
-			ConnectTwoEntrances(mode, entranceList[i], entranceList[i + 1] ,aStarWhole)
-		else:
-			ConnectTwoEntrances(mode, entranceList[i], entranceList[i + 1] ,aStar)
+		
+		ConnectTwoEntrances(mode, entranceList[i], entranceList[i + 1] ,aStar)
+			
+			
+func ConnectSpecialEntrances(mode: Mode, region: Region) -> void:
+	
+	
+	var aStarWhole = AStarGrid2D.new()
+	
+	aStarWhole.region = tileMapLayer.get_used_rect()
+	aStarWhole.cell_size = tileMapLayer.tile_set.tile_size
+	
+	aStarWhole.default_compute_heuristic = AStarGrid2D.HEURISTIC_MANHATTAN
+	aStarWhole.default_estimate_heuristic = AStarGrid2D.HEURISTIC_MANHATTAN
+	aStarWhole.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
+	
+	aStarWhole.update()
+	
+	
+	for tile in roomTiles:
+		aStarWhole.set_point_solid(tile, true)
+		
+	for entrance in entexitList:
+		aStarWhole.set_point_solid(entrance, false)
+		
+	
+	
+	
+		
+	ConnectTwoEntrances(mode, entexitList[0], entexitList[1] ,aStarWhole)
+	ConnectTwoEntrances(mode, entexitList[2], entexitList[3] ,aStarWhole)
+	ConnectTwoEntrances(mode, entexitList[3], entexitList[4] ,aStarWhole)
+	ConnectTwoEntrances(mode, entexitList[5], entexitList[6] ,aStarWhole)
+	ConnectTwoEntrances(mode, entexitList[6], entexitList[7] ,aStarWhole)
+	ConnectTwoEntrances(mode, entexitList[8], entexitList[9] ,aStarWhole)
+		
 		
 		
 		
@@ -445,7 +488,20 @@ func SweepEntrances() -> Array[Vector2i]:
 	
 	for tile in allTiles:
 		tileMapLayer.set_cell(tile, 3, Vector2i(1,1))
+		
+	allTiles.sort_custom(OrganizeTiles)
 	
+	entexitList.push_back(allTiles.front())
+	entexitList.push_back(allTiles.back())
+	
+	return allTiles
+	
+func SweepSpecialEntrances() -> Array[Vector2i]:
+	var allTiles = tileMapLayer.get_used_cells_by_id(0, Vector2i(), 6)
+	
+	for tile in allTiles:
+		tileMapLayer.set_cell(tile, 3, Vector2i(1,1))
+		
 	return allTiles
 		
 		
@@ -455,7 +511,17 @@ func OrganizeEntrances() -> void:
 	newList.sort_custom(OrganizeTiles)
 		
 	entranceList = newList
+	
+	
 		
+
+func OrganizeSpecialEntrances() -> void:
+	var newList = entexitList
+	
+	newList.sort_custom(OrganizeTiles)
+	
+	entexitList = newList
+	
 
 func OrganizeTiles(t1: Vector2i, t2: Vector2i) -> bool:
 	if t1.x < t2.x:
@@ -673,6 +739,9 @@ func RotateRoom(pattern: TileMapPattern, rotation: TileTransform) -> TileMapPatt
 func _ready() -> void:
 	camera.zoom = Vector2(zoomIn, zoomIn)
 	regions = CreateRegions()
+	
+	var specialEntrancesL = SweepSpecialEntrances()
+	specialEntrances.append_array(specialEntrancesL)
 	Generate()
 	
 

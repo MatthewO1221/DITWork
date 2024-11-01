@@ -348,7 +348,7 @@ func ConnectTwoEntrances(mode: Mode, tile: Vector2i, nextEntrance: Vector2i, gri
 	if nextEntrance == null:
 		return
 		
-	var path = grid.get_id_path(tile, nextEntrance)
+	var path = grid.get_id_path(tile, nextEntrance, true)
 		
 	for tiles in path:
 		PlaceTile(mode, tiles)
@@ -677,13 +677,13 @@ func CheckRoom(coords: Vector2i, room: TileMapPattern, rotation: TileTransform, 
 	var roomTiles = rotatedRoom.get_used_cells()
 	var foundPlacement = false
 	
-	
+	var smallerRegion = region.area.grow(-1)
 	
 	
 	
 	for i in roomTiles:
 		var curTile = tileMapLayer.map_pattern(coords, i, rotatedRoom)
-		if tileMapLayer.get_cell_source_id(curTile) != TileType.Empty or !region.area.has_point(curTile):
+		if tileMapLayer.get_cell_source_id(curTile) != TileType.Empty or !smallerRegion.has_point(curTile):
 			return false
 		
 	return true
@@ -806,9 +806,11 @@ func reset() -> void:
 	roomTiles.clear()
 	corridorTiles.clear()
 	entranceList.clear()
+	entexitList.clear()
+	wallTiles.clear()
 	
 	
-	tileMapLayer.set_cell(Vector2i(52, 1), 0, Vector2i(0,0), 3)
+	
 	
 	currentTile = Vector2i(0,0)
 	Generate()

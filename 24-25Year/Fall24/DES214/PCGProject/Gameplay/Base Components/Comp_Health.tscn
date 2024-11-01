@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://cl8jfn0m3a6kf"]
-
-[ext_resource type="Script" path="res://Gameplay/Base Components/comp_health.gd" id="1_kwa70"]
-
-[node name="CompHealth" type="CharacterBody2D"]
-script = ExtResource("1_kwa70")

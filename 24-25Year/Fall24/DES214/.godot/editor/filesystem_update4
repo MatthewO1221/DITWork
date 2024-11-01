@@ -1,0 +1,11 @@
+res://MapStuff/regionTile.tscn
+res://addons/net.yarvis.pixel_pen/resources/default_theme.tres
+res://Animations/Light.tres
+res://MapStuff/TileSet.tres
+res://MapStuff/MapGenerator.tscn
+res://MapStuff/MapGenerator.gd
+res://MapStuff/entrance_tile.tscn
+res://MapStuff/MapItems/BrazierLight.tscn
+res://Gameplay/Important/PlayerSpawner.tscn
+res://MapStuff/MapItems/Chest.tscn
+res://addons/net.yarvis.pixel_pen/classes/pixelpen.gd

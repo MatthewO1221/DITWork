@@ -1,0 +1,9 @@
+res://MapStuff/MapGenerator.tscn::46b2ce68f86b72cd7e9f8ebc1399d213::1729481483::res://.godot/exported/133200997/export-34dfff060b4ee61441b77202cae242c3-MapGenerator.scn
+res://MapStuff/TileSet.tres::d80aa4d63e0c36954aceceffbf7567b2::1729476865::res://.godot/exported/133200997/export-2d8f9aa45b9834f184c8748e3fd906c9-TileSet.res
+res://MapStuff/floor_tile.tscn::6335171404ec14da772f0a04038610d2::1729136894::res://.godot/exported/133200997/export-3522279659b53c758cd9e1cfe058f339-floor_tile.scn
+res://MapStuff/wall_tile.tscn::ba2feab82e94358bd6dbcb0ba1b0ad1b::1727755578::res://.godot/exported/133200997/export-55fea506c9061e20a485f5ee80c193e5-wall_tile.scn
+res://MapStuff/entrance_tile.tscn::38dbfa56d24c45bd660527529911711b::1729481483::res://.godot/exported/133200997/export-018a5c93f56f4298735166f43661cfd6-entrance_tile.scn
+res://MapStuff/MapItems/BrazierLight.tscn::83639a8e42e0a77082b97acd76d772a5::1729481483::res://.godot/exported/133200997/export-1dd42af9ff33043137782641a2e1ae39-BrazierLight.scn
+res://Animations/Light.tres::b9ac350e6ff474a8845fad35d0de4f34::1729461012::res://.godot/exported/133200997/export-18370eeacb03b22b94b32b3491101676-Light.res
+res://MapStuff/regionTile.tscn::0ac72cfe149f7c28970226c65dc92d2f::1729481483::res://.godot/exported/133200997/export-dc94fe30abf9f0a4fe039f6ad8328f5a-regionTile.scn
+res://MapStuff/MapItems/Chest.tscn::4fd47a8b73f22886292ba8b319ec8413::1729481483::res://.godot/exported/133200997/export-df9dbeca328a2a16dc4dc175ae205237-Chest.scn

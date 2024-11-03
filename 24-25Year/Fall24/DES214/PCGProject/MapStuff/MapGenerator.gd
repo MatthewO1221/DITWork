@@ -164,7 +164,7 @@ func Generate() -> void:
 		
 		
 		if curMode.widen:
-			WidenAllCorridors(curMode, region)
+			WidenAllCorridors(region)
 			
 	
 	
@@ -260,10 +260,10 @@ func CreateRegions() -> Array:
 		
 	return regionArray
 
-func NewRegion(name: String, bottomLeft: Vector2i, topRight: Vector2i) -> Region:
+func NewRegion(regionName: String, bottomLeft: Vector2i, topRight: Vector2i) -> Region:
 	var newRegion = Region.new()
 	
-	newRegion.name = name
+	newRegion.name = regionName
 	
 	var newRect = Rect2i(bottomLeft.x, topRight.y, topRight.x - bottomLeft.x, bottomLeft.y - topRight.y)
 	
@@ -290,11 +290,13 @@ func ConnectEntrances(mode: Mode, region: Region) -> void:
 	aStar.update()
 	
 	for tile in roomTiles:
-		aStar.set_point_solid(tile, true)
+		if aStar.is_in_boundsv(tile):
+			aStar.set_point_solid(tile, true)
 		
 		
 	for entrance in entranceList:
-		aStar.set_point_solid(entrance, false)
+		if aStar.is_in_boundsv(entrance):
+			aStar.set_point_solid(entrance, false)
 		
 		
 	
@@ -373,7 +375,7 @@ func CreateBranches(mode: Mode, region: Region) -> void:
 		
 
 func SpawnBranch(branch: Vector2i, mode: Mode, region: Region) -> void:
-	var currentTile = branch
+	
 	
 	var branchType = mode.corridorTypes.pick_random()
 	
@@ -397,7 +399,7 @@ func SpawnDrunkCorridor(start: Vector2i, mode: Mode, region: Region) -> void:
 			var dir = randi_range(0,3)
 		
 			if IsValidNeighbor(tile, directionMap[dir], region):
-				tile = await PlaceTileInDirection(mode, tile, directionMap[dir])
+				#tile = await PlaceTileInDirection(mode, tile, directionMap[dir])
 				break
 	
 func SpawnSnakingCorridor(start: Vector2i, mode: Mode, region: Region) -> void:
@@ -414,7 +416,7 @@ func SpawnSnakingCorridor(start: Vector2i, mode: Mode, region: Region) -> void:
 			
 		for j in range(length):
 			if IsValidNeighbor(tile, dir, region):
-				tile = await PlaceTileInDirection(mode, tile, dir)
+				tile = PlaceTileInDirection(mode, tile, dir)
 		horizontal = !horizontal
 	
 	
@@ -442,7 +444,7 @@ func SpawnSpiralCorridor(start: Vector2i, mode: Mode, region: Region) -> void:
 		
 	
 
-func WidenAllCorridors(mode: Mode, region: Region) -> void:
+func WidenAllCorridors(region: Region) -> void:
 	var allWalls = tileMapLayer.get_used_cells_by_id(3, Vector2i(5,0))
 	
 	var directions = [TileSet.CELL_NEIGHBOR_TOP_SIDE, 
@@ -474,9 +476,9 @@ func PlaceWalls() -> void:
 	TileSet.CELL_NEIGHBOR_LEFT_SIDE,
 	TileSet.CELL_NEIGHBOR_TOP_LEFT_CORNER]
 	
-	for floor in allFloors:
+	for tile in allFloors:
 		for direction in directions:
-			var neighbor = tileMapLayer.get_neighbor_cell(floor, direction)
+			var neighbor = tileMapLayer.get_neighbor_cell(tile, direction)
 			
 			if tileMapLayer.get_cell_source_id(neighbor) == -1:
 				tileMapLayer.set_cell(neighbor, 3, Vector2i(5,0))
@@ -533,7 +535,6 @@ func OrganizeTiles(t1: Vector2i, t2: Vector2i) -> bool:
 	return false
 
 func SpawnRooms(mode: Mode, region: Region) -> void:
-	var roomList = mode.roomList
 	var roomDensity = mode.roomAmount
 	var totalTiles = region.totalTiles
 	var tilesPlaced = 0
@@ -544,11 +545,11 @@ func SpawnRooms(mode: Mode, region: Region) -> void:
 		
 		for i in range(10):
 			var roomToTry = GetRandomRoom(mode)
-			var rotation = TileTransform.values().pick_random()
-			var canBePlaced = CheckRoom(placeTile, roomToTry, rotation, region)
+			var randRot = TileTransform.values().pick_random()
+			var canBePlaced = CheckRoom(placeTile, roomToTry, randRot, region)
 			
 			if canBePlaced:
-				PlaceRoom(roomToTry, placeTile, rotation)
+				PlaceRoom(roomToTry, placeTile, randRot)
 				var tileCount = roomToTry.get_size().x * roomToTry.get_size().y
 				tilesPlaced += tileCount
 				
@@ -580,9 +581,9 @@ func GetRandomTile(region: Region) -> Vector2i:
 	return returnTile
 
 func GetRandomRoom(mode: Mode) -> TileMapPattern:
-	var patternsCount = mode.roomList.size()
 	
-	var rand = randi_range(0, patternsCount)
+	
+	
 	
 	var patternIndex = mode.roomList.values().pick_random()
 	
@@ -591,8 +592,8 @@ func GetRandomRoom(mode: Mode) -> TileMapPattern:
 	return pattern
 	
 	
-func PlaceRoom(room: TileMapPattern, coords: Vector2i, rotation: TileTransform) -> void:
-	var placedRoom = RotateRoom(room, rotation)
+func PlaceRoom(room: TileMapPattern, coords: Vector2i, rot: TileTransform) -> void:
+	var placedRoom = RotateRoom(room, rot)
 	
 	var tiles = placedRoom.get_used_cells()
 	
@@ -637,7 +638,7 @@ func IsValidNeighbor(parent: Vector2i, dir: TileSet.CellNeighbor, region: Region
 
 func IsValidPlacement(spot: Vector2i, region: Region) -> bool:
 	var id = tileMapLayer.get_cell_source_id(spot)
-	var atlasCoords = tileMapLayer.get_cell_atlas_coords(spot)
+	
 	
 	if !region.area.has_point(spot):
 		return false
@@ -671,17 +672,17 @@ func GetCoordsInDir(coords: Vector2i, dir: Directions) -> Vector2i:
 	
 	
 	
-func CheckRoom(coords: Vector2i, room: TileMapPattern, rotation: TileTransform, region: Region) -> bool:
+func CheckRoom(coords: Vector2i, room: TileMapPattern, rot: TileTransform, region: Region) -> bool:
 	
-	var rotatedRoom = RotateRoom(room, rotation)
-	var roomTiles = rotatedRoom.get_used_cells()
-	var foundPlacement = false
+	var rotatedRoom = RotateRoom(room, rot)
+	var roomUsed = rotatedRoom.get_used_cells()
+	
 	
 	var smallerRegion = region.area.grow(-1)
 	
 	
 	
-	for i in roomTiles:
+	for i in roomUsed:
 		var curTile = tileMapLayer.map_pattern(coords, i, rotatedRoom)
 		if tileMapLayer.get_cell_source_id(curTile) != TileType.Empty or !smallerRegion.has_point(curTile):
 			return false
@@ -690,9 +691,9 @@ func CheckRoom(coords: Vector2i, room: TileMapPattern, rotation: TileTransform, 
 	
 	
 	
-func RotateRoom(pattern: TileMapPattern, rotation: TileTransform) -> TileMapPattern:
+func RotateRoom(pattern: TileMapPattern, rot: TileTransform) -> TileMapPattern:
 	
-	if rotation == TileTransform.ROTATE_0:
+	if rot == TileTransform.ROTATE_0:
 		return pattern
 	
 	var newPattern := TileMapPattern.new()
@@ -710,7 +711,7 @@ func RotateRoom(pattern: TileMapPattern, rotation: TileTransform) -> TileMapPatt
 			var newCoords: Vector2i
 			
 			
-			match rotation:
+			match rot:
 				TileTransform.ROTATE_90:
 					newCoords = Vector2i(size.y - y - 1, x)
 				TileTransform.ROTATE_180:
@@ -729,7 +730,7 @@ func RotateRoom(pattern: TileMapPattern, rotation: TileTransform) -> TileMapPatt
 				newPattern.set_cell(newCoords,
 				pattern.get_cell_source_id(sourceCoordinates),
 				pattern.get_cell_atlas_coords(sourceCoordinates),
-				rotation,
+				rot,
 				)
 					
 	return newPattern
@@ -746,9 +747,7 @@ func _ready() -> void:
 	
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+
 
 func _input(event: InputEvent) -> void:
 	if InputMap.event_is_action(event, "Reset") && event.is_action_pressed("Reset"):
@@ -770,7 +769,7 @@ func _input(event: InputEvent) -> void:
 	
 	
 	
-	var dragSens = 1.0
+	
 	# Start panning when the middle mouse button is pressed
 	if InputMap.event_is_action(event, "Panning"):
 		if event.is_pressed():

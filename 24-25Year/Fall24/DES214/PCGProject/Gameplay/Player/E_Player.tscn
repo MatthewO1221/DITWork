@@ -1,0 +1,65 @@
+[gd_scene load_steps=10 format=3 uid="uid://p87507u1d64u"]
+
+[ext_resource type="Script" path="res://Gameplay/EntityComponents/EC_Health.gd" id="1_f0hvo"]
+[ext_resource type="Script" path="res://Gameplay/EntityComponents/EC_Hurtbox.gd" id="2_rabgo"]
+[ext_resource type="PackedScene" uid="uid://cgqier5tatxer" path="res://Gameplay/EntityComponents/EC_HealthBar.tscn" id="3_qauyp"]
+[ext_resource type="Script" path="res://Gameplay/Player/EC_CharacterController.gd" id="3_ym61t"]
+[ext_resource type="Texture2D" uid="uid://bfbhhqux6e74c" path="res://icon.svg" id="4_yydro"]
+[ext_resource type="Script" path="res://Gameplay/Combat/Weapons/CB_PlayerWeapon.gd" id="5_0qglp"]
+[ext_resource type="PackedScene" uid="uid://csx2t54qs1ax1" path="res://Gameplay/Combat/PlayerBullet.tscn" id="6_2q1k3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oab86"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xhouf"]
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
+z_index = 1
+scale = Vector2(0.5, 0.5)
+collision_mask = 18
+motion_mode = 1
+script = ExtResource("3_ym61t")
+speed = 50.0
+metadata/Health = NodePath("HealthComponent")
+metadata/Hurtbox = NodePath("HurtboxComponent")
+metadata/Controller = NodePath("")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("1_f0hvo")
+
+[node name="HurtboxComponent" type="Node" parent="."]
+script = ExtResource("2_rabgo")
+
+[node name="Area2D" type="Area2D" parent="HurtboxComponent"]
+collision_mask = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent/Area2D"]
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_oab86")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("4_yydro")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_xhouf")
+
+[node name="PlayerWeaponBase" type="Node2D" parent="."]
+script = ExtResource("5_0qglp")
+bullet = ExtResource("6_2q1k3")
+numBullets = 5
+timeBetweenBullets = 0.01
+firingMode = 2
+bulletSize = 0.1
+bulletSpeed = 60.0
+bulletRange = 999999.0
+
+[node name="HealthBar" parent="." instance=ExtResource("3_qauyp")]
+anchors_preset = 5
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_left = -4.0
+offset_top = -12.0
+offset_right = -4.0
+offset_bottom = -12.0
+grow_vertical = 1
+scale = Vector2(0.03, 0.335)

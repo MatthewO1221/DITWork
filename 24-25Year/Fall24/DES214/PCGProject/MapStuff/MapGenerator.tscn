@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=4 uid="uid://cwggrjasr5mlf"]
+[gd_scene load_steps=5 format=4 uid="uid://cwggrjasr5mlf"]
 
 [ext_resource type="Script" path="res://MapStuff/MapGenerator.gd" id="1_0rb7n"]
 [ext_resource type="TileSet" uid="uid://bdya4hpffhf6b" path="res://MapStuff/TileSet.tres" id="2_fogry"]
+[ext_resource type="PackedScene" uid="uid://b142851w5obie" path="res://Gameplay/Player/E_PlayerSpawner.tscn" id="3_rbdpa"]
+[ext_resource type="PackedScene" uid="uid://p87507u1d64u" path="res://Gameplay/Player/E_Player.tscn" id="4_vc2yb"]
 
 [node name="MapGenerator" type="Node2D" node_paths=PackedStringArray("tileMapLayer", "camera")]
 script = ExtResource("1_0rb7n")
@@ -27,3 +29,7 @@ tile_set = ExtResource("2_fogry")
 [node name="Items" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAAgAAEABAAAAAAAAQA=")
 tile_set = ExtResource("2_fogry")
+
+[node name="PlayerSpawner" parent="." instance=ExtResource("3_rbdpa")]
+position = Vector2(0, 18)
+player = ExtResource("4_vc2yb")

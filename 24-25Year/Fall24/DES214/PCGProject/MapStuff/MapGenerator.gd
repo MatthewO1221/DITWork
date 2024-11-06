@@ -118,6 +118,8 @@ var currentTile = Vector2i(0,0)
 var branchList: Array
 var generatingCorridor = false
 
+var corridorenemyChance := 0.01
+var roomenemyChance := 0.1
 
 var roomTiles: Array
 
@@ -182,13 +184,16 @@ func Generate() -> void:
 		
 	PlaceWalls()
 	
+func SpawnEnemies(mode: Mode, region: Region) -> void:
+	pass
+	
 func CreateModes() -> Array:
 	var modeArray: Array
 	
 	var dev1 = Mode.new()
 	
 	dev1.name = "Development1"
-	dev1.roomList = {lShaped = 0, smallRoom = 1, alcoves = 2, largeRoom = 3, columns = 4}
+	dev1.roomList = {lShaped = 1, smallRoom = 2, alcoves = 3, largeRoom = 4, columns = 5}
 	dev1.roomAmount = DensityModes.Regular
 	dev1.corridorAmount = DensityModes.Cluttered
 	dev1.minCorridorLength = 3
@@ -202,7 +207,7 @@ func CreateModes() -> Array:
 	var dev2 = Mode.new()
 	
 	dev2.name = "Development2"
-	dev2.roomList = {lShaped = 0, smallRoom = 1, alcoves = 2, largeRoom = 3, columns = 4}
+	dev2.roomList = {blocks = 10, corners = 11, long = 12, cross = 13, diamond = 14}
 	dev2.roomAmount = DensityModes.Sparse
 	dev2.corridorAmount = DensityModes.Cluttered
 	dev2.minCorridorLength = 8
@@ -215,7 +220,7 @@ func CreateModes() -> Array:
 	var dev3 = Mode.new()
 	
 	dev3.name = "Development3"
-	dev3.roomList = {lShaped = 0, smallRoom = 1, alcoves = 2, largeRoom = 3, columns = 4}
+	dev3.roomList = {cave1 = 0, cave2 = 6, cave3 = 7, cave4 = 8, cave5 = 9}
 	dev3.roomAmount = DensityModes.Regular
 	dev3.corridorAmount = DensityModes.Cluttered
 	dev3.minCorridorLength = 15
@@ -399,7 +404,7 @@ func SpawnDrunkCorridor(start: Vector2i, mode: Mode, region: Region) -> void:
 			var dir = randi_range(0,3)
 		
 			if IsValidNeighbor(tile, directionMap[dir], region):
-				#tile = await PlaceTileInDirection(mode, tile, directionMap[dir])
+				tile = PlaceTileInDirection(mode, tile, directionMap[dir])
 				break
 	
 func SpawnSnakingCorridor(start: Vector2i, mode: Mode, region: Region) -> void:

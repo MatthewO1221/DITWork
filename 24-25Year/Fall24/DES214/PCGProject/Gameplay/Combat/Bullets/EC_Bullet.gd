@@ -12,7 +12,10 @@ var hurtbox: HurtboxComponent
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	Initialize.call_deferred()
 	
+	
+func Initialize() -> void:
 	self.scale = scale * bulletSize
 	
 	hurtbox = get_node(get_meta("Hurtbox")) as HurtboxComponent
@@ -23,7 +26,6 @@ func _ready() -> void:
 	hurtbox.damage = bulletDamage
 	
 	hurtbox.collided.connect(OnCollision)
-	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:

@@ -1,5 +1,5 @@
 class_name HurtboxComponent
-extends Node
+extends Node2D
 
 
 
@@ -14,7 +14,7 @@ signal collided(hurtbox: HurtboxComponent, entity: Node)
 func _ready() -> void:
 	collider = $Area2D
 	
-	collider.connect("body_entered", OnCollision)
+	collider.connect("area_entered", OnCollision)
 	
 
 func OnCollision(otherArea: Area2D) -> void:

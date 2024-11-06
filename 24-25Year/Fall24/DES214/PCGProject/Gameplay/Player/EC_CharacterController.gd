@@ -27,3 +27,11 @@ func _physics_process(_delta: float) -> void:
 	# Update rotation to face mouse position
 	var mouse_pos = get_global_mouse_position()
 	look_at(mouse_pos)
+
+func _ready() -> void:
+	var healthComp = get_node(get_meta("Health")) as HealthComponent
+	
+	healthComp.deathSignal.connect(OnDeath)
+
+func OnDeath() -> void:
+	queue_free()

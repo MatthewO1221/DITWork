@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://dudc0f7ij2vfm"]
+
+[ext_resource type="Script" path="res://Gameplay/Combat/Bullets/EC_Bullet.gd" id="1_4cjg3"]
+[ext_resource type="Script" path="res://Gameplay/EntityComponents/EC_Hurtbox.gd" id="2_7v3fy"]
+[ext_resource type="Texture2D" uid="uid://dqyh6q35ptf05" path="res://Sprites/red_body_circle.png" id="3_1qmi5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yjo3o"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mcad7"]
+
+[node name="EnemyBullet" type="CharacterBody2D"]
+z_index = 1
+scale = Vector2(0.1, 0.1)
+collision_layer = 8
+collision_mask = 16
+motion_mode = 1
+script = ExtResource("1_4cjg3")
+metadata/Hurtbox = NodePath("HurtboxComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_yjo3o")
+
+[node name="HurtboxComponent" type="Node2D" parent="."]
+script = ExtResource("2_7v3fy")
+
+[node name="Area2D" type="Area2D" parent="HurtboxComponent"]
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent/Area2D"]
+scale = Vector2(0.1, 0.1)
+shape = SubResource("CircleShape2D_mcad7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_1qmi5")

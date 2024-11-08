@@ -1,36 +1,3 @@
-[gd_scene load_steps=6 format=3 uid="uid://csx2t54qs1ax1"]
-
-[ext_resource type="Script" path="res://Gameplay/Combat/Bullets/EC_Bullet.gd" id="1_0jxa0"]
-[ext_resource type="Script" path="res://Gameplay/EntityComponents/EC_Hurtbox.gd" id="2_7jad0"]
-[ext_resource type="Texture2D" uid="uid://dlaif3yb3kf0j" path="res://Sprites/blue_body_circle.png" id="3_n46gg"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_yjo3o"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_mcad7"]
-
-[node name="PlayerBullet" type="CharacterBody2D"]
-z_index = 1
-scale = Vector2(0.1, 0.1)
-collision_layer = 4
-collision_mask = 16
-motion_mode = 1
-script = ExtResource("1_0jxa0")
-metadata/Hurtbox = NodePath("HurtboxComponent")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_yjo3o")
-
-[node name="HurtboxComponent" type="Node2D" parent="."]
-script = ExtResource("2_7jad0")
-
-[node name="Area2D" type="Area2D" parent="HurtboxComponent"]
-collision_layer = 4
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent/Area2D"]
-scale = Vector2(0.1, 0.1)
-shape = SubResource("CircleShape2D_mcad7")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("3_n46gg")
+version https://git-lfs.github.com/spec/v1
+oid sha256:5d7b6f8a9286c156933a02575c4c143bb7081c9947f22c220f5c4831d51d7477
+size 1279

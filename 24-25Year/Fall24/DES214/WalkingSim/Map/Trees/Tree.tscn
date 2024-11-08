@@ -1,8 +1,3 @@
-[gd_scene load_steps=2 format=3 uid="uid://bh771jqnjptam"]
-
-[ext_resource type="PackedScene" uid="uid://bxo3eyhf1qvqf" path="res://Map/Trees/Fbx/Tree_temp_climate_006.FBX" id="1_ynkrb"]
-
-[node name="Tree" type="Node3D"]
-
-[node name="Tree_temp_climate_006" parent="." instance=ExtResource("1_ynkrb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0239116, 0, 0.0478716)
+version https://git-lfs.github.com/spec/v1
+oid sha256:82192a7d1a1df71802d92f272d60883da798df6588d03e5fefdcb937988fa5f2
+size 377

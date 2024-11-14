@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="TextureSetResource" load_steps=5 format=3 uid="uid://d3jv5w4ilplt3"]
+
+[ext_resource type="Texture2D" uid="uid://5ur7j5jpv5qh" path="res://Textures/1/1_diffuseOriginal.png" id="1_5vmjf"]
+[ext_resource type="Script" path="res://addons/terrabrush/Scripts/EditorResources/TextureSetResource.cs" id="1_xtaqh"]
+[ext_resource type="Texture2D" uid="uid://bx7y4wbcvtp87" path="res://Textures/1/1_height.bmp" id="2_1gt8m"]
+[ext_resource type="Texture2D" uid="uid://p6h6h7o6copa" path="res://Textures/1/1_normal.bmp" id="3_5sb6u"]
+
+[resource]
+script = ExtResource("1_xtaqh")
+Name = ""
+AlbedoTexture = ExtResource("1_5vmjf")
+NormalTexture = ExtResource("3_5sb6u")
+HeightTexture = ExtResource("2_1gt8m")
+TextureDetail = -1

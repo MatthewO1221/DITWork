@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="TextureSetResource" load_steps=3 format=3 uid="uid://m11if4fv2htk"]
+
+[ext_resource type="Texture2D" uid="uid://dbobr0hhukxiu" path="res://Textures/Brown.tres" id="1_egr07"]
+[ext_resource type="Script" path="res://addons/terrabrush/Scripts/EditorResources/TextureSetResource.cs" id="1_ng1uk"]
+
+[resource]
+script = ExtResource("1_ng1uk")
+Name = ""
+AlbedoTexture = ExtResource("1_egr07")
+NormalTexture = ExtResource("1_egr07")
+RoughnessTexture = ExtResource("1_egr07")
+HeightTexture = ExtResource("1_egr07")
+TextureDetail = -1

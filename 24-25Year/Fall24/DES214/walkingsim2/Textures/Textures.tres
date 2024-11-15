@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="TextureSetsResource" load_steps=4 format=3 uid="uid://4w8ek468fr0e"]
+
+[ext_resource type="Script" path="res://addons/terrabrush/Scripts/EditorResources/TextureSetsResource.cs" id="1_443de"]
+[ext_resource type="Resource" uid="uid://m11if4fv2htk" path="res://Textures/BrownTexture.tres" id="1_qhk4p"]
+[ext_resource type="Resource" uid="uid://bst8524prv5dy" path="res://Textures/GreenTexture.tres" id="2_llghc"]
+
+[resource]
+script = ExtResource("1_443de")
+TextureSets = [ExtResource("1_qhk4p"), ExtResource("2_llghc")]

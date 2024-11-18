@@ -35,6 +35,8 @@ func Fire() -> void:
 	
 func _ready() -> void:
 	reloadCountdown = reloadTime
+	
+	
 
 func _process(delta: float) -> void:
 	reloadCountdown -= delta

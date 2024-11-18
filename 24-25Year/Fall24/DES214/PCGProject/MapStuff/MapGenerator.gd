@@ -23,6 +23,13 @@ enum Directions
 	W = TileSet.CELL_NEIGHBOR_LEFT_SIDE
 }
 
+enum CorridorLogic
+{
+	Invalid,
+	Corridor,
+	Valid
+}
+
 #Mode handles all the generation values for a region
 class Mode:
 	#Name of the mode
@@ -97,6 +104,13 @@ var directionMap = {
 @export var machineGunEnemy: PackedScene
 @export var shotgunEnemy: PackedScene
 @export var sniperEnemy: PackedScene
+
+@export_group("Powerups")
+@export var speedPowerup: PackedScene
+@export var bulletPowerup: PackedScene
+@export var healthPowerup: PackedScene
+@export var corridorChance := 0.05
+@export var roomChance := 0.1
 #Important Globals
 #The tile we're currently generating from
 var currentTile = Vector2i(0,0)
@@ -122,6 +136,8 @@ var lastMousePosition
 var regions: Array
 #All the enemies
 var enemies: Array
+#All the powerups
+var powerups: Array
 #Index of empty tiles
 const _emptyTile := -1
 
@@ -157,6 +173,7 @@ func Generate() -> void:
 			
 		SpawnEnemies(region)
 	
+	SpawnPowerups()
 	
 	entexitList.append_array(specialEntrances)
 	
@@ -398,10 +415,18 @@ func SpawnDrunkCorridor(start: Vector2i, region: Region) -> void:
 	
 		for j in range(10):
 			var dir = randi_range(0,3)
-		
-			if IsValidNeighbor(tile, directionMap[dir], region):
-				tile = PlaceTileInDirection(region, tile, directionMap[dir])
-				break
+			
+			var placementValidity = IsValidNeighbor(tile, directionMap[dir], region)
+			
+			match placementValidity:
+				CorridorLogic.Invalid:
+					continue
+				CorridorLogic.Valid:
+					tile = PlaceTileInDirection(region, tile, directionMap[dir])
+					break
+				CorridorLogic.Corridor:
+					#tile = PlaceTileInDirection(region, tile, directionMap[dir])
+					continue
 	
 func SpawnSnakingCorridor(start: Vector2i, region: Region) -> void:
 	var mode = region.mode
@@ -417,8 +442,18 @@ func SpawnSnakingCorridor(start: Vector2i, region: Region) -> void:
 			dir = [TileSet.CellNeighbor.CELL_NEIGHBOR_TOP_SIDE, TileSet.CellNeighbor.CELL_NEIGHBOR_BOTTOM_SIDE].pick_random()
 			
 		for j in range(length):
-			if IsValidNeighbor(tile, dir, region):
-				tile = PlaceTileInDirection(region, tile, dir)
+			var corridorValidity = IsValidNeighbor(tile, dir, region) as CorridorLogic
+			
+			match corridorValidity:
+				CorridorLogic.Valid:
+					tile = PlaceTileInDirection(region, tile, dir)
+				CorridorLogic.Invalid:
+					break
+				CorridorLogic.Corridor:
+					tile = PlaceTileInDirection(region, tile, dir)
+					return
+					
+			
 		horizontal = !horizontal
 	
 	
@@ -431,8 +466,16 @@ func SpawnSpiralCorridor(start: Vector2i, region: Region) -> void:
 	
 	for i in range(10):
 		for j in range(length):
-			if IsValidNeighbor(tile, directionMap[dir], region):
-				tile = PlaceTileInDirection(region, tile, directionMap[dir])
+			var corridorValidity = IsValidNeighbor(tile, directionMap[dir], region) as CorridorLogic
+			
+			
+			match corridorValidity:
+				CorridorLogic.Valid:
+					tile = PlaceTileInDirection(region, tile, directionMap[dir])
+				CorridorLogic.Invalid:
+					break
+				CorridorLogic.Corridor:
+					break
 				
 				
 		match dir:
@@ -628,18 +671,18 @@ func PlaceTileInDirection(region: Region, coords:Vector2i, dir: Directions) -> V
 	
 	
 
-func IsValidNeighbor(parent: Vector2i, dir: TileSet.CellNeighbor, region: Region) -> bool:
+func IsValidNeighbor(parent: Vector2i, dir: TileSet.CellNeighbor, region: Region) -> CorridorLogic:
 	var newTile = tileMapLayer.get_neighbor_cell(parent, dir)
 	
 	if !IsValidPlacement(newTile, region):
-		return false
+		return CorridorLogic.Invalid
 	
 	for i in range(4):
 		var adjacentTile = tileMapLayer.get_neighbor_cell(newTile, directionMap[i])
 		if corridorTiles.has(adjacentTile) and adjacentTile != parent:
-			return false
+			return CorridorLogic.Corridor
 	
-	return true
+	return CorridorLogic.Valid
 
 func IsValidPlacement(spot: Vector2i, region: Region) -> bool:
 	var id = tileMapLayer.get_cell_source_id(spot)
@@ -691,8 +734,11 @@ func CheckRoom(coords: Vector2i, room: TileMapPattern, rot: TileTransform, regio
 		var curTile = tileMapLayer.map_pattern(coords, i, rotatedRoom)
 		if tileMapLayer.get_cell_source_id(curTile) != _emptyTile or !smallerRegion.has_point(curTile):
 			return false
-		
+		for j in roomTiles:
+			if curTile.distance_to(j) < 2:
+				return false
 	return true
+
 
 
 func SpawnEnemies(region: Region) -> void:
@@ -724,6 +770,36 @@ func SpawnRandomEnemy(region: Region, coords: Vector2i) -> void:
 	
 	enemies.append(enemyInstance)
 	
+func SpawnPowerups() -> void:
+	for roomTile in roomTiles:
+		if tileMapLayer.get_cell_atlas_coords(roomTile) != Vector2i(5,0):
+			var chance = randf_range(0.0, 1.0)
+			
+			if chance <= roomChance:
+				SpawnRandomPowerup(roomTile)
+				
+	for corridorTile in corridorTiles:
+		
+		var chance = randf_range(0.0, 1.0)
+			
+		if chance <= corridorChance:
+			SpawnRandomPowerup(corridorTile)
+	
+func GetRandomPowerup() -> PackedScene:
+	return [speedPowerup, healthPowerup, bulletPowerup].pick_random()
+	
+func SpawnRandomPowerup(coords: Vector2i) -> void:
+	var powerupToSpawn = GetRandomPowerup()
+	
+	var powerupInstance = powerupToSpawn.instantiate()
+	
+	var globalCoords = tileMapLayer.to_global(tileMapLayer.map_to_local(coords))
+	
+	get_tree().current_scene.add_child(powerupInstance)
+	
+	powerupInstance.global_position = globalCoords
+	
+	powerups.append(powerupInstance)
 	
 func GetRandomEnemy(region: Region) -> PackedScene:
 	return region.mode.enemyList.pick_random()
@@ -843,8 +919,14 @@ func reset() -> void:
 	
 	for enemy in enemies:
 		enemy.queue_free()
+		
+	for powerup in powerups:
+		powerup.queue_free()
 	
 	enemies.clear()
+	powerups.clear()
+	
+	TelemetrySystem.reset_all()
 	
 	currentTile = Vector2i(0,0)
 	Generate()

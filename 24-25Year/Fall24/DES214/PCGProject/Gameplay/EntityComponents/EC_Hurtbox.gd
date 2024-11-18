@@ -16,6 +16,8 @@ func _ready() -> void:
 	
 	collider.connect("area_entered", OnCollision)
 	
+	
+	
 
 func OnCollision(otherArea: Area2D) -> void:
 	var otherHurtbox = otherArea.get_parent() as HurtboxComponent

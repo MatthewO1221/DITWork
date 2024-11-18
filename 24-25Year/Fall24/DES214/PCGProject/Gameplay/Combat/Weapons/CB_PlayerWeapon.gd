@@ -2,7 +2,10 @@ class_name PlayerWeaponBase
 extends WeaponBase
 
 
-
+func _ready() -> void:
+	super()
+	
+	TelemetrySystem.connect_signal(self, "Firing", "PlayerShotsFired")
 	
 func _input(event: InputEvent) -> void:
 	if event.is_action("Fire") and event.is_action_pressed("Fire"):

@@ -1,0 +1,15 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://cao0fcxwhpl2l"
+valid=false
+
+[deps]
+
+source_file="res://telemetry_log.csv"
+
+[params]
+
+compress=true
+delimiter=0

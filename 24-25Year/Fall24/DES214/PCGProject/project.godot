@@ -19,6 +19,11 @@ config/icon="res://icon.svg"
 
 Signal_Debugger="*res://addons/SignalVisualizer/Debugger/SignalDebugger.gd"
 Shaker="*res://addons/shaker/src/Shaker.gd"
+TelemetrySystem="*res://Gameplay/Important/TelemetrySystem.gd"
+
+[dotnet]
+
+project/assembly_name="DESPCG"
 
 [editor_plugins]
 

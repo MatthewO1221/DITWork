@@ -27,9 +27,9 @@ func _ready() -> void:
 	
 	hurtbox.collided.connect(ResolveCollision)
 	
-	TelemetrySystem.connect_signal(self, "damageTaken", get_parent().get_class() + "DamageTaken")
-	TelemetrySystem.connect_signal(self, "healed", get_parent().get_class() + "Healed")
-	TelemetrySystem.connect_signal(self, "deathSignal", get_parent().get_class())
+	TelemetrySystem.connect_signal(damageTaken, func(_a,_b, lambda: Callable) -> void: lambda.call(), get_parent().get_class() + "DamageTaken")
+	TelemetrySystem.connect_signal(healed, func(_a,_b, lambda: Callable) -> void: lambda.call(), get_parent().get_class() + "Healed")
+	TelemetrySystem.connect_signal(deathSignal, func(_a, lambda: Callable) -> void: lambda.call(), get_parent().get_class())
 
 
 func ResolveCollision(hurtbox: HurtboxComponent, source: Node) -> void:

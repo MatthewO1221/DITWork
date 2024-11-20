@@ -40,15 +40,18 @@ func export_to_csv():
 		print("Failed to open file for telemetry export!")
 
 # Connect the manager to various signals
-func connect_signal(emitter: Object, signal_: String, counter_name: String, increment_value: int = 1) -> void:
+func connect_signal(mySignal: Signal, lambda: Callable, counter_name: String, increment_value: int = 1) -> void:
 	# Prepare the data dictionary to pass to the signal
 	var data = {
 		"counter_name": counter_name,
 		"increment_value": increment_value
 	}
+	
+	var lambda2 := lambda.bind(_on_signal_emitted.bind(data))
+	
 	# Connect the signal, passing the data dictionary
-	if not emitter.is_connected(signal_, _on_signal_emitted):
-		emitter.connect(signal_, _on_signal_emitted.bind(data))
+	if not mySignal.is_connected(lambda2):
+		mySignal.connect(lambda2)
 
 # Handle connected signals
 func _on_signal_emitted(data: Dictionary):

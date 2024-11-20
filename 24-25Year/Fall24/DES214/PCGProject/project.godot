@@ -27,7 +27,7 @@ project/assembly_name="DESPCG"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/SignalVisualizer/plugin.cfg", "res://addons/net.yarvis.pixel_pen/plugin.cfg", "res://addons/script-ide/plugin.cfg", "res://addons/shaker/plugin.cfg")
+enabled=PackedStringArray("res://addons/SignalVisualizer/plugin.cfg", "res://addons/gd_profiler/plugin.cfg", "res://addons/net.yarvis.pixel_pen/plugin.cfg", "res://addons/script-ide/plugin.cfg", "res://addons/shaker/plugin.cfg")
 
 [filesystem]
 

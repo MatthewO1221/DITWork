@@ -1,1 +1,5 @@
 Metric,Value
+CharacterBody2DShotsFired,94
+PlayerShotsFired,8
+CharacterBody2DDamageTaken,3
+CharacterBody2D,1

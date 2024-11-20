@@ -9,7 +9,7 @@ func _ready() -> void:
 	super()
 	GetPlayer.call_deferred()
 	
-	TelemetrySystem.connect_signal(self, "Firing", get_parent().get_class() + "ShotsFired")
+	TelemetrySystem.connect_signal(Firing, func(_a,_b, lambda: Callable) -> void: lambda.call(),get_parent().get_class() + "ShotsFired")
 
 func GetPlayer() -> void:
 	player = get_tree().get_nodes_in_group("Player")[0] if get_tree().has_group("Player") else null

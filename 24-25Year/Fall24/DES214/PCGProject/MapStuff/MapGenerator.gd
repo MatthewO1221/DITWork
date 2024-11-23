@@ -111,6 +111,10 @@ var directionMap = {
 @export var healthPowerup: PackedScene
 @export var corridorChance := 0.05
 @export var roomChance := 0.1
+
+
+@export_group("PlayerSpawner")
+@export var playerSpawner: PlayerSpawner
 #Important Globals
 #The tile we're currently generating from
 var currentTile = Vector2i(0,0)
@@ -856,6 +860,7 @@ func _ready() -> void:
 	
 	var specialEntrancesL = SweepSpecialEntrances()
 	specialEntrances.append_array(specialEntrancesL)
+	CGameController.GetCameras.call_deferred()
 	Generate()
 	
 
@@ -929,4 +934,6 @@ func reset() -> void:
 	TelemetrySystem.reset_all()
 	
 	currentTile = Vector2i(0,0)
+	playerSpawner.RespawnPlayer()
+	CGameController.GetCameras.call_deferred()
 	Generate()

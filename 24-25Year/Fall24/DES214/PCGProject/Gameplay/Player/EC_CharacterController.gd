@@ -4,6 +4,8 @@ extends CharacterBody2D
 
 @export var speed := 200.0  # Movement speed
 
+var weapon: PlayerWeaponBase
+
 # This function is for player movement using WASD
 func get_input() -> Vector2:
 	var input_vector = Vector2.ZERO
@@ -32,6 +34,18 @@ func _ready() -> void:
 	var healthComp = get_node(get_meta("Health")) as HealthComponent
 	
 	healthComp.deathSignal.connect(OnDeath)
+	
+	weapon = get_node(get_meta("Weapon")) as PlayerWeaponBase
 
 func OnDeath() -> void:
 	queue_free()
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("Swap Weapon"):
+		match weapon.firingMode:
+			weapon.FiringModes.Burst:
+				weapon.firingMode = weapon.FiringModes.Spread
+			weapon.FiringModes.Spread:
+				weapon.firingMode = weapon.FiringModes.Shotgun
+			weapon.FiringModes.Shotgun:
+				weapon.firingMode = weapon.FiringModes.Burst

@@ -109,12 +109,11 @@ var directionMap = {
 @export var speedPowerup: PackedScene
 @export var bulletPowerup: PackedScene
 @export var healthPowerup: PackedScene
-@export var corridorChance := 0.05
-@export var roomChance := 0.1
+@export var corridorChance := 0.01
+@export var roomChance := 0.05
 
 
-@export_group("PlayerSpawner")
-@export var playerSpawner: PlayerSpawner
+var player: CharacterController
 #Important Globals
 #The tile we're currently generating from
 var currentTile = Vector2i(0,0)
@@ -145,7 +144,10 @@ var powerups: Array
 #Index of empty tiles
 const _emptyTile := -1
 
+var startTime: int
+
 func Generate() -> void:
+	startTime = Time.get_ticks_msec()
 	
 	var modes = CreateModes()
 	
@@ -219,7 +221,7 @@ func CreateModes() -> Array:
 	
 	dev2.name = "Development2"
 	dev2.roomList = {blocks = 10, corners = 11, long = 12, cross = 13, diamond = 14}
-	dev2.roomAmount = DensityModes.Sparse
+	dev2.roomAmount = DensityModes.Regular
 	dev2.corridorAmount = DensityModes.Cluttered
 	dev2.minCorridorLength = 8
 	dev2.maxCorridorLength = 16
@@ -301,7 +303,7 @@ func ConnectEntrances(region: Region) -> void:
 	
 	
 	
-	aStar.region = region.area
+	aStar.region = tileMapLayer.get_used_rect()
 	aStar.cell_size = tileMapLayer.tile_set.tile_size
 	
 	aStar.default_compute_heuristic = AStarGrid2D.HEURISTIC_MANHATTAN
@@ -861,7 +863,11 @@ func _ready() -> void:
 	var specialEntrancesL = SweepSpecialEntrances()
 	specialEntrances.append_array(specialEntrancesL)
 	CGameController.GetCameras.call_deferred()
+	GetPlayer.call_deferred()
 	Generate()
+	
+func GetPlayer() -> void:
+	player = get_tree().get_first_node_in_group("Player") as CharacterController
 	
 
 
@@ -878,7 +884,7 @@ func _input(event: InputEvent) -> void:
 		
 	if InputMap.event_is_action(event, "Zoom Out") and event.is_action_pressed("Zoom Out"):
 		var zoomAmount = camera.zoom.x
-		camera.zoom = Vector2(zoomAmount - 0.1, zoomAmount - 0.1)
+		camera.zoom = Vector2(max(zoomAmount - 0.1,0.0), max(zoomAmount - 0.1, 0.0))
 	
 	
 	
@@ -923,17 +929,27 @@ func reset() -> void:
 	wallTiles.clear()
 	
 	for enemy in enemies:
-		enemy.queue_free()
+		if is_instance_valid(enemy):
+			enemy.queue_free()
 		
 	for powerup in powerups:
-		powerup.queue_free()
+		if is_instance_valid(powerup):
+			powerup.queue_free()
 	
 	enemies.clear()
 	powerups.clear()
 	
+	player.Reset()
+	
+	
+	var totalTime = (Time.get_ticks_msec() - startTime)/1000
+	TelemetrySystem.LogData("RunTime", totalTime)
+	TelemetrySystem.export_to_csv()
 	TelemetrySystem.reset_all()
 	
 	currentTile = Vector2i(0,0)
-	playerSpawner.RespawnPlayer()
-	CGameController.GetCameras.call_deferred()
-	Generate()
+	
+	
+	
+	
+	get_tree().reload_current_scene()

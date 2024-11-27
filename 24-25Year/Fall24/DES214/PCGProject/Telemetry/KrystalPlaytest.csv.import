@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://bkyejinoxmfcs"
+
+[deps]
+
+files=["res://Telemetry/KrystalPlaytest.Value.translation"]
+
+source_file="res://Telemetry/KrystalPlaytest.csv"
+dest_files=["res://Telemetry/KrystalPlaytest.Value.translation"]
+
+[params]
+
+compress=true
+delimiter=0

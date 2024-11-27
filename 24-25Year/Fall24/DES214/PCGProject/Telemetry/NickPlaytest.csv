@@ -1,0 +1,17 @@
+Metric,Value
+BasicEnemyShotsFired,144
+PlayerShotsFired,284
+CharacterBody2DDamageTaken,337
+CharacterBody2D,52
+BulletPowerupsGrabbed,6
+BurstEnemyShotsFired,133
+HealthPowerupsGrabbed,5
+CharacterBody2DHealed,5
+SpeedPowerupsGrabbed,4
+SniperEnemyShotsFired,64
+ShotgunEnemyShotsFired,30
+MachineGunEnemyShotsFired,226
+BounceEnemyShotsFired,100
+BossEnemyShotsFired,95
+PlayerDistanceTraveled,1199733
+RunTime,715

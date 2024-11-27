@@ -5,6 +5,7 @@ extends CharacterBody2D
 @export_category("Enemy Variables")
 @export var moveSpeed := 50.0
 @export var checkDistance := 1000.0
+@export var enemyName : String
 
 
 var playerDetected := false
@@ -15,6 +16,7 @@ var detectionArea: Area2D
 
 var reloaded := false
 
+var deathIcon = "res://Gameplay/Enemies/E_Corpse.tscn"
 
 func _ready() -> void:
 	GetPlayer.call_deferred()
@@ -31,7 +33,7 @@ func _ready() -> void:
 	detectionArea.area_exited.connect(func(_otherArea) -> void: playerDetected = false)
 	
 func GetPlayer() -> void:
-	player = get_tree().get_nodes_in_group("Player")[0] if get_tree().has_group("Player") else null
+	player = get_tree().get_first_node_in_group("Player") as CharacterController
 
 func _process(delta: float) -> void:
 	
@@ -60,5 +62,13 @@ func GetMovement() -> Vector2:
 	return toPlayer
 	
 func OnDeath(_killer: Node) -> void:
+	
+	var graveInstance = load("res://Gameplay/Enemies/E_Corpse.tscn") as Resource
+	
+	var deathInstance = graveInstance.instantiate()
+	
+	deathInstance.global_position = global_position
+	
+	get_tree().current_scene.add_child(deathInstance)
 	queue_free()
 	

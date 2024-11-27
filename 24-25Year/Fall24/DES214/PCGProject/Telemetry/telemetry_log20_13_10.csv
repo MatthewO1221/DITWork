@@ -1,0 +1,9 @@
+Metric,Value
+ShotsFired,4
+PlayerShotsFired,26
+CharacterBody2DDamageTaken,17
+BulletPowerupsGrabbed,4
+CharacterBody2D,5
+BurstEnemyShotsFired,34
+BasicEnemyShotsFired,32
+ShotgunEnemyShotsFired,12

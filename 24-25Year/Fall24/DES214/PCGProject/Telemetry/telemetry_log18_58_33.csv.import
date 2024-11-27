@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://bapoao8jlyp00"
+
+[deps]
+
+files=["res://Telemetry/telemetry_log18_58_33.Value.translation"]
+
+source_file="res://Telemetry/telemetry_log18_58_33.csv"
+dest_files=["res://Telemetry/telemetry_log18_58_33.Value.translation"]
+
+[params]
+
+compress=true
+delimiter=0

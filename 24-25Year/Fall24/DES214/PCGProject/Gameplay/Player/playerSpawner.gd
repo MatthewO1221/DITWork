@@ -18,8 +18,9 @@ func SpawnPlayer() -> void:
 	
 		
 	var playerInstance = player.instantiate() as Node2D
+	print(playerInstance.name)
 	playerInstance.global_position = global_position  # Set spawn position to spawner's position
-	get_tree().current_scene.add_child.call_deferred(playerInstance)
+	get_tree().current_scene.add_child(playerInstance)
 	
 	playerSave = playerInstance
 

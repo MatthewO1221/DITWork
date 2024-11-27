@@ -25,7 +25,7 @@ func _ready() -> void:
 	Initialize.call_deferred()
 
 func Initialize() -> void:
-	var player = get_tree().get_first_node_in_group("Player")
+	var player = get_tree().get_first_node_in_group("Player") as CharacterController
 	
 	playerHealth = player.get_node(player.get_meta("Health"))
 	playerWeapon = player.get_node(player.get_meta("Weapon"))

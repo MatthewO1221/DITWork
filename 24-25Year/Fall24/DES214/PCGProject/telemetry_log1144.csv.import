@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://kfnwvr11cksl"
+
+[deps]
+
+files=["res://telemetry_log1144.Value.translation"]
+
+source_file="res://telemetry_log1144.csv"
+dest_files=["res://telemetry_log1144.Value.translation"]
+
+[params]
+
+compress=true
+delimiter=0

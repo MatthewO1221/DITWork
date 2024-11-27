@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://baklvmgbxst08"
+
+[deps]
+
+files=["res://Telemetry/NickPlaytest.Value.translation"]
+
+source_file="res://Telemetry/NickPlaytest.csv"
+dest_files=["res://Telemetry/NickPlaytest.Value.translation"]
+
+[params]
+
+compress=true
+delimiter=0

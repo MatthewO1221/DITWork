@@ -4,10 +4,10 @@ extends Control
 var telemetry_data: Dictionary = {}
 
 # File path for saving telemetry logs
-const TELEMETRY_FILE_PATH: String = "res://telemetry_log.csv"
+const TELEMETRY_FILE_PATH: String = "C:/Users/chaos/Documents/DIT Work/DITRepo/24-25Year/Fall24/DES214/PCGProject/Telemetry/telemetry_log"
 
 # Initializes a counter if it doesn't exist
-func ensure_counter(counter_name: String, initial_value: int = 0):
+func ensure_counter(counter_name: String, initial_value: Variant = 0):
 	if not telemetry_data.has(counter_name):
 		telemetry_data[counter_name] = initial_value
 
@@ -27,7 +27,9 @@ func reset_counter(counter_name: String):
 
 # Export telemetry data to a CSV file
 func export_to_csv():
-	var file = FileAccess.open(TELEMETRY_FILE_PATH, FileAccess.WRITE)
+	var timeDateDict = Time.get_datetime_dict_from_system()
+	var fullFilePath = TELEMETRY_FILE_PATH + str(timeDateDict.hour) + "_" + str(timeDateDict.minute) + "_" + str(timeDateDict.second) + ".csv"
+	var file = FileAccess.open(fullFilePath, FileAccess.WRITE)
 	if file.is_open() == true:
 		# Write headers
 		file.store_line("Metric,Value")
@@ -35,7 +37,7 @@ func export_to_csv():
 		for key in telemetry_data.keys():
 			file.store_line("%s,%d" % [key, telemetry_data[key]])
 		file.close()
-		print("Telemetry exported to %s" % TELEMETRY_FILE_PATH)
+		print("Telemetry exported to %s" % fullFilePath)
 	else:
 		print("Failed to open file for telemetry export!")
 
@@ -57,6 +59,10 @@ func connect_signal(mySignal: Signal, lambda: Callable, counter_name: String, in
 func _on_signal_emitted(data: Dictionary):
 	if data.has("counter_name") and data.has("increment_value"):
 		increment_counter(data["counter_name"], data["increment_value"])
+		
+func LogData(metric: String, value: Variant) -> void:
+	ensure_counter(metric)
+	telemetry_data[metric] += value
 
 # Log telemetry data for debugging
 func log_telemetry():
@@ -70,5 +76,5 @@ func reset_all():
 func _notification(what):
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
 		
-		print(is_connected("Firing", _on_signal_emitted))
+		
 		export_to_csv()

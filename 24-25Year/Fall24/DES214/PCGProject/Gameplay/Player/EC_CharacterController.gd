@@ -6,6 +6,14 @@ extends CharacterBody2D
 
 var weapon: PlayerWeaponBase
 
+
+var initSpeed: float
+var initHealth: int
+var initBullets := 1
+var initPos: Vector2
+
+var totalDistance := 0.0
+
 # This function is for player movement using WASD
 func get_input() -> Vector2:
 	var input_vector = Vector2.ZERO
@@ -22,7 +30,7 @@ func _physics_process(_delta: float) -> void:
 	var movement_direction = get_input()
 	velocity = movement_direction * speed
 	
-	
+	totalDistance += velocity.length()
 	# Apply movement using the built-in CharacterBody2D methods
 	move_and_slide()
 
@@ -36,16 +44,46 @@ func _ready() -> void:
 	healthComp.deathSignal.connect(OnDeath)
 	
 	weapon = get_node(get_meta("Weapon")) as PlayerWeaponBase
+	
+	initSpeed = speed
+	
+	initHealth = healthComp.maxHealth
+	
+	initPos = global_position
 
 func OnDeath() -> void:
-	queue_free()
+	var mapGenerator = get_tree().get_first_node_in_group("MapGenerator") as MapGenerator
+	
+	mapGenerator.reset()
+	
+func Reset() -> void:
+	
+	global_position = initPos
+	
+	weapon.numBullets = initBullets
+	
+	var healthComp = get_node(get_meta("Health")) as HealthComponent
+	
+	healthComp.maxHealth = initHealth
+	
+	healthComp.curHealth = initHealth
+	
+	speed = initSpeed
+	
+	TelemetrySystem.LogData("PlayerDistanceTraveled", totalDistance)
+	
+	totalDistance = 0
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Swap Weapon"):
 		match weapon.firingMode:
 			weapon.FiringModes.Burst:
 				weapon.firingMode = weapon.FiringModes.Spread
+				
 			weapon.FiringModes.Spread:
 				weapon.firingMode = weapon.FiringModes.Shotgun
+				weapon.timeBetweenBullets = 0.01
 			weapon.FiringModes.Shotgun:
 				weapon.firingMode = weapon.FiringModes.Burst
+				weapon.timeBetweenBullets = 0.1
+				

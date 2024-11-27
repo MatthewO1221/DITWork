@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://c7rkvx1477u43"
+
+[deps]
+
+files=["res://Telemetry/JuneTelemetry.Value.translation"]
+
+source_file="res://Telemetry/JuneTelemetry.csv"
+dest_files=["res://Telemetry/JuneTelemetry.Value.translation"]
+
+[params]
+
+compress=true
+delimiter=0

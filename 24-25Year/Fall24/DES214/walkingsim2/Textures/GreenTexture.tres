@@ -7,7 +7,4 @@
 script = ExtResource("2_rfig1")
 Name = ""
 AlbedoTexture = ExtResource("1_82ag6")
-NormalTexture = ExtResource("1_82ag6")
-RoughnessTexture = ExtResource("1_82ag6")
-HeightTexture = ExtResource("1_82ag6")
 TextureDetail = -1

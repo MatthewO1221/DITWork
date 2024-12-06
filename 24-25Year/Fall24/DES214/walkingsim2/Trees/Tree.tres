@@ -1,0 +1,7 @@
+[gd_resource type="MultiMesh" load_steps=2 format=3 uid="uid://d0im83q45kjea"]
+
+[ext_resource type="CylinderMesh" uid="uid://du0j4ruf0kcfy" path="res://Trees/Trunk.tres" id="1_fa62l"]
+
+[resource]
+transform_format = 1
+mesh = ExtResource("1_fa62l")

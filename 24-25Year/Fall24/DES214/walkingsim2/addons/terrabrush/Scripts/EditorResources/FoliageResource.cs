@@ -6,5 +6,5 @@ namespace TerraBrush;
 [Tool]
 [GlobalClass]
 public partial class FoliageResource : Resource {
-    [Export] public FoliageDefinitionResource Definition { get;set; }
+	[Export] public FoliageDefinitionResource Definition { get;set; }
 }

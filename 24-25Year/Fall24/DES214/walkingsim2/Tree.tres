@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="FoliageResource" load_steps=5 format=3 uid="uid://n3hphufvukvk"]
+
+[ext_resource type="ArrayMesh" uid="uid://b1tscuh8wgens" path="res://Trees/TreeMesh.mesh" id="1_4opi8"]
+[ext_resource type="Script" path="res://addons/terrabrush/Scripts/EditorResources/FoliageResource.cs" id="1_fj2vu"]
+[ext_resource type="Script" path="res://addons/terrabrush/Scripts/EditorResources/FoliageDefinitionResource.cs" id="2_huw5m"]
+
+[sub_resource type="Resource" id="Resource_u7mlr"]
+script = ExtResource("2_huw5m")
+Strategy = 1
+Mesh = ExtResource("1_4opi8")
+MeshScale = Vector3(1, 1, 1)
+WindStrength = 0.1
+VisualInstanceLayers = 1
+LODLevels = 3
+LODRowsPerLevel = 50
+LODInitialCellWidth = 1.0
+Albedo = Color(1, 1, 1, 1)
+AlbedoTextures = []
+UseGroundColor = false
+CastShadow = false
+UseBrushScale = true
+RandomPlacementRange = 3.0
+ApplyOnTextureIndexes = PackedInt32Array()
+MaximumRenderDistance = 50
+EditorMaximumRenderDistance = 50
+
+[resource]
+script = ExtResource("1_fj2vu")
+Definition = SubResource("Resource_u7mlr")

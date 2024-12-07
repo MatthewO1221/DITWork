@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="WaterResource" load_steps=2 format=3 uid="uid://bioaes2opftra"]
+
+[ext_resource type="Script" path="res://addons/terrabrush/Scripts/EditorResources/WaterResource.cs" id="1_yrbaf"]
+
+[resource]
+script = ExtResource("1_yrbaf")
+WaterFactor = 1.0
+WaterInnerOffset = 0.2
+WaterColor = Color(0, 0.396462, 0.805952, 1)
+WaterFresnelColor = Color(1, 1, 1, 1)
+WaterMetallic = 0.0
+WaterRoughness = 0.0
+WaterTimeScale = 0.1
+WaterStrength = 0.4
+WaterNoiseScale = 10.0
+WaterHeightScale = 0.15
+WaterColorDeep = Color(0, 0.473448, 0.960687, 1)
+WaterColorShallow = Color(1, 1, 1, 1)
+WaterBeersLaw = 2.0
+WaterDepthOffset = -0.75
+WaterEdgeScale = 0.1
+WaterNear = 100.0
+WaterFar = 200.0
+WaterEdgeColor = Color(1, 1, 1, 1)
+VisualInstanceLayers = 1

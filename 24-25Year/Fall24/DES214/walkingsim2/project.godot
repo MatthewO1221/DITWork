@@ -21,7 +21,11 @@ project/assembly_name="WalkingSim2"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/csg_mesher/plugin.cfg", "res://addons/dreadpon.spatial_gardener/plugin.cfg", "res://addons/scenetomeshconverter/plugin.cfg", "res://addons/terrabrush/plugin.cfg")
+enabled=PackedStringArray("res://addons/dreadpon.spatial_gardener/plugin.cfg", "res://addons/scenetomeshconverter/plugin.cfg", "res://addons/terrabrush/plugin.cfg")
+
+[filesystem]
+
+import/blender/enabled=false
 
 [input]
 

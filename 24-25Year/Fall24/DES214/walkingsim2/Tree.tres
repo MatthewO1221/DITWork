@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="FoliageResource" load_steps=5 format=3 uid="uid://n3hphufvukvk"]
 
-[ext_resource type="ArrayMesh" uid="uid://b1tscuh8wgens" path="res://Trees/TreeMesh.mesh" id="1_4opi8"]
+[ext_resource type="ArrayMesh" uid="uid://b1tscuh8wgens" path="res://Props/Trees/TreeMesh.mesh" id="1_4opi8"]
 [ext_resource type="Script" path="res://addons/terrabrush/Scripts/EditorResources/FoliageResource.cs" id="1_fj2vu"]
 [ext_resource type="Script" path="res://addons/terrabrush/Scripts/EditorResources/FoliageDefinitionResource.cs" id="2_huw5m"]
 

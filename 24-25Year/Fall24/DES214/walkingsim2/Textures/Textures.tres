@@ -1,9 +1,52 @@
-[gd_resource type="Resource" script_class="TextureSetsResource" load_steps=4 format=3 uid="uid://4w8ek468fr0e"]
+[gd_resource type="Resource" script_class="TextureSetsResource" load_steps=17 format=3 uid="uid://4w8ek468fr0e"]
 
 [ext_resource type="Script" path="res://addons/terrabrush/Scripts/EditorResources/TextureSetsResource.cs" id="1_443de"]
 [ext_resource type="Resource" uid="uid://m11if4fv2htk" path="res://Textures/BrownTexture.tres" id="1_qhk4p"]
 [ext_resource type="Resource" uid="uid://bst8524prv5dy" path="res://Textures/GreenTexture.tres" id="2_llghc"]
+[ext_resource type="Texture2D" uid="uid://su5t0w64dwn3" path="res://Textures/DarkGreen.tres" id="3_xqb6m"]
+[ext_resource type="Script" path="res://addons/terrabrush/Scripts/EditorResources/TextureSetResource.cs" id="4_damrx"]
+[ext_resource type="Texture2D" uid="uid://vxf106xj7xng" path="res://Textures/DarkBrown.tres" id="5_6yb7j"]
+[ext_resource type="Texture2D" uid="uid://dnnslj8bhico8" path="res://Textures/DarkGrey.tres" id="6_evl2a"]
+[ext_resource type="Texture2D" uid="uid://c4qyc7rxni1sk" path="res://Textures/Grey2.tres" id="7_iktai"]
+[ext_resource type="Texture2D" uid="uid://c35drfjqa320e" path="res://Textures/Grey.tres" id="8_8a84q"]
+[ext_resource type="Texture2D" uid="uid://c4bo1qvgifolj" path="res://Textures/White.tres" id="9_uyf32"]
+
+[sub_resource type="Resource" id="Resource_m4m0l"]
+script = ExtResource("4_damrx")
+Name = ""
+AlbedoTexture = ExtResource("3_xqb6m")
+TextureDetail = -1
+
+[sub_resource type="Resource" id="Resource_o3s1p"]
+script = ExtResource("4_damrx")
+Name = ""
+AlbedoTexture = ExtResource("5_6yb7j")
+TextureDetail = -1
+
+[sub_resource type="Resource" id="Resource_0fk7b"]
+script = ExtResource("4_damrx")
+Name = ""
+AlbedoTexture = ExtResource("6_evl2a")
+TextureDetail = -1
+
+[sub_resource type="Resource" id="Resource_uogbj"]
+script = ExtResource("4_damrx")
+Name = ""
+AlbedoTexture = ExtResource("7_iktai")
+TextureDetail = -1
+
+[sub_resource type="Resource" id="Resource_rotho"]
+script = ExtResource("4_damrx")
+Name = ""
+AlbedoTexture = ExtResource("8_8a84q")
+TextureDetail = -1
+
+[sub_resource type="Resource" id="Resource_2sto1"]
+script = ExtResource("4_damrx")
+Name = ""
+AlbedoTexture = ExtResource("9_uyf32")
+TextureDetail = -1
 
 [resource]
 script = ExtResource("1_443de")
-TextureSets = [ExtResource("1_qhk4p"), ExtResource("2_llghc")]
+TextureSets = [ExtResource("1_qhk4p"), ExtResource("2_llghc"), SubResource("Resource_m4m0l"), SubResource("Resource_o3s1p"), SubResource("Resource_0fk7b"), SubResource("Resource_uogbj"), SubResource("Resource_rotho"), SubResource("Resource_2sto1")]

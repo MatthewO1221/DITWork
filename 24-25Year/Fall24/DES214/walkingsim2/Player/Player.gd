@@ -6,10 +6,11 @@ extends CharacterBody3D
 @export var JumpStrength := 4.5
 @export var RotateSpeed := 5.0
 
+var rising := false
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
-	if not is_on_floor():
+	if not is_on_floor() and !rising:
 		velocity += get_gravity() * delta
 
 	# Handle jump.

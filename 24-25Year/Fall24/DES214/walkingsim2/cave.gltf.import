@@ -4,11 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://ccplcx7jx8wrt"
-valid=false
+path="res://.godot/imported/cave.gltf-38fef654027e47ef0a2a6f5e502eaadd.scn"
 
 [deps]
 
 source_file="res://cave.gltf"
+dest_files=["res://.godot/imported/cave.gltf-38fef654027e47ef0a2a6f5e502eaadd.scn"]
 
 [params]
 

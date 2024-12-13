@@ -17,4 +17,6 @@ func _process(delta: float) -> void:
 
 func Collide(otherArea: Area3D) -> void:
 	if otherArea.get_parent().is_in_group("Player"):
+		var player = otherArea.get_parent() as Player
+		player.LogEvent()
 		gravity_scale = 2.0

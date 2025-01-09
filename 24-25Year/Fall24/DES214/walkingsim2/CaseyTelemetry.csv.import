@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://bsitglt04badp"
+
+[deps]
+
+files=["res://CaseyTelemetry.Zone.translation", "res://CaseyTelemetry.PosX.translation", "res://CaseyTelemetry.PosY.translation", "res://CaseyTelemetry.PosZ.translation", "res://CaseyTelemetry.VelX.translation", "res://CaseyTelemetry.VelY.translation", "res://CaseyTelemetry.VelZ.translation", "res://CaseyTelemetry.Events.translation", "res://CaseyTelemetry.Jumps.translation", "res://CaseyTelemetry.TimeinForest.translation", "res://CaseyTelemetry.TimeinCave.translation", "res://CaseyTelemetry.TimeinSwamp.translation", "res://CaseyTelemetry.JumpsinForest.translation", "res://CaseyTelemetry.JumpsinCave.translation", "res://CaseyTelemetry.JumpsinSwamp.translation", "res://CaseyTelemetry.DistanceTraveledinForest.translation", "res://CaseyTelemetry.DistanceTraveledinCave.translation", "res://CaseyTelemetry.DistanceTraveledinSwamp.translation", "res://CaseyTelemetry.MaxSpeed.translation", "res://CaseyTelemetry.TotalJumps.translation", "res://CaseyTelemetry.MinX.translation", "res://CaseyTelemetry.MinY.translation", "res://CaseyTelemetry.MinZ.translation", "res://CaseyTelemetry.MaxX.translation", "res://CaseyTelemetry.MaxY.translation", "res://CaseyTelemetry.MaxZ.translation", "res://CaseyTelemetry.TotalDistanceTraveled.translation"]
+
+source_file="res://CaseyTelemetry.csv"
+dest_files=["res://CaseyTelemetry.Zone.translation", "res://CaseyTelemetry.PosX.translation", "res://CaseyTelemetry.PosY.translation", "res://CaseyTelemetry.PosZ.translation", "res://CaseyTelemetry.VelX.translation", "res://CaseyTelemetry.VelY.translation", "res://CaseyTelemetry.VelZ.translation", "res://CaseyTelemetry.Events.translation", "res://CaseyTelemetry.Jumps.translation", "res://CaseyTelemetry.TimeinForest.translation", "res://CaseyTelemetry.TimeinCave.translation", "res://CaseyTelemetry.TimeinSwamp.translation", "res://CaseyTelemetry.JumpsinForest.translation", "res://CaseyTelemetry.JumpsinCave.translation", "res://CaseyTelemetry.JumpsinSwamp.translation", "res://CaseyTelemetry.DistanceTraveledinForest.translation", "res://CaseyTelemetry.DistanceTraveledinCave.translation", "res://CaseyTelemetry.DistanceTraveledinSwamp.translation", "res://CaseyTelemetry.MaxSpeed.translation", "res://CaseyTelemetry.TotalJumps.translation", "res://CaseyTelemetry.MinX.translation", "res://CaseyTelemetry.MinY.translation", "res://CaseyTelemetry.MinZ.translation", "res://CaseyTelemetry.MaxX.translation", "res://CaseyTelemetry.MaxY.translation", "res://CaseyTelemetry.MaxZ.translation", "res://CaseyTelemetry.TotalDistanceTraveled.translation"]
+
+[params]
+
+compress=true
+delimiter=0

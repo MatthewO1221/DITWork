@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://b0uu346x6pmf6"
+
+[deps]
+
+files=["res://TristanTelemetry.Zone.translation", "res://TristanTelemetry.PosX.translation", "res://TristanTelemetry.PosY.translation", "res://TristanTelemetry.PosZ.translation", "res://TristanTelemetry.VelX.translation", "res://TristanTelemetry.VelY.translation", "res://TristanTelemetry.VelZ.translation", "res://TristanTelemetry.Events.translation", "res://TristanTelemetry.Jumps.translation", "res://TristanTelemetry.TimeinForest.translation", "res://TristanTelemetry.TimeinCave.translation", "res://TristanTelemetry.TimeinSwamp.translation", "res://TristanTelemetry.JumpsinForest.translation", "res://TristanTelemetry.JumpsinCave.translation", "res://TristanTelemetry.JumpsinSwamp.translation", "res://TristanTelemetry.DistanceTraveledinForest.translation", "res://TristanTelemetry.DistanceTraveledinCave.translation", "res://TristanTelemetry.DistanceTraveledinSwamp.translation", "res://TristanTelemetry.MaxSpeed.translation", "res://TristanTelemetry.TotalJumps.translation", "res://TristanTelemetry.MinX.translation", "res://TristanTelemetry.MinY.translation", "res://TristanTelemetry.MinZ.translation", "res://TristanTelemetry.MaxX.translation", "res://TristanTelemetry.MaxY.translation", "res://TristanTelemetry.MaxZ.translation", "res://TristanTelemetry.TotalDistanceTraveled.translation"]
+
+source_file="res://TristanTelemetry.csv"
+dest_files=["res://TristanTelemetry.Zone.translation", "res://TristanTelemetry.PosX.translation", "res://TristanTelemetry.PosY.translation", "res://TristanTelemetry.PosZ.translation", "res://TristanTelemetry.VelX.translation", "res://TristanTelemetry.VelY.translation", "res://TristanTelemetry.VelZ.translation", "res://TristanTelemetry.Events.translation", "res://TristanTelemetry.Jumps.translation", "res://TristanTelemetry.TimeinForest.translation", "res://TristanTelemetry.TimeinCave.translation", "res://TristanTelemetry.TimeinSwamp.translation", "res://TristanTelemetry.JumpsinForest.translation", "res://TristanTelemetry.JumpsinCave.translation", "res://TristanTelemetry.JumpsinSwamp.translation", "res://TristanTelemetry.DistanceTraveledinForest.translation", "res://TristanTelemetry.DistanceTraveledinCave.translation", "res://TristanTelemetry.DistanceTraveledinSwamp.translation", "res://TristanTelemetry.MaxSpeed.translation", "res://TristanTelemetry.TotalJumps.translation", "res://TristanTelemetry.MinX.translation", "res://TristanTelemetry.MinY.translation", "res://TristanTelemetry.MinZ.translation", "res://TristanTelemetry.MaxX.translation", "res://TristanTelemetry.MaxY.translation", "res://TristanTelemetry.MaxZ.translation", "res://TristanTelemetry.TotalDistanceTraveled.translation"]
+
+[params]
+
+compress=true
+delimiter=0

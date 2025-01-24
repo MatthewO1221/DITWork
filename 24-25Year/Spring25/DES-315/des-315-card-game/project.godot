@@ -15,6 +15,10 @@ run/main_scene="res://Controller/Controller.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+CardFactory="*res://Tools/CardFactory.gd"
+
 [dotnet]
 
 project/assembly_name="DES-315 Card Game"
@@ -22,3 +26,9 @@ project/assembly_name="DES-315 Card Game"
 [global_group]
 
 Card=""
+Container=""
+
+[layer_names]
+
+2d_physics/layer_1="Card"
+2d_physics/layer_2="Container"

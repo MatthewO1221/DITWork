@@ -54,11 +54,33 @@ const valueMap := {
 var value : Values
 var suit : Suits
 
+var cardTexture : Resource
+var backTexture = preload("res://Card/CardSprites/card_back.png")
+
+var showingFace := true
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	cardTexture = CardFactory.GetTexture(value, suit)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+
+func Flip() -> void:
+	if !showingFace:
+		$Sprite2D.texture = cardTexture
+		showingFace = true
+	else:
+		$Sprite2D.texture = backTexture
+		showingFace = false
+
+func ShowBack() -> void:
+	$Sprite2D.texture = backTexture
+	showingFace = false
+	
+func ShowFace() -> void:
+	$Sprite2D.texture = cardTexture
+	showingFace = true

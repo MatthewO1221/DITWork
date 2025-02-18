@@ -3,6 +3,7 @@ extends Object
 
 
 var blocking : bool
+var benign := false
 
 var timePassed := 0.0
 var duration: float
@@ -15,6 +16,7 @@ var actionFunction: Callable
 
 var parent : Action
 var children : Array[Action]
+
 
 
 
@@ -32,21 +34,30 @@ func IncrementTimer(delta: float) -> void:
 	else:
 		timePassed += delta
 
-func Update() -> bool:
+func Update(delta: float) -> bool:
+	
+	IncrementTimer(delta)
 	if KillCheck():
 		return true
 
 	if delay > 0.0:
 		return false
 
-	if timePassed >= duration:
+	if !benign and timePassed >= duration:
 		ResetTimer()
 		return false
-
-	actionFunction.call()
+	
+	if !benign:
+		actionFunction.call()
+	
+	var allChildrenDone = true
 	
 	for child in children:
-		child.Update()
+		if not child.Update(delta):
+			allChildrenDone = false
+			
+	if children.size() > 0 and allChildrenDone == true:
+		return true
 
 	return false
 
@@ -58,10 +69,10 @@ func ResetTimer() -> void:
 	delay = initialDelay
 
 func KillCheck() -> bool:
-	if !entity.is_inside_tree():
+	if !benign and !entity.is_inside_tree():
 		return true
 
-	if timePassed >= duration and !repeating:
+	if !benign and timePassed >= duration and !repeating:
 		return true
 
 	return false

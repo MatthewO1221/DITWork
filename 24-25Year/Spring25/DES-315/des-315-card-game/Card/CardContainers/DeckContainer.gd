@@ -27,15 +27,7 @@ func SpawnDeck() -> void:
 	OffsetCards()
 	HideCards()
 
-func _on_area_2d_area_entered(area: Area2D) -> void:
-	var card = area.get_parent() as CardBase
-	
-	if !card.is_in_group("Card"):
-		return
-		
-	cards.push_front(card)
-	
-	OffsetCards()
+
 	
 func OffsetCards() -> void:
 	
@@ -53,3 +45,14 @@ func AddCard(card : CardBase) -> void:
 	cards.push_back(card)
 	OffsetCards()
 	HideCards()
+
+func DealCard(container : HandContainer) -> void:
+	var card = cards.pop_back()
+	
+	container.AddCard(card)
+	
+	container.actionList.PushBack(ArrangeHandAction.new(1.0, container))
+	
+	
+	
+	

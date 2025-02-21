@@ -23,9 +23,11 @@ func SpawnDeck() -> void:
 	cards.append_array(CardFactory.GenerateDeck())
 	for card in cards:
 		card.global_position = global_position
+		card.ShowFace()
 	
 	OffsetCards()
-	HideCards()
+	
+	
 
 
 	
@@ -51,8 +53,17 @@ func DealCard(container : HandContainer) -> void:
 	
 	container.AddCard(card)
 	
-	container.actionList.PushBack(ArrangeHandAction.new(1.0, container))
+	container.actionList.PushBack(ArrangeHandAction.new(false, false, 1, 1.0, 0.0, false, container))
 	
 	
+func GetTopCard() -> CardBase:
+	return cards.back()
 	
+func RemoveTopCard() -> CardBase:
+	var card = GetTopCard()
+	cards.pop_back()
+	return card
 	
+func Shuffle() -> void:
+	cards.shuffle()
+	OffsetCards()

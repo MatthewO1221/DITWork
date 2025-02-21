@@ -1,14 +1,27 @@
 class_name RotateAction
-extends Action
+extends InfluencerAction
 
 
 var initialRot: float
 var endRot: float
 
 
-func _init(newDuration: float, newEntity: Node2D, newDelay: float, newRepeating: bool, newEndRot: float) -> void:
-	super(newDuration, newEntity, newDelay, newRepeating)
-	initialRot = entity.global_rotation_degrees
+func _init(blocksGroups: bool, 
+blocksEverything: bool, 
+groupNum: int, 
+lastsFor: float,
+delayedFor: float,
+repeats: bool,
+affects: Node2D,
+newEndRot: float,
+parentAction: Action = null) -> void:
+	super(blocksGroups, blocksEverything, groupNum, lastsFor, delayedFor, repeats, affects, Rotate, parentAction)
+	
 	endRot = newEndRot
 
-	actionFunction = func Rotate() -> void: entity.global_rotation_degrees = lerpf(initialRot, endRot, GetPercentDone())
+
+func Start() -> void:
+	initialRot = entity.global_rotation_degrees
+
+func Rotate() -> void:
+	entity.global_rotation_degrees = lerpf(initialRot, endRot, GetPercentDone())

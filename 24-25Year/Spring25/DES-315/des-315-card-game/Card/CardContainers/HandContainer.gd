@@ -29,24 +29,35 @@ func HandArrangement(numCards : int) -> Array[Transform2D]:
 	var width : float = (numCards - 1) * spacing
 	var center : float  = width / 2
 	
+	
+	var horAxis := transform.x.normalized()
+	
+	var vertAxis := transform.y.normalized()
+	
 	for i in range(numCards):
 		var xPos = i * spacing - center
 		
+		var horOffset := i * spacing - center
+		
 		var normalized: float = 0.0
 		if width > 0.0:
-			normalized = abs(xPos) / width
+			normalized = abs(horOffset) / width
 		else:
 			normalized = 0.0
 		
-		var yOffset : float = -height * (1.0 - pow(normalized, 2))
-		var yPos : float = global_position.y + yOffset
+		var vertOffset := -height * (1.0 - pow(normalized, 2))
+		
+		
+		var cardPos := global_position + (horOffset * horAxis)
+		
+		cardPos = cardPos + (vertOffset * vertAxis)
 		
 		var curAngle = -angle/2
 		
 		if numCards > 1:
 			curAngle += angle * i / (numCards - 1)
 		
-		var newTransform := Transform2D(deg_to_rad(curAngle), Vector2(xPos, yPos))
+		var newTransform := Transform2D(deg_to_rad(curAngle + rotation_degrees), cardPos)
 		
 		layout.push_back(newTransform)
 	

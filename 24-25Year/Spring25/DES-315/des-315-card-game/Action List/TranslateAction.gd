@@ -1,14 +1,27 @@
 class_name TranslateAction
-extends Action
+extends InfluencerAction
 
 
 var initialPos: Vector2
 var endPos: Vector2
 
 
-func _init(newDuration: float, newEntity: Node2D, newDelay: float, newRepeating: bool, newEndPos: Vector2) -> void:
-	super(newDuration, newEntity, newDelay, newRepeating)
-	initialPos = entity.global_position
+func _init(blocksGroups: bool, 
+blocksEverything: bool, 
+groupNum: int, 
+lastsFor: float,
+delayedFor: float,
+repeats: bool,
+affects: Node2D,
+newEndPos: Vector2,
+parentAction: Action = null) -> void:
+	super(blocksGroups, blocksEverything, groupNum, lastsFor, delayedFor, repeats, affects, Translate, parentAction)
+	
 	endPos = newEndPos
 
-	actionFunction = func Translate() -> void: entity.global_position = entity.global_position.lerp(endPos, GetPercentDone())
+
+func Start() -> void:
+	initialPos = entity.global_position
+
+func Translate() -> void: 
+	entity.global_position = entity.global_position.lerp(endPos, GetPercentDone())

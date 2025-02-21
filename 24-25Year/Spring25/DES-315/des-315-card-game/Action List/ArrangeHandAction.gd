@@ -1,14 +1,21 @@
 class_name ArrangeHandAction
-extends Action
+extends BenignAction
 
 
 var handContainer : HandContainer
 
-func _init(newDuration: float, newHandContainer: HandContainer) -> void:
-	handContainer = newHandContainer
+func _init(blocksGroups: bool, 
+blocksEverything: bool, 
+groupNum: int, 
+lastsFor: float,
+delayedFor: float,
+repeats: bool,
+affects: HandContainer,
+parentAction: Action = null) -> void:
+	super(blocksGroups, blocksEverything, groupNum, lastsFor, delayedFor, repeats, parentAction)
+	handContainer = affects
 	children = []
 	
-	benign = true
 	
 	var layout : Array[Transform2D] = handContainer.HandArrangement(handContainer.hand.size())
 	
@@ -19,13 +26,12 @@ func _init(newDuration: float, newHandContainer: HandContainer) -> void:
 		var targetPos = target.origin
 		var targetRot = rad_to_deg(target.get_rotation())
 		
-		var newTranslateAction = TranslateAction.new(newDuration, card, 0.0, false, targetPos)
-		newTranslateAction.parent = self
+		var newTranslateAction = TranslateAction.new(blocksGroups, blocksEverything, groupNum, lastsFor, delayedFor, repeats, card, targetPos, self)
 		
-		var newRotateAction = RotateAction.new(newDuration, card, 0.0, false, targetRot)
-		newRotateAction.parent = self
+		
+		var newRotateAction = RotateAction.new(blocksGroups, blocksEverything, groupNum, lastsFor, delayedFor, repeats, card, targetRot, self)
+		
 		
 		children.push_back(newTranslateAction)
 		children.push_back(newRotateAction)
 		
-	actionFunction = func() -> void: pass

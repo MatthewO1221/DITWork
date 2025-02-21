@@ -3,29 +3,39 @@ extends Object
 
 
 var blocking : bool
-var benign := false
+var breaking : bool
 
+var group : int
+
+var duration : float
 var timePassed := 0.0
-var duration: float
-var entity: Node2D
 var delay: float
 var initialDelay: float
 var repeating: bool
 
-var actionFunction: Callable
 
 var parent : Action
 var children : Array[Action]
 
 
+var started := false
 
-
-func _init(newDuration: float, newEntity: Node2D, newDelay: float, newRepeating: bool) -> void:
-	duration = newDuration
-	entity = newEntity
-	delay = newDelay
-	initialDelay = newDelay
-	repeating = newRepeating
+func _init(blocksGroups: bool, 
+blocksEverything: bool, 
+groupNum: int, 
+lastsFor: float,
+delayedFor: float,
+repeats: bool,
+parentAction: Action = null) -> void:
+	blocking = blocksGroups
+	breaking = blocksEverything
+	group = groupNum
+	duration = lastsFor
+	delay = delayedFor
+	repeats = repeating
+	parent = parentAction
+	
+	initialDelay = delayedFor
 	
 
 func IncrementTimer(delta: float) -> void:
@@ -37,43 +47,38 @@ func IncrementTimer(delta: float) -> void:
 func Update(delta: float) -> bool:
 	
 	IncrementTimer(delta)
-	if KillCheck():
-		return true
-
+	
 	if delay > 0.0:
 		return false
-
-	if !benign and timePassed >= duration:
-		ResetTimer()
-		return false
 	
-	if !benign:
-		actionFunction.call()
+	if not started:
+		started = true
+		Start()
 	
-	var allChildrenDone = true
+	var temp = children
 	
-	for child in children:
-		if not child.Update(delta):
-			allChildrenDone = false
-			
-	if children.size() > 0 and allChildrenDone == true:
+	for child in temp:
+		if child.Update(delta):
+			children.erase(child)
+	
+	if ActionFinished():
+		End()
 		return true
-
+		
 	return false
 
 func TimeLeft() -> float:
 	return duration - timePassed
 
 func ResetTimer() -> void:
-	timePassed = duration
+	timePassed = 0.0
 	delay = initialDelay
 
-func KillCheck() -> bool:
-	if !benign and !entity.is_inside_tree():
-		return true
-
-	if !benign and timePassed >= duration and !repeating:
-		return true
+func ActionFinished() -> bool:
+	
+	if children.is_empty():
+		if timePassed >= duration and !repeating:
+			return true
 
 	return false
 
@@ -98,3 +103,9 @@ func GetSiblings() -> Array[Action]:
 			
 	
 	return siblings
+
+func Start() -> void:
+	pass
+
+func End() -> void:
+	pass

@@ -14,16 +14,16 @@ var begin : Variant
 var end : Variant
 
 
-func _init(start: Variant, finish: Variant, curve: Tween.TransitionType, ease : Tween.EaseType = Tween.EaseType.EASE_IN) -> void:
+func _init(curve: Tween.TransitionType, ease : Tween.EaseType = Tween.EaseType.EASE_IN) -> void:
 	curveType = curve
 	easeType = ease
-	assert(typeof(start) == typeof(finish), "Start and Finish are different value types")
+
 	
-	begin = start
-	end = finish
 	
 
 
+	
+	
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -33,7 +33,17 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-
+func SetStart(start: Variant) -> void:
+	begin = start
+	
+func SetFinish(finish: Variant) -> void:
+	
+	if typeof(finish) == TYPE_FLOAT:
+		pass
+	end = finish
 
 func GetValue(timePassed : float, duration: float) -> Variant:
 	return Tween.interpolate_value(begin, end - begin, timePassed, duration, curveType, easeType)
+	
+func GetValueFrom(start: Variant, finish: Variant, timePassed: float, duration: float) -> Variant:
+	return Tween.interpolate_value(start, finish - start, timePassed, duration, curveType, easeType)

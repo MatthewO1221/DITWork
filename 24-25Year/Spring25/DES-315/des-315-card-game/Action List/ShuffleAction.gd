@@ -12,8 +12,9 @@ lastsFor: float,
 delayedFor: float,
 repeats: bool,
 affects: Node2D,
+easingMethod: CustomCurve,
 parentAction: Action = null) -> void:
-	super(blocksGroups, blocksEverything, groupNum, lastsFor, delayedFor, repeats, affects, Shuffle, parentAction)
+	super(blocksGroups, blocksEverything, groupNum, lastsFor, delayedFor, repeats, affects, Shuffle, easingMethod, parentAction)
 	
 	
 	
@@ -22,11 +23,13 @@ parentAction: Action = null) -> void:
 	
 	actionFunction = Shuffle
 	
+	curve.begin = 0.0
+	curve.end = 360.0
 	
 func Shuffle() -> void:
 	
-	cardsToRotate[0].global_rotation_degrees = lerpf(0.0, 360.0, GetPercentDone())
-	cardsToRotate[1].global_rotation_degrees = lerpf(0.0, -360.0, GetPercentDone())
+	cardsToRotate[0].global_rotation_degrees = curve.GetValue(timePassed, duration)
+	cardsToRotate[1].global_rotation_degrees = curve.GetValueFrom(0.0, -360.0, timePassed, duration)
 
 func End() -> void:
 	entity.Shuffle()

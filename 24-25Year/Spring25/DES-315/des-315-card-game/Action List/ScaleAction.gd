@@ -2,8 +2,8 @@ class_name ScaleAction
 extends InfluencerAction
 
 
-var initialScale: Vector2
-var endScale: Vector2
+
+
 
 
 func _init(blocksGroups: bool, 
@@ -14,13 +14,14 @@ delayedFor: float,
 repeats: bool,
 affects: Node2D,
 newEndScale: Vector2,
+easingMethod: CustomCurve, 
 parentAction: Action = null) -> void:
-	super(blocksGroups, blocksEverything, groupNum, lastsFor, delayedFor, repeats, affects, Scale, parentAction)
+	super(blocksGroups, blocksEverything, groupNum, lastsFor, delayedFor, repeats, affects, Scale, easingMethod, parentAction)
 	
-	endScale = newEndScale
+	curve.SetFinish(newEndScale)
 
 func Start() -> void:
-	initialScale = entity.global_scale
+	curve.SetStart(entity.global_scale)
 
 func Scale() -> void:
-	entity.global_scale = lerp(initialScale, endScale, GetPercentDone())
+	entity.global_scale = curve.GetValue(timePassed, duration)

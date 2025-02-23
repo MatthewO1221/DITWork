@@ -14,8 +14,9 @@ affects: Array[HandContainer],
 numCardsToDeal: int,
 deck: DeckContainer,
 secondsBetweenCards: float,
+easingMethod: CustomCurve,
 parentAction: Action = null) -> void:
-	super(blocksGroups, blocksEverything, groupNum, lastsFor, delayedFor, repeats)
+	super(blocksGroups, blocksEverything, groupNum, delayedFor, repeats)
 	handContainers = affects
 	children = []
 	
@@ -28,7 +29,8 @@ parentAction: Action = null) -> void:
 			
 			hand.AddCard(card)
 			
-			var arrangeAction := ArrangeHandAction.new(blocksGroups, blocksEverything, groupNum, lastsFor, cardNum * secondsBetweenCards, repeats, hand, self)
+			var temp := CustomCurve.new(easingMethod.curveType, easingMethod.easeType)
+			var arrangeAction := ArrangeHandAction.new(blocksGroups, blocksEverything, groupNum, lastsFor, cardNum * secondsBetweenCards, repeats, hand, temp, self)
 	
 			
 			children.push_back(arrangeAction)

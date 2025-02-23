@@ -1,18 +1,19 @@
 class_name FlipAction
-extends Action
+extends InstantAction
 
 
 
 
 
-#func _init(newDuration: float, newEntity: Node2D, newDelay: float, newRepeating: bool) -> void:
-#	super(newDuration, newEntity, newDelay, newRepeating)
+func _init(blocksGroups: bool, 
+blocksEverything: bool, 
+groupNum: int, 
+delayedFor: float,
+repeats: bool,
+affects: CardBase,
+parentAction: Action = null) -> void:
+	super(blocksGroups, blocksEverything, groupNum, delayedFor, repeats, affects, parentAction)
 	
-	
-	
-#	actionFunction = Flip
 
-
-
-func Flip() -> void:
-	pass
+func Start() -> void:
+	entity.Flip()

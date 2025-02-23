@@ -7,8 +7,7 @@ var breaking : bool
 
 var group : int
 
-var duration : float
-var timePassed := 0.0
+
 var delay: float
 var initialDelay: float
 var repeating: bool
@@ -23,14 +22,12 @@ var started := false
 func _init(blocksGroups: bool, 
 blocksEverything: bool, 
 groupNum: int, 
-lastsFor: float,
 delayedFor: float,
 repeats: bool,
 parentAction: Action = null) -> void:
 	blocking = blocksGroups
 	breaking = blocksEverything
 	group = groupNum
-	duration = lastsFor
 	delay = delayedFor
 	repeats = repeating
 	parent = parentAction
@@ -41,8 +38,6 @@ parentAction: Action = null) -> void:
 func IncrementTimer(delta: float) -> void:
 	if delay > 0.0:
 		delay -= delta
-	else:
-		timePassed += delta
 
 func Update(delta: float) -> bool:
 	
@@ -60,6 +55,8 @@ func Update(delta: float) -> bool:
 	for child in temp:
 		if child.Update(delta):
 			children.erase(child)
+		if child.blocking:
+			break
 	
 	if ActionFinished():
 		End()
@@ -67,23 +64,15 @@ func Update(delta: float) -> bool:
 		
 	return false
 
-func TimeLeft() -> float:
-	return duration - timePassed
+
 
 func ResetTimer() -> void:
-	timePassed = 0.0
 	delay = initialDelay
 
 func ActionFinished() -> bool:
-	
-	if children.is_empty():
-		if timePassed >= duration and !repeating:
-			return true
-
 	return false
 
-func GetPercentDone() -> float:
-	return timePassed / duration
+
 
 func GetChildren() -> Array[Action]:
 	return children

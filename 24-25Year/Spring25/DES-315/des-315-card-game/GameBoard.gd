@@ -26,6 +26,8 @@ func _input(event: InputEvent) -> void:
 		DealHands()
 	if event.is_action_pressed("Shuffle"):
 		ShuffleDeck()
+	if event.is_action_pressed("FlipHand"):
+		FlipHand()
 
 func DealHands() -> void:
 	
@@ -35,12 +37,24 @@ func DealHands() -> void:
 	
 	for hand in fakeHands:
 		hands.push_back(hand as HandContainer)
+		
+	var dealCurve := CustomCurve.new(Tween.TransitionType.TRANS_CUBIC, Tween.EaseType.EASE_OUT)
 	
-	var dealAction = DealHandsAction.new(false, false, 1, 1.0, 0.0, false, hands, cardCount, deck, 0.1)
+	var dealAction = DealHandsAction.new(false, false, 1, 1.0, 0.0, false, hands, cardCount, deck, 0.1, dealCurve)
 	
 	actionList.PushBack(dealAction)
 
 func ShuffleDeck() -> void:
-	var shuffleAction = ShuffleAction.new(true, false, 1, 1.0, 0.0, false, deck)
+	
+	var shuffleCurve := CustomCurve.new(Tween.TransitionType.TRANS_LINEAR, Tween.EaseType.EASE_IN)
+	
+	var shuffleAction = ShuffleAction.new(true, false, 1, 1.0, 0.0, false, deck, shuffleCurve)
 	
 	actionList.PushBack(shuffleAction)
+	
+func FlipHand() -> void:
+	var easingMethod := CustomCurve.new(Tween.TransitionType.TRANS_LINEAR, Tween.EaseType.EASE_IN)
+	
+	for card in hand.hand:
+		var flipAction = FlipCardAction.new(true, false, 1, 1.0, 0.0, false, card, easingMethod)
+		actionList.PushBack(flipAction)

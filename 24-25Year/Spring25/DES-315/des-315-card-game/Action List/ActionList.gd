@@ -7,18 +7,19 @@ var lists : Dictionary
 var maxGroup := 0
 
 func UpdateAllActions(delta: float) -> void:
-	for i in range(maxGroup + 1):
-		if lists.has(i):
-			var actions = lists[i] as Array[Action]
-			var temp = actions
+	if lists.is_empty():
+		return
+	for key in lists.keys():
+		var actions = lists[key] as Array[Action]
+		var temp = actions
 			
-			for action in temp:
-				if action.Update(delta):
-					actions.erase(action)
-				if action.blocking:
-					break
-				if action.breaking:
-					return
+		for action in temp:
+			if action.Update(delta):
+				actions.erase(action)
+			if action.blocking:
+				break
+			if action.breaking:
+				return
 
 func PushBack(action: Action) -> void:
 	var group = action.group
@@ -39,9 +40,7 @@ func PushFront(action: Action) -> void:
 func IsEmpty() -> bool:
 	return lists.is_empty()
 
-func CreateNewList(group: int) -> Array[Action]:
-	if group > maxGroup:
-		maxGroup = group
+func CreateNewList(group: String) -> Array[Action]:
 	
 	var newArray : Array[Action] = []
 	lists[group] = newArray

@@ -7,14 +7,14 @@ var cardsToRotate : Array[CardBase]
 
 func _init(blocksGroups: bool, 
 blocksEverything: bool, 
-groupNum: int, 
+groupName: String, 
 lastsFor: float,
 delayedFor: float,
 repeats: bool,
 affects: Node2D,
 easingMethod: CustomCurve,
 parentAction: Action = null) -> void:
-	super(blocksGroups, blocksEverything, groupNum, lastsFor, delayedFor, repeats, affects, Shuffle, easingMethod, parentAction)
+	super(blocksGroups, blocksEverything, groupName, lastsFor, delayedFor, repeats, affects, Shuffle, easingMethod, parentAction)
 	
 	
 	

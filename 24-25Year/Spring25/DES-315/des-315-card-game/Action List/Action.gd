@@ -5,7 +5,7 @@ extends Object
 var blocking : bool
 var breaking : bool
 
-var group : int
+var group : String
 
 
 var delay: float
@@ -21,13 +21,13 @@ var started := false
 
 func _init(blocksGroups: bool, 
 blocksEverything: bool, 
-groupNum: int, 
+groupName: String, 
 delayedFor: float,
 repeats: bool,
 parentAction: Action = null) -> void:
 	blocking = blocksGroups
 	breaking = blocksEverything
-	group = groupNum
+	group = groupName
 	delay = delayedFor
 	repeats = repeating
 	parent = parentAction

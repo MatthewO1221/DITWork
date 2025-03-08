@@ -8,12 +8,12 @@ var entity: Node2D
 
 func _init(blocksGroups: bool, 
 blocksEverything: bool, 
-groupNum: int, 
+groupName: String, 
 delayedFor: float,
 repeats: bool,
 affects: Node2D,
 parentAction: Action = null) -> void:
-	super(blocksGroups, blocksEverything, groupNum, delayedFor, repeats, parentAction)
+	super(blocksGroups, blocksEverything, groupName, delayedFor, repeats, parentAction)
 	
 	entity = affects
 	

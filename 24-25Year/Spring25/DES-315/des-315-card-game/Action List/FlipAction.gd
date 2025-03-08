@@ -7,12 +7,12 @@ extends InstantAction
 
 func _init(blocksGroups: bool, 
 blocksEverything: bool, 
-groupNum: int, 
+groupName: String, 
 delayedFor: float,
 repeats: bool,
 affects: CardBase,
 parentAction: Action = null) -> void:
-	super(blocksGroups, blocksEverything, groupNum, delayedFor, repeats, affects, parentAction)
+	super(blocksGroups, blocksEverything, groupName, delayedFor, repeats, affects, parentAction)
 	
 
 func Start() -> void:

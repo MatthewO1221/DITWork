@@ -6,7 +6,7 @@ var handContainers : Array[HandContainer]
 
 func _init(blocksGroups: bool, 
 blocksEverything: bool, 
-groupNum: int, 
+groupName: String, 
 lastsFor: float,
 delayedFor: float,
 repeats: bool,
@@ -16,7 +16,7 @@ deck: DeckContainer,
 secondsBetweenCards: float,
 easingMethod: CustomCurve,
 parentAction: Action = null) -> void:
-	super(blocksGroups, blocksEverything, groupNum, delayedFor, repeats)
+	super(blocksGroups, blocksEverything, groupName, delayedFor, repeats)
 	handContainers = affects
 	children = []
 	
@@ -30,7 +30,7 @@ parentAction: Action = null) -> void:
 			hand.AddCard(card)
 			
 			var temp := CustomCurve.new(easingMethod.curveType, easingMethod.easeType)
-			var arrangeAction := ArrangeHandAction.new(blocksGroups, blocksEverything, groupNum, lastsFor, cardNum * secondsBetweenCards, repeats, hand, temp, self)
+			var arrangeAction := ArrangeHandAction.new(blocksGroups, blocksEverything, groupName, lastsFor, cardNum * secondsBetweenCards, repeats, hand, temp, self)
 	
 			
 			children.push_back(arrangeAction)

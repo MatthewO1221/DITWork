@@ -14,7 +14,7 @@ var timePassed := 0.0
 
 func _init(blocksGroups: bool, 
 blocksEverything: bool, 
-groupNum: int, 
+groupName: String, 
 lastsFor: float,
 delayedFor: float,
 repeats: bool,
@@ -22,7 +22,7 @@ affects: Node2D,
 action: Callable,
 easingMethod : CustomCurve,
 parentAction: Action = null) -> void:
-	super(blocksGroups, blocksEverything, groupNum, delayedFor, repeats, parentAction)
+	super(blocksGroups, blocksEverything, groupName, delayedFor, repeats, parentAction)
 	
 	entity = affects
 	

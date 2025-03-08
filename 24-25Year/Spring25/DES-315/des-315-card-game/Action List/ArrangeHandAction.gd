@@ -6,14 +6,14 @@ var handContainer : HandContainer
 
 func _init(blocksGroups: bool, 
 blocksEverything: bool, 
-groupNum: int, 
+groupName: String, 
 lastsFor: float,
 delayedFor: float,
 repeats: bool,
 affects: HandContainer,
 easingMethod: CustomCurve,
 parentAction: Action = null) -> void:
-	super(blocksGroups, blocksEverything, groupNum, delayedFor, repeats, parentAction)
+	super(blocksGroups, blocksEverything, groupName, delayedFor, repeats, parentAction)
 	handContainer = affects
 	children = []
 	
@@ -28,10 +28,10 @@ parentAction: Action = null) -> void:
 		var targetRot = rad_to_deg(target.get_rotation())
 		
 		var temp := CustomCurve.new(easingMethod.curveType, easingMethod.easeType)
-		var newTranslateAction = TranslateAction.new(blocksGroups, blocksEverything, groupNum, lastsFor, delayedFor, repeats, card, targetPos, temp, self)
+		var newTranslateAction = TranslateAction.new(blocksGroups, blocksEverything, groupName, lastsFor, delayedFor, repeats, card, targetPos, temp, self)
 		
 		temp = CustomCurve.new(easingMethod.curveType, easingMethod.easeType)
-		var newRotateAction = RotateAction.new(blocksGroups, blocksEverything, groupNum, lastsFor, delayedFor, repeats, card, targetRot, temp, self)
+		var newRotateAction = RotateAction.new(blocksGroups, blocksEverything, groupName, lastsFor, delayedFor, repeats, card, targetRot, temp, self)
 		
 		
 		children.push_back(newTranslateAction)

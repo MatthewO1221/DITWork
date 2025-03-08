@@ -55,7 +55,7 @@ func DealCard(container : HandContainer) -> void:
 	
 	var dealCurve := CustomCurve.new(Tween.TransitionType.TRANS_CUBIC, Tween.EaseType.EASE_OUT)
 	
-	container.actionList.PushBack(ArrangeHandAction.new(false, false, 1, 1.0, 0.0, false, container, dealCurve))
+	container.actionList.PushBack(ArrangeHandAction.new(false, false, "DealCard", 1.0, 0.0, false, container, dealCurve))
 	
 	
 func GetTopCard() -> CardBase:

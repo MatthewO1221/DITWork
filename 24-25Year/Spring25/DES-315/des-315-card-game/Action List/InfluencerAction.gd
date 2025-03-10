@@ -53,7 +53,9 @@ func Update(delta: float) -> bool:
 	
 	actionFunction.call()
 	
-	var temp = children
+	var temp : Array[Action] = []
+	
+	temp.append_array(children)
 	
 	for child in temp:
 		if child.Update(delta):

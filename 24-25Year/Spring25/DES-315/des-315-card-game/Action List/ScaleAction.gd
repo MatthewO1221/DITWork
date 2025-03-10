@@ -25,3 +25,4 @@ func Start() -> void:
 
 func Scale() -> void:
 	entity.global_scale = curve.GetValue(timePassed, duration)
+	

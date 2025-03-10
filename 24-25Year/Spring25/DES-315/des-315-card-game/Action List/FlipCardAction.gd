@@ -19,14 +19,20 @@ parentAction: Action = null) -> void:
 	
 	var cardScale = affects.global_scale
 	
-	var scaleDownAction = ScaleAction.new(true, false, groupName, lastsFor, 0.0, repeats, affects, Vector2.ZERO, easingMethod, self)
+	var temp1 : CustomCurve = CustomCurve.new(easingMethod.curveType, easingMethod.easeType)
+	
+	var scaleDownAction = ScaleAction.new(true, false, groupName, lastsFor, 0.0, repeats, affects, Vector2.ZERO, temp1, self)
 		
 	children.push_back(scaleDownAction)
+	
+	
 	
 	var flipAction = FlipAction.new(true, false, groupName, 0.0, repeats, affects, self)
 	
 	children.push_back(flipAction)
 	
-	var scaleUpAction = ScaleAction.new(false, false, groupName, lastsFor, 0.0, repeats, affects, cardScale, easingMethod, self)
+	var temp2 : CustomCurve = CustomCurve.new(easingMethod.curveType, easingMethod.easeType)
+	
+	var scaleUpAction = ScaleAction.new(false, false, groupName, lastsFor, 0.0, repeats, affects, cardScale, temp2, self)
 		
 	children.push_back(scaleUpAction)

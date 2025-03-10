@@ -11,7 +11,9 @@ func UpdateAllActions(delta: float) -> void:
 		return
 	for key in lists.keys():
 		var actions = lists[key] as Array[Action]
-		var temp = actions
+		var temp : Array[Action] = []
+		
+		temp.append_array(actions)
 			
 		for action in temp:
 			if action.Update(delta):

@@ -23,9 +23,10 @@ func SpawnDeck() -> void:
 	cards.append_array(CardFactory.GenerateDeck())
 	for card in cards:
 		card.global_position = global_position
-		card.ShowFace()
+		card.ShowBack()
 	
 	OffsetCards()
+	Shuffle()
 	
 	
 

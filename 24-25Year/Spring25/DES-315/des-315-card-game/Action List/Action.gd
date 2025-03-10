@@ -50,7 +50,9 @@ func Update(delta: float) -> bool:
 		started = true
 		Start()
 	
-	var temp = children
+	var temp : Array[Action] = []
+	
+	temp.append_array(children)
 	
 	for child in temp:
 		if child.Update(delta):
@@ -70,8 +72,9 @@ func ResetTimer() -> void:
 	delay = initialDelay
 
 func ActionFinished() -> bool:
+	if children.is_empty():
+		return true
 	return false
-
 
 
 func GetChildren() -> Array[Action]:

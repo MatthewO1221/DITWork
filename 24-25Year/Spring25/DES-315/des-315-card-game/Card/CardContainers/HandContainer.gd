@@ -4,6 +4,8 @@ extends Node2D
 
 var hand : Array[CardBase]
 
+@export var playerHand : bool = false
+
 var actionList := ActionList.new()
 
 @export var spacing := 100.0
@@ -72,6 +74,12 @@ func GetDealPosition() -> Transform2D:
 
 func AddCard(card : CardBase) -> void:
 	hand.push_back(card)
+	
+	if playerHand:
+		card.ShowFace()
 
 func RemoveCard(card : CardBase) -> void:
 	hand.erase(card)
+
+func GetRandom() -> CardBase:
+	return hand.pick_random()

@@ -1,5 +1,5 @@
 class_name CustomCurve
-extends Node
+extends Resource
 
 
 
@@ -38,11 +38,11 @@ func SetStart(start: Variant) -> void:
 	
 func SetFinish(finish: Variant) -> void:
 	
-	if typeof(finish) == TYPE_FLOAT:
-		pass
 	end = finish
 
 func GetValue(timePassed : float, duration: float) -> Variant:
+	if timePassed > duration:
+		return end
 	return Tween.interpolate_value(begin, end - begin, timePassed, duration, curveType, easeType)
 	
 func GetValueFrom(start: Variant, finish: Variant, timePassed: float, duration: float) -> Variant:

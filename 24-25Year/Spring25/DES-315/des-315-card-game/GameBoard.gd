@@ -28,6 +28,7 @@ var bot3Score := 0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	deck.SpawnDeck()
+	ShuffleDeck()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -44,6 +45,8 @@ func _input(event: InputEvent) -> void:
 		FlipHand()
 	if event.is_action_pressed("Pause"):
 		Pause()
+	if event.is_action_pressed("Play Cards"):
+		PlayCards()
 
 func DealHands() -> void:
 	
@@ -56,7 +59,7 @@ func DealHands() -> void:
 		
 	var dealCurve := CustomCurve.new(Tween.TransitionType.TRANS_CUBIC, Tween.EaseType.EASE_OUT)
 	
-	var dealAction = DealHandsAction.new(false, false, "Deal", 1.0, 0.0, false, hands, handSize, deck, 0.1, dealCurve)
+	var dealAction = DealHandsAction.new(false, false, "Deal", 0.5, 0.0, false, hands, handSize, deck, 0.1, dealCurve)
 	
 	actionList.PushBack(dealAction)
 
@@ -75,8 +78,25 @@ func FlipHand() -> void:
 		var flipAction = FlipCardAction.new(true, false, "HandFlip", 1.0, 0.0, false, card, easingMethod)
 		actionList.PushBack(flipAction)
 
+func PlayCards() -> void:
+	var trickContainer = $TrickContainer
+	
+	var fakeHands = get_tree().get_nodes_in_group("HandContainer")
+	
+	var hands : Array[HandContainer]
+	
+	for hand in fakeHands:
+		hands.push_back(hand as HandContainer)
+	
+	trickContainer.GrabCards(hands)
+
 func Pause() -> void:
 	var pauseMenuResource = load("res://PauseScene/PauseMenu.tscn")
+
+func ScoreTrick() -> void:
+	var winningCards = $TrickContainer.GetWinningCard() as Array[CardBase]
+	
+	
 
 func _on_bot_1_hover_area_mouse_entered() -> void:
 	var customCurve = CustomCurve.new(Tween.TransitionType.TRANS_LINEAR)

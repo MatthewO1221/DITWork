@@ -36,3 +36,6 @@ parentAction: Action = null) -> void:
 			children.push_back(arrangeAction)
 			
 			cardNum += 1
+
+func GetActionType() -> String:
+	return "DealHands"

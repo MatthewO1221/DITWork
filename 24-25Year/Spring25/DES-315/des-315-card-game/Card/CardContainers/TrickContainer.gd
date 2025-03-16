@@ -1,24 +1,44 @@
 class_name TrickContainer
-extends Node2D
+extends CardContainer
 
 
 var cards : Dictionary[HandContainer, CardBase]
 
-var actionList := ActionList.new()
 
 @export var spacing := 100.0
 @export var height := 50.0
 
+@export var discard : DiscardContainer
+
+var scoreTimer := 5.0
+
+var curScoreTimer : float
+
+var scoring : bool = false
+
+var gameController : GameBoard = null
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	curScoreTimer = scoreTimer
+	gameController = get_tree().get_first_node_in_group("GameController")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if !actionList.IsEmpty():
-		actionList.UpdateAllActions(delta)
-
+		actionList.UpdateAllActions(delta * actionSpeed)
+		
+	if scoring:
+		curScoreTimer -= delta
+		
+	if curScoreTimer <= 0.0:
+		var winners = GetWinningCard()
+		gameController.AddScore(winners)
+		scoring = false
+		discard.GrabCards(self)
+		cards.clear()
+		curScoreTimer = scoreTimer
 
 func CardArrangement(numCards : int) -> Array[Transform2D]:
 	var layout : Array[Transform2D] = []
@@ -75,6 +95,7 @@ func RemoveCard(card : CardBase) -> void:
 	cards.erase(card)
 
 func GrabCards(hands: Array[HandContainer]) -> void:
+	
 	for hand in hands:
 		var card = hand.GetRandom()
 		print(card.valueMap[card.value] + card.suitMap[card.suit])
@@ -86,7 +107,7 @@ func GrabCards(hands: Array[HandContainer]) -> void:
 	for i in cards.size():
 		var easingMethod := CustomCurve.new(Tween.TransitionType.TRANS_SPRING, Tween.EaseType.EASE_OUT)
 		
-		var moveAction := TranslateAction.new(false, false, "GrabCards", 1.0, 0.0, false, cards[hands[i]], layouts[i].origin, easingMethod)
+		var moveAction := TranslateAction.new(false, false, "GrabCards", 1.0, 0.0, false, cards[cards.keys()[i]], layouts[i].origin, easingMethod)
 		
 		actionList.PushBack(moveAction)
 		
@@ -94,7 +115,7 @@ func GrabCards(hands: Array[HandContainer]) -> void:
 		
 			var easingMethod2 := CustomCurve.new(Tween.TransitionType.TRANS_LINEAR, Tween.EaseType.EASE_IN_OUT)
 		
-			var flipAction := FlipCardAction.new(false, false, "GrabCards", 0.25, 0.0, false, cards[hands[i]], easingMethod2)
+			var flipAction := FlipCardAction.new(false, false, "GrabCards", 0.25, 0.0, false, cards[cards.keys()[i]], easingMethod2)
 		
 			actionList.PushBack(flipAction)
 		
@@ -103,29 +124,38 @@ func GrabCards(hands: Array[HandContainer]) -> void:
 		
 		var easingMethod3 := CustomCurve.new(Tween.TransitionType.TRANS_SPRING, Tween.EaseType.EASE_OUT)
 		
-		var rotateAction := RotateAction.new(true, false, "GrabCards", 1.0, 0.0, false, cards[hands[i]], rad_to_deg(layouts[i].get_rotation()), easingMethod3)
+		var rotateAction := RotateAction.new(true, false, "GrabCards", 1.0, 0.0, false, cards[cards.keys()[i]], rad_to_deg(layouts[i].get_rotation()), easingMethod3)
 		
 		actionList.PushBack(rotateAction)
 		
 		
 		var easingMethod4 := CustomCurve.new(Tween.TransitionType.TRANS_SPRING, Tween.EaseType.EASE_IN_OUT)
 		
-		var arrangeAction := ArrangeHandAction.new(false, false, "ArrangeHand", 2.0, 0.0, false, hands[i], easingMethod4)
+		var arrangeAction := ArrangeHandAction.new(false, false, "ArrangeHand", 2.0, 0.0, false, cards.keys()[i], easingMethod4)
 		
-		hands[i].actionList.PushBack(arrangeAction)
+		cards.keys()[i].actionList.PushBack(arrangeAction)
 		
+	scoring = true
 
+
+func GrabCard(hand: HandContainer, card: CardBase) -> void:
+	hand.RemoveCard(card)
+	AddCard(hand, card)
+	
+	
+	
+	
 func GetWinningCard() -> Dictionary[HandContainer, CardBase]:
 	var highestValue : int = 0
 	
-	for card in cards:
-		if card.value.value > highestValue:
-			highestValue = card.value.value
+	for card in cards.values():
+		if card.value > highestValue:
+			highestValue = card.value
 	
 	var winningCards : Dictionary[HandContainer, CardBase]
 	
-	for card in cards:
-		if card.value.value == highestValue:
-			winningCards[card.key] = card.value
+	for key in cards.keys():
+		if cards[key].value == highestValue:
+			winningCards[key] = cards[key]
 			
 	return winningCards

@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="FloatContainer" load_steps=2 format=3 uid="uid://d0biphw357tfc"]
+
+[ext_resource type="Script" uid="uid://ujrnuvcb6c2q" path="res://Logic/Control Curves/FloatContainer.gd" id="1_1khnm"]
+
+[resource]
+script = ExtResource("1_1khnm")
+value = 5.0
+metadata/_custom_type_script = "uid://ujrnuvcb6c2q"

@@ -9,7 +9,10 @@ var delay := 0.1
 @export var botNum := 3
 
 @onready var deck = $DeckContainer
-@onready var hand = $PlayerHand
+@onready var playerHand = $Player
+@onready var botHand1 = $Bot1
+@onready var botHand2 = $Bot2
+@onready var botHand3 = $Bot3
 
 var actionList := ActionList.new()
 
@@ -25,15 +28,22 @@ var bot3Score := 0
 @onready var botScore2 = $Control/BotScore2
 @onready var botScore3 = $Control/BotScore3
 
+
+var debugMode : bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	deck.SpawnDeck()
 	ShuffleDeck()
-
+	get_viewport().set_physics_object_picking_sort(true)
+	get_viewport().set_physics_object_picking_first_only(true)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	actionList.UpdateAllActions(delta * playSpeed)
+	
+	if debugMode:
+		DisplayDebugText()
 
 
 func _input(event: InputEvent) -> void:
@@ -43,19 +53,31 @@ func _input(event: InputEvent) -> void:
 		ShuffleDeck()
 	if event.is_action_pressed("FlipHand"):
 		FlipHand()
-	if event.is_action_pressed("Pause"):
-		Pause()
-	if event.is_action_pressed("Play Cards"):
-		PlayCards()
+	#if event.is_action_pressed("Play Cards"):
+		#PlayCards()
+	if event.is_action_pressed("Debug"):
+		debugMode = !debugMode
+		
+		if debugMode:
+			$ActionDebugger.show()
+		else:
+			$ActionDebugger.hide()
 
 func DealHands() -> void:
 	
-	var fakeHands = get_tree().get_nodes_in_group("HandContainer")
+	var hands : Array[HandContainer] = [playerHand]
+
+	match botNum:
+		1:
+			hands.push_back(botHand1)
+		2:
+			hands.push_back(botHand1)
+			hands.push_back(botHand2)
+		3:
+			hands.push_back(botHand1)
+			hands.push_back(botHand2)
+			hands.push_back(botHand3)
 	
-	var hands : Array[HandContainer]
-	
-	for hand in fakeHands:
-		hands.push_back(hand as HandContainer)
 		
 	var dealCurve := CustomCurve.new(Tween.TransitionType.TRANS_CUBIC, Tween.EaseType.EASE_OUT)
 	
@@ -74,24 +96,32 @@ func ShuffleDeck() -> void:
 func FlipHand() -> void:
 	var easingMethod := CustomCurve.new(Tween.TransitionType.TRANS_LINEAR, Tween.EaseType.EASE_IN)
 	
-	for card in hand.hand:
+	for card in playerHand.playerHand:
 		var flipAction = FlipCardAction.new(true, false, "HandFlip", 1.0, 0.0, false, card, easingMethod)
 		actionList.PushBack(flipAction)
 
-func PlayCards() -> void:
-	var trickContainer = $TrickContainer
+func PlayCards(card: CardBase) -> void:
+	var trickContainer = $TrickContainer as TrickContainer
 	
-	var fakeHands = get_tree().get_nodes_in_group("HandContainer")
 	
-	var hands : Array[HandContainer]
+	trickContainer.GrabCard(playerHand, card)
 	
-	for hand in fakeHands:
-		hands.push_back(hand as HandContainer)
+	var hands : Array[HandContainer] = []
+
+	match botNum:
+		1:
+			hands.push_back(botHand1)
+		2:
+			hands.push_back(botHand1)
+			hands.push_back(botHand2)
+		3:
+			hands.push_back(botHand1)
+			hands.push_back(botHand2)
+			hands.push_back(botHand3)
+	
 	
 	trickContainer.GrabCards(hands)
 
-func Pause() -> void:
-	var pauseMenuResource = load("res://PauseScene/PauseMenu.tscn")
 
 func ScoreTrick() -> void:
 	var winningCards = $TrickContainer.GetWinningCard() as Array[CardBase]
@@ -167,3 +197,84 @@ func _on_bot_3_hover_area_mouse_exited() -> void:
 	var scoreFadeAction = FadeAction.new(true, false, "Bot3Fade", 1.0, 0.0, false, botScore3, 0.0, customCurve)
 	
 	actionList.PushBack(scoreFadeAction)
+
+
+func UpdatePlaySpeed(newValue: float) -> void:
+	playSpeed = newValue
+	
+	var allContainers = get_tree().get_nodes_in_group("Container")
+	
+	for container in allContainers:
+		container.actionSpeed = newValue
+	
+func UpdateHandSize(newValue : int) -> void:
+	handSize = newValue
+
+func UpdateHandNumber(newValue : int) -> void:
+	botNum = newValue
+
+
+func DisplayDebugText() -> void:
+	var allContainers = get_tree().get_nodes_in_group("Container")
+	
+	var fullText : String = ""
+	
+	fullText = fullText + GetActionListText(actionList)
+	
+	for container in allContainers:
+		fullText = fullText + GetActionListText(container.actionList)
+	
+	$ActionDebugger/RichTextLabel.text = fullText
+	
+	
+func GetActionListText(list: ActionList) -> String:
+	var returnString : String = ""
+	
+	var actionDict = list.lists
+	
+	for key in actionDict.keys():
+		var actions = actionDict[key]
+		
+		returnString = returnString + key + "\n"
+		
+		for action in actions:
+			var children = action.children
+			
+			returnString = returnString + "\t" + action.GetActionType() + "\n"
+			
+			for child in children:
+				var grandChildren = child.children
+				
+				returnString = returnString + "\t\t" + child.GetActionType() + "\n"
+				
+				for grandChild in grandChildren:
+					returnString = returnString + "\t\t\t" + grandChild.GetActionType() + "\n"
+		
+
+	return returnString
+
+
+func AddScore(winners: Dictionary[HandContainer, CardBase]) -> void:
+	
+	$Control/WinnerText.win(winners)
+	
+	for hand in winners.keys():
+		var winningCard = winners[hand]
+		
+		match hand:
+			playerHand:
+				playerScore += 1
+			botHand1:
+				bot1Score += 1
+			botHand2:
+				bot2Score += 1
+			botHand3:
+				bot3Score += 1
+	UpdateScoreTexts()
+
+func UpdateScoreTexts() -> void:
+	
+	$Control/PlayerScore.text = "Score: " + str(playerScore)
+	$Control/BotScore1.text = "Score: " + str(bot1Score)
+	$Control/BotScore2.text = "Score: " + str(bot2Score)
+	$Control/BotScore3.text = "Score: " + str(bot3Score)

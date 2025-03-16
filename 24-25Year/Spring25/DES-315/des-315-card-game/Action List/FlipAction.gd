@@ -17,3 +17,6 @@ parentAction: Action = null) -> void:
 
 func Start() -> void:
 	entity.Flip()
+
+func GetActionType() -> String:
+	return "Flip"

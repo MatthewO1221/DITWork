@@ -101,3 +101,6 @@ func Start() -> void:
 
 func End() -> void:
 	pass
+
+func GetActionType() -> String:
+	return "Action"

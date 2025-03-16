@@ -1,5 +1,5 @@
 class_name DiscardContainer
-extends Node2D
+extends CardContainer
 
 
 @export var offset: Vector2
@@ -7,7 +7,6 @@ extends Node2D
 
 var cards: Array[CardBase]
 
-var actionList := ActionList.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -16,7 +15,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	actionList.UpdateAllActions(delta)
+	actionList.UpdateAllActions(delta * actionSpeed)
 
 	
 func OffsetCards() -> void:
@@ -55,11 +54,19 @@ func GrabCard(card: CardBase) -> void:
 	
 	actionList.PushBack(moveAction)
 	
-	var rotateAction := RotateAction.new(true, false, "DiscardCard", 1.0, 0.0, false, card, 0.0, grabCurve)
+	var grabCurve2 := CustomCurve.new(Tween.TransitionType.TRANS_CUBIC, Tween.EaseType.EASE_OUT)
+	
+	var rotateAction := RotateAction.new(true, false, "DiscardCard", 1.0, 0.0, false, card, 0.0, grabCurve2)
 	
 	actionList.PushBack(rotateAction)
 	
 	OffsetCards()
+	
+	
+func GrabCards(trick: TrickContainer) -> void:
+	
+	for card in trick.cards.values():
+		GrabCard(card)
 	
 func GetTopCard() -> CardBase:
 	return cards.back()

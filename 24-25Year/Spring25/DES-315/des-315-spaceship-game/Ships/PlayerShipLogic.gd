@@ -27,6 +27,13 @@ var curAngularJerk : float = 0.0
 
 
 
+var chaingun : Chaingun = null
+var missileLauncher : MissileLauncher = null
+
+func _ready() -> void:
+	chaingun = get_node(get_meta("Chaingun")) as Chaingun
+	missileLauncher = get_node(get_meta("MissileLauncher")) as MissileLauncher
+
 func _physics_process(delta: float) -> void:
 	var forwardVector = -transform.y
 	
@@ -118,3 +125,13 @@ func _unhandled_input(event: InputEvent) -> void:
 		curLinearJerk = 0.0
 	if event.is_action_released("Rotate Clockwise") or event.is_action_released("Rotate Counter-Clockwise"):
 		curAngularJerk = 0.0
+		
+		
+	if event.is_action_pressed("FireChaingun"):
+		chaingun.StartFiring()
+	if event.is_action_released("FireChaingun"):
+		chaingun.StopFiring()
+	
+	if event.is_action_pressed("FireMissiles"):
+		missileLauncher.StartLaunching()
+	

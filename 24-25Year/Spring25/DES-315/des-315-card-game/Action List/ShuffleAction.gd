@@ -33,3 +33,6 @@ func Shuffle() -> void:
 
 func End() -> void:
 	entity.Shuffle()
+
+func GetActionType() -> String:
+	return "Shuffle"

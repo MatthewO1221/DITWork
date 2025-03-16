@@ -21,7 +21,7 @@ parentAction: Action = null) -> void:
 	var layout : Array[Transform2D] = handContainer.HandArrangement(handContainer.hand.size())
 	
 	for i in range(handContainer.hand.size()):
-		var card = handContainer.hand[i]
+		var card = handContainer.hand.keys()[i]
 		var target = layout[i]
 		
 		var targetPos = target.origin
@@ -37,3 +37,6 @@ parentAction: Action = null) -> void:
 		children.push_back(newTranslateAction)
 		children.push_back(newRotateAction)
 		
+
+func GetActionType() -> String:
+	return "ArrangeHand"

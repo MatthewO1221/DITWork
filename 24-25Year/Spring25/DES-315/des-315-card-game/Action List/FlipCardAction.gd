@@ -36,3 +36,6 @@ parentAction: Action = null) -> void:
 	var scaleUpAction = ScaleAction.new(false, false, groupName, lastsFor, 0.0, repeats, affects, cardScale, temp2, self)
 		
 	children.push_back(scaleUpAction)
+
+func GetActionType() -> String:
+	return "FlipCard"

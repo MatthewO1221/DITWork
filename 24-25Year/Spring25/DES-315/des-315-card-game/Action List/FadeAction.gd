@@ -28,3 +28,6 @@ func Start() -> void:
 
 func Fade() -> void:
 	entity.modulate.a = curve.GetValue(timePassed, duration)
+
+func GetActionType() -> String:
+	return "Fade"

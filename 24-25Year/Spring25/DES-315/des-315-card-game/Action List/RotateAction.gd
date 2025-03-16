@@ -28,3 +28,6 @@ func Start() -> void:
 
 func Rotate() -> void:
 	entity.global_rotation_degrees = curve.GetValue(timePassed, duration)
+
+func GetActionType() -> String:
+	return "Rotate"

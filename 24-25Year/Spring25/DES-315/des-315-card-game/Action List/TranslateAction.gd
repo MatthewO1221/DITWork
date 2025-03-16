@@ -24,3 +24,6 @@ func Start() -> void:
 
 func Translate() -> void: 
 	entity.global_position = curve.GetValue(timePassed, duration)
+	
+func GetActionType() -> String:
+	return "Translate"

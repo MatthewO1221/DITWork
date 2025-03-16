@@ -59,6 +59,10 @@ var backTexture = preload("res://Card/CardSprites/card_back.png")
 
 var showingFace := true
 
+signal mouseEntered(CardBase)
+signal mouseExited(CardBase)
+signal clicked(CardBase)
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	cardTexture = CardFactory.GetTexture(value, suit)
@@ -84,3 +88,16 @@ func ShowBack() -> void:
 func ShowFace() -> void:
 	$Sprite2D.texture = cardTexture
 	showingFace = true
+
+
+func SendMouseEntered() -> void:
+	mouseEntered.emit(self)
+	
+func SendMouseExited() -> void:
+	mouseExited.emit(self)
+
+
+func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	if event.is_action_pressed("Clicked"):
+	
+		clicked.emit(self)

@@ -1,5 +1,5 @@
 class_name DeckContainer
-extends Node2D
+extends CardContainer
 
 @onready var area = $Area2D
 

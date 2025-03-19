@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://dif42ydd503jo"
+
+[deps]
+
+files=["res://BenTelemetry.Zone.translation", "res://BenTelemetry.PosX.translation", "res://BenTelemetry.PosY.translation", "res://BenTelemetry.PosZ.translation", "res://BenTelemetry.VelX.translation", "res://BenTelemetry.VelY.translation", "res://BenTelemetry.VelZ.translation", "res://BenTelemetry.Events.translation", "res://BenTelemetry.Jumps.translation", "res://BenTelemetry.TimeinForest.translation", "res://BenTelemetry.TimeinCave.translation", "res://BenTelemetry.TimeinSwamp.translation", "res://BenTelemetry.JumpsinForest.translation", "res://BenTelemetry.JumpsinCave.translation", "res://BenTelemetry.JumpsinSwamp.translation", "res://BenTelemetry.DistanceTraveledinForest.translation", "res://BenTelemetry.DistanceTraveledinCave.translation", "res://BenTelemetry.DistanceTraveledinSwamp.translation", "res://BenTelemetry.MaxSpeed.translation", "res://BenTelemetry.TotalJumps.translation", "res://BenTelemetry.MinX.translation", "res://BenTelemetry.MinY.translation", "res://BenTelemetry.MinZ.translation", "res://BenTelemetry.MaxX.translation", "res://BenTelemetry.MaxY.translation", "res://BenTelemetry.MaxZ.translation", "res://BenTelemetry.TotalDistanceTraveled.translation"]
+
+source_file="res://BenTelemetry.csv"
+dest_files=["res://BenTelemetry.Zone.translation", "res://BenTelemetry.PosX.translation", "res://BenTelemetry.PosY.translation", "res://BenTelemetry.PosZ.translation", "res://BenTelemetry.VelX.translation", "res://BenTelemetry.VelY.translation", "res://BenTelemetry.VelZ.translation", "res://BenTelemetry.Events.translation", "res://BenTelemetry.Jumps.translation", "res://BenTelemetry.TimeinForest.translation", "res://BenTelemetry.TimeinCave.translation", "res://BenTelemetry.TimeinSwamp.translation", "res://BenTelemetry.JumpsinForest.translation", "res://BenTelemetry.JumpsinCave.translation", "res://BenTelemetry.JumpsinSwamp.translation", "res://BenTelemetry.DistanceTraveledinForest.translation", "res://BenTelemetry.DistanceTraveledinCave.translation", "res://BenTelemetry.DistanceTraveledinSwamp.translation", "res://BenTelemetry.MaxSpeed.translation", "res://BenTelemetry.TotalJumps.translation", "res://BenTelemetry.MinX.translation", "res://BenTelemetry.MinY.translation", "res://BenTelemetry.MinZ.translation", "res://BenTelemetry.MaxX.translation", "res://BenTelemetry.MaxY.translation", "res://BenTelemetry.MaxZ.translation", "res://BenTelemetry.TotalDistanceTraveled.translation"]
+
+[params]
+
+compress=true
+delimiter=0

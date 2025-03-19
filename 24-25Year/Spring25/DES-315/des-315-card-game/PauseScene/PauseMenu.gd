@@ -6,6 +6,8 @@ var actionList := ActionList.new()
 
 var boardController : GameBoard
 
+signal InPlace
+signal OutofPlace
 
 func _ready() -> void:
 	boardController = get_parent() as GameBoard
@@ -37,7 +39,7 @@ func Unpause() -> void:
 	
 	
 func Quit() -> void:
-	get_tree().quit()
+	get_tree().root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)
 
 
 func UpdatePlaySpeed(changed: bool) -> void:

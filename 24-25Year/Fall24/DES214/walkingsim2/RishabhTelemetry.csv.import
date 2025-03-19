@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://d1gf02ocigw1"
+
+[deps]
+
+files=["res://RishabhTelemetry.Zone.translation", "res://RishabhTelemetry.PosX.translation", "res://RishabhTelemetry.PosY.translation", "res://RishabhTelemetry.PosZ.translation", "res://RishabhTelemetry.VelX.translation", "res://RishabhTelemetry.VelY.translation", "res://RishabhTelemetry.VelZ.translation", "res://RishabhTelemetry.Events.translation", "res://RishabhTelemetry.Jumps.translation", "res://RishabhTelemetry.TimeinForest.translation", "res://RishabhTelemetry.TimeinCave.translation", "res://RishabhTelemetry.TimeinSwamp.translation", "res://RishabhTelemetry.JumpsinForest.translation", "res://RishabhTelemetry.JumpsinCave.translation", "res://RishabhTelemetry.JumpsinSwamp.translation", "res://RishabhTelemetry.DistanceTraveledinForest.translation", "res://RishabhTelemetry.DistanceTraveledinCave.translation", "res://RishabhTelemetry.DistanceTraveledinSwamp.translation", "res://RishabhTelemetry.MaxSpeed.translation", "res://RishabhTelemetry.TotalJumps.translation", "res://RishabhTelemetry.MinX.translation", "res://RishabhTelemetry.MinY.translation", "res://RishabhTelemetry.MinZ.translation", "res://RishabhTelemetry.MaxX.translation", "res://RishabhTelemetry.MaxY.translation", "res://RishabhTelemetry.MaxZ.translation", "res://RishabhTelemetry.TotalDistanceTraveled.translation"]
+
+source_file="res://RishabhTelemetry.csv"
+dest_files=["res://RishabhTelemetry.Zone.translation", "res://RishabhTelemetry.PosX.translation", "res://RishabhTelemetry.PosY.translation", "res://RishabhTelemetry.PosZ.translation", "res://RishabhTelemetry.VelX.translation", "res://RishabhTelemetry.VelY.translation", "res://RishabhTelemetry.VelZ.translation", "res://RishabhTelemetry.Events.translation", "res://RishabhTelemetry.Jumps.translation", "res://RishabhTelemetry.TimeinForest.translation", "res://RishabhTelemetry.TimeinCave.translation", "res://RishabhTelemetry.TimeinSwamp.translation", "res://RishabhTelemetry.JumpsinForest.translation", "res://RishabhTelemetry.JumpsinCave.translation", "res://RishabhTelemetry.JumpsinSwamp.translation", "res://RishabhTelemetry.DistanceTraveledinForest.translation", "res://RishabhTelemetry.DistanceTraveledinCave.translation", "res://RishabhTelemetry.DistanceTraveledinSwamp.translation", "res://RishabhTelemetry.MaxSpeed.translation", "res://RishabhTelemetry.TotalJumps.translation", "res://RishabhTelemetry.MinX.translation", "res://RishabhTelemetry.MinY.translation", "res://RishabhTelemetry.MinZ.translation", "res://RishabhTelemetry.MaxX.translation", "res://RishabhTelemetry.MaxY.translation", "res://RishabhTelemetry.MaxZ.translation", "res://RishabhTelemetry.TotalDistanceTraveled.translation"]
+
+[params]
+
+compress=true
+delimiter=0

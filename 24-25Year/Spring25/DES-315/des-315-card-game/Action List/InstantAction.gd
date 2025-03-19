@@ -23,9 +23,7 @@ parentAction: Action = null) -> void:
 func Update(delta: float) -> bool:
 	
 	
-	IncrementTimer(delta)
-	
-	if delay > 0.0:
+	if delayed:
 		return false
 	
 	if not started:

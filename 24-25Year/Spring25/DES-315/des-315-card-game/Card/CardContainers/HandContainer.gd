@@ -187,3 +187,10 @@ func CardClicked(card: CardBase) -> void:
 	var gameBoard = get_tree().get_first_node_in_group("GameController") as GameBoard
 	
 	gameBoard.PlayCards(card)
+	
+	
+func Reset() -> void:
+	for card in hand.keys():
+		card.queue_free()
+		
+	hand.clear()

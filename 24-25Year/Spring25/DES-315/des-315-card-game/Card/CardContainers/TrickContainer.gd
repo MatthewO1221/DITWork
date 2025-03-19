@@ -10,18 +10,25 @@ var cards : Dictionary[HandContainer, CardBase]
 
 @export var discard : DiscardContainer
 
-var scoreTimer := 5.0
 
-var curScoreTimer : float
+
+var scoreTimer := Timer.new()
+
+@export var scoreTime := 5.0
 
 var scoring : bool = false
 
 var gameController : GameBoard = null
 
+signal DoneScoring
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	curScoreTimer = scoreTimer
 	gameController = get_tree().get_first_node_in_group("GameController")
+	
+	add_child(scoreTimer)
+	
+	scoreTimer.timeout.connect(Score)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -29,16 +36,17 @@ func _process(delta: float) -> void:
 	if !actionList.IsEmpty():
 		actionList.UpdateAllActions(delta * actionSpeed)
 		
-	if scoring:
-		curScoreTimer -= delta
 		
-	if curScoreTimer <= 0.0:
-		var winners = GetWinningCard()
-		gameController.AddScore(winners)
-		scoring = false
-		discard.GrabCards(self)
-		cards.clear()
-		curScoreTimer = scoreTimer
+		
+		
+		
+func Score() -> void:
+	var winners = GetWinningCard()
+	gameController.AddScore(winners)
+	scoring = false
+	discard.GrabCards(self)
+	cards.clear()
+	DoneScoring.emit()
 
 func CardArrangement(numCards : int) -> Array[Transform2D]:
 	var layout : Array[Transform2D] = []
@@ -135,7 +143,7 @@ func GrabCards(hands: Array[HandContainer]) -> void:
 		
 		cards.keys()[i].actionList.PushBack(arrangeAction)
 		
-	scoring = true
+	scoreTimer.start(scoreTime)
 
 
 func GrabCard(hand: HandContainer, card: CardBase) -> void:
@@ -146,6 +154,10 @@ func GrabCard(hand: HandContainer, card: CardBase) -> void:
 	
 	
 func GetWinningCard() -> Dictionary[HandContainer, CardBase]:
+	
+	Telemeter.CardsPlayed(cards.values())
+	
+	
 	var highestValue : int = 0
 	
 	for card in cards.values():
@@ -159,3 +171,10 @@ func GetWinningCard() -> Dictionary[HandContainer, CardBase]:
 			winningCards[key] = cards[key]
 			
 	return winningCards
+
+
+func Reset() -> void:
+	for card in cards.values():
+		card.queue_free()
+		
+	cards.clear()

@@ -12,6 +12,8 @@ var curve : CustomCurve
 var duration : float
 var timePassed := 0.0
 
+var timer : SceneTreeTimer
+
 func _init(blocksGroups: bool, 
 blocksEverything: bool, 
 groupName: String, 
@@ -32,24 +34,21 @@ parentAction: Action = null) -> void:
 	
 	duration = lastsFor
 
-func IncrementTimer(delta: float) -> void:
-	if delay > 0.0:
-		delay -= delta
-	else:
-		timePassed += delta
+func FinishedDelay() -> void:
+	delayed = false
 
 
 func Update(delta: float) -> bool:
 	
 	
-	IncrementTimer(delta)
-	
-	if delay > 0.0:
+	if delayed:
 		return false
 	
 	if not started:
 		started = true
 		Start()
+		
+	UpdateTimePassed()
 	
 	actionFunction.call()
 	
@@ -88,3 +87,10 @@ func ResetTimer() -> void:
 
 func GetPercentDone() -> float:
 	return timePassed / duration
+
+func Start() -> void:
+	timer = Engine.get_main_loop().create_timer(duration)
+
+func UpdateTimePassed() -> void:
+	
+	timePassed = duration - timer.time_left

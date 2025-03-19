@@ -68,6 +68,9 @@ func _ready() -> void:
 	cardTexture = CardFactory.GetTexture(value, suit)
 
 
+func GetCardName() -> String:
+	return valueMap[value] + " of " + suitMap[suit]
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass

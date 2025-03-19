@@ -1,5 +1,5 @@
 class_name Action
-extends Object
+extends Node
 
 
 var blocking : bool
@@ -9,6 +9,7 @@ var group : String
 
 
 var delay: float
+var delayed : bool = true
 var initialDelay: float
 var repeating: bool
 
@@ -34,16 +35,17 @@ parentAction: Action = null) -> void:
 	
 	initialDelay = delayedFor
 	
+	
+	Engine.get_main_loop().create_timer(delayedFor).timeout.connect(FinishedDelay)
 
-func IncrementTimer(delta: float) -> void:
-	if delay > 0.0:
-		delay -= delta
+
+func FinishedDelay() -> void:
+	delayed = false
 
 func Update(delta: float) -> bool:
 	
-	IncrementTimer(delta)
 	
-	if delay > 0.0:
+	if delayed:
 		return false
 	
 	if not started:

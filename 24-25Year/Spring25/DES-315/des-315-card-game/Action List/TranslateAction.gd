@@ -20,6 +20,7 @@ parentAction: Action = null) -> void:
 
 
 func Start() -> void:
+	super()
 	curve.SetStart(entity.global_position)
 
 func Translate() -> void: 

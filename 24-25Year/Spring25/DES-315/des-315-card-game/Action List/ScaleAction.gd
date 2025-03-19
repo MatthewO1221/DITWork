@@ -21,6 +21,7 @@ parentAction: Action = null) -> void:
 	curve.SetFinish(newEndScale)
 
 func Start() -> void:
+	super()
 	curve.SetStart(entity.global_scale)
 
 func Scale() -> void:

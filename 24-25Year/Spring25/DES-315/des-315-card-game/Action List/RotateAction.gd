@@ -24,6 +24,7 @@ parentAction: Action = null) -> void:
 
 
 func Start() -> void:
+	super()
 	curve.SetStart(entity.global_rotation_degrees)
 
 func Rotate() -> void:

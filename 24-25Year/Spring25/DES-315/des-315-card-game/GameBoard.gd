@@ -9,10 +9,10 @@ var delay := 0.1
 @export var botNum := 3
 
 @onready var deck = $DeckContainer
-@onready var playerHand = $Player
-@onready var botHand1 = $Bot1
-@onready var botHand2 = $Bot2
-@onready var botHand3 = $Bot3
+@onready var playerHand := $Player as HandContainer
+@onready var botHand1 := $Bot1 as HandContainer
+@onready var botHand2 := $Bot2 as HandContainer
+@onready var botHand3 := $Bot3 as HandContainer
 
 var actionList := ActionList.new()
 
@@ -30,6 +30,9 @@ var bot3Score := 0
 
 
 var debugMode : bool = false
+
+
+signal DonePlaying
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -96,7 +99,7 @@ func ShuffleDeck() -> void:
 func FlipHand() -> void:
 	var easingMethod := CustomCurve.new(Tween.TransitionType.TRANS_LINEAR, Tween.EaseType.EASE_IN)
 	
-	for card in playerHand.playerHand:
+	for card in playerHand.hand.keys():
 		var flipAction = FlipCardAction.new(true, false, "HandFlip", 1.0, 0.0, false, card, easingMethod)
 		actionList.PushBack(flipAction)
 
@@ -122,6 +125,41 @@ func PlayCards(card: CardBase) -> void:
 	
 	trickContainer.GrabCards(hands)
 
+
+func PlayHand() -> void:
+	if playerHand.hand.keys().size() > 0:
+	
+		var trickContainer = $TrickContainer as TrickContainer
+		
+		
+		trickContainer.GrabCard(playerHand, playerHand.hand.keys().pick_random())
+		
+		var hands : Array[HandContainer] = []
+
+		match botNum:
+			1:
+				hands.push_back(botHand1)
+			2:
+				hands.push_back(botHand1)
+				hands.push_back(botHand2)
+			3:
+				hands.push_back(botHand1)
+				hands.push_back(botHand2)
+				hands.push_back(botHand3)
+		
+		
+		trickContainer.GrabCards(hands)
+		
+		await trickContainer.DoneScoring
+		
+		PlayHand()
+		
+	else:
+		var trickContainer = $TrickContainer as TrickContainer
+		
+		await trickContainer.DoneScoring
+		
+		DonePlaying.emit()
 
 func ScoreTrick() -> void:
 	var winningCards = $TrickContainer.GetWinningCard() as Array[CardBase]
@@ -202,10 +240,7 @@ func _on_bot_3_hover_area_mouse_exited() -> void:
 func UpdatePlaySpeed(newValue: float) -> void:
 	playSpeed = newValue
 	
-	var allContainers = get_tree().get_nodes_in_group("Container")
-	
-	for container in allContainers:
-		container.actionSpeed = newValue
+	Engine.time_scale = playSpeed
 	
 func UpdateHandSize(newValue : int) -> void:
 	handSize = newValue
@@ -278,3 +313,11 @@ func UpdateScoreTexts() -> void:
 	$Control/BotScore1.text = "Score: " + str(bot1Score)
 	$Control/BotScore2.text = "Score: " + str(bot2Score)
 	$Control/BotScore3.text = "Score: " + str(bot3Score)
+
+
+
+func Reset() -> void:
+	for container in get_tree().get_nodes_in_group("Container"):
+		container.Reset()
+		
+	_ready()

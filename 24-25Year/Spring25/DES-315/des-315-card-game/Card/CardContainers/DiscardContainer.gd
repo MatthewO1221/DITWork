@@ -79,3 +79,9 @@ func RemoveTopCard() -> CardBase:
 func Shuffle() -> void:
 	cards.shuffle()
 	OffsetCards()
+
+func Reset() -> void:
+	for card in cards:
+		card.queue_free()
+		
+	cards.clear()

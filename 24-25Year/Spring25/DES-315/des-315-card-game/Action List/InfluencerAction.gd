@@ -46,7 +46,7 @@ func Update(delta: float) -> bool:
 		started = true
 		Start()
 	
-	UpdateTimePassed()
+	UpdateTimePassed(delta)
 	
 	actionFunction.call()
 	
@@ -88,9 +88,9 @@ func ResetTimer() -> void:
 func GetPercentDone() -> float:
 	return timePassed / duration
 	
-func Start() -> void:
-	timer = Engine.get_main_loop().create_timer(duration)
 
-func UpdateTimePassed() -> void:
+
+func UpdateTimePassed(delta: float) -> void:
+	var timeScale = Engine.time_scale
 	
-	timePassed = duration - timer.time_left
+	timePassed += delta

@@ -28,13 +28,15 @@ func _ready() -> void:
 	
 	add_child(scoreTimer)
 	
+	scoreTimer.process_callback = Timer.TIMER_PROCESS_PHYSICS
+	
 	scoreTimer.timeout.connect(Score)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if !actionList.IsEmpty():
-		actionList.UpdateAllActions(delta * actionSpeed)
+		actionList.UpdateAllActions(delta)
 		
 		
 		
@@ -106,7 +108,7 @@ func GrabCards(hands: Array[HandContainer]) -> void:
 	
 	for hand in hands:
 		var card = hand.GetRandom()
-		print(card.valueMap[card.value] + card.suitMap[card.suit])
+		#print(card.valueMap[card.value] + card.suitMap[card.suit])
 		hand.RemoveCard(card)
 		AddCard(hand, card)
 		
@@ -155,7 +157,8 @@ func GrabCard(hand: HandContainer, card: CardBase) -> void:
 	
 func GetWinningCard() -> Dictionary[HandContainer, CardBase]:
 	
-	Telemeter.CardsPlayed(cards.values())
+	if Automator.curState != Automator.AutomationStates.Inactive:
+		Telemeter.CardsPlayed(cards.values())
 	
 	
 	var highestValue : int = 0

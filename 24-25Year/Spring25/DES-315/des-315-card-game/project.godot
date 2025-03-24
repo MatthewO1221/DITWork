@@ -21,6 +21,10 @@ CardFactory="*res://Tools/CardFactory.gd"
 Automator="*res://Tools/Automator.gd"
 Telemeter="*res://Tools/Telemeter.gd"
 
+[display]
+
+window/stretch/mode="canvas_items"
+
 [dotnet]
 
 project/assembly_name="DES-315 Card Game"

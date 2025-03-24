@@ -42,8 +42,8 @@ func _ready() -> void:
 	get_viewport().set_physics_object_picking_first_only(true)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	actionList.UpdateAllActions(delta * playSpeed)
+func _physics_process(delta: float) -> void:
+	actionList.UpdateAllActions(delta)
 	
 	if debugMode:
 		DisplayDebugText()

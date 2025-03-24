@@ -44,12 +44,13 @@ func Quit() -> void:
 
 func UpdatePlaySpeed(changed: bool) -> void:
 	if changed:
-		boardController.playSpeed = $HFlowContainer/PlaySpeed.value
+		boardController.UpdatePlaySpeed($HFlowContainer/PlaySpeed.value)
+		
 
 func UpdateHandSize(changed: bool) -> void:
 	if changed:
-		boardController.handSize  = $HFlowContainer/HandSize.value
+		boardController.UpdateHandSize($HFlowContainer/HandSize.value)
 
 func UpdateHandNumber(changed: bool) -> void:
 	if changed:
-		boardController.botNum = $HFlowContainer/HandNumber.value
+		boardController.UpdateHandNumber($HFlowContainer/HandNumber.value)

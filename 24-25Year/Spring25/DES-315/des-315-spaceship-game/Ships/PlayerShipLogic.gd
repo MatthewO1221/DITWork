@@ -25,15 +25,21 @@ var curLinearJerk : float = 0.0
 
 var curAngularJerk : float = 0.0
 
-
+var maneuveringRatio := 1.0
 
 var chaingun : Chaingun = null
 var missileLauncher : MissileLauncher = null
 
+var smokeEmitter : GPUParticles2D = null
+
+var health : Health = null
+
 func _ready() -> void:
 	chaingun = get_node(get_meta("Chaingun")) as Chaingun
 	missileLauncher = get_node(get_meta("MissileLauncher")) as MissileLauncher
-
+	
+	smokeEmitter = get_node(get_meta("Particles")) as GPUParticles2D
+	health = get_node(get_meta("Health")) as Health
 func _physics_process(delta: float) -> void:
 	var forwardVector = -transform.y
 	
@@ -51,22 +57,26 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 	
-	print(curLinearJerk)
+	#print(curLinearJerk)
+	
+	UpdateEmitter()
+	
+	UpdateManeuveringRatio()
 	
 	
 func CalculateNewLinearAcceleration(delta: float) -> void:
 	if curLinearAccel > 0.0 and curLinearJerk < 0.0:
-		curLinearAccel += curLinearJerk * delta * linearDecelerationScalar
+		curLinearAccel += curLinearJerk * delta * linearDecelerationScalar * maneuveringRatio
 	elif curLinearAccel < 0.0 and curLinearJerk > 0.0:
-		curLinearAccel += curLinearJerk * delta * linearDecelerationScalar
+		curLinearAccel += curLinearJerk * delta * linearDecelerationScalar * maneuveringRatio
 	else:
-		curLinearAccel += curLinearJerk * delta
+		curLinearAccel += curLinearJerk * delta * maneuveringRatio
 		
-	if curLinearAccel >= maxLinearAcceleration:
-		curLinearAccel = maxLinearAcceleration
+	if curLinearAccel >= maxLinearAcceleration * maneuveringRatio:
+		curLinearAccel = maxLinearAcceleration * maneuveringRatio
 	
-	if curLinearAccel <= -maxLinearAcceleration:
-		curLinearAccel = -maxLinearAcceleration
+	if curLinearAccel <= -maxLinearAcceleration * maneuveringRatio:
+		curLinearAccel = -maxLinearAcceleration * maneuveringRatio
 		
 	if curLinearJerk == 0.0:
 		curLinearAccel -= curLinearAccel * linearDrag * delta
@@ -74,17 +84,17 @@ func CalculateNewLinearAcceleration(delta: float) -> void:
 		
 func CalculateNewAngularAcceleration(delta: float) -> void:
 	if curAngularAccel > 0.0 and curAngularJerk < 0.0:
-		curAngularAccel += curAngularJerk * delta * angularDecelerationScalar
+		curAngularAccel += curAngularJerk * delta * angularDecelerationScalar * maneuveringRatio
 	elif curAngularAccel < 0.0 and curAngularJerk > 0.0:
-		curAngularAccel += curAngularJerk * delta * angularDecelerationScalar
+		curAngularAccel += curAngularJerk * delta * angularDecelerationScalar * maneuveringRatio
 	else:
-		curAngularAccel += curAngularJerk * delta
+		curAngularAccel += curAngularJerk * delta * maneuveringRatio
 		
-	if curAngularAccel >= maxAngularAcceleration:
-		curAngularAccel = maxAngularAcceleration
+	if curAngularAccel >= maxAngularAcceleration * maneuveringRatio:
+		curAngularAccel = maxAngularAcceleration * maneuveringRatio
 	
-	if curAngularAccel <= -maxAngularAcceleration:
-		curAngularAccel = -maxAngularAcceleration
+	if curAngularAccel <= -maxAngularAcceleration * maneuveringRatio:
+		curAngularAccel = -maxAngularAcceleration * maneuveringRatio
 		
 	if curAngularJerk == 0.0:
 		curAngularAccel -= curAngularAccel * angularDrag * delta
@@ -92,10 +102,10 @@ func CalculateNewAngularAcceleration(delta: float) -> void:
 func CalculateNewLinearVelocity(delta: float) -> void:
 	curLinearVel += curLinearAccel * delta
 	
-	if curLinearVel >= maxLinearVelocity:
-		curLinearVel = maxLinearVelocity
-	if curLinearVel <= -maxLinearVelocity:
-		curLinearVel = -maxLinearVelocity
+	if curLinearVel >= maxLinearVelocity * maneuveringRatio:
+		curLinearVel = maxLinearVelocity * maneuveringRatio
+	if curLinearVel <= -maxLinearVelocity * maneuveringRatio:
+		curLinearVel = -maxLinearVelocity * maneuveringRatio
 		
 	if curLinearJerk == 0.0:
 		curLinearVel -= curLinearVel * linearDrag * delta
@@ -103,10 +113,10 @@ func CalculateNewLinearVelocity(delta: float) -> void:
 func CalculateNewAngularVelocity(delta: float) -> void:
 	curAngularVel += curAngularAccel * delta
 	
-	if curAngularVel >= maxAngularVelocity:
-		curAngularVel = maxAngularVelocity
-	if curAngularVel <= -maxAngularVelocity:
-		curAngularVel = -maxAngularVelocity
+	if curAngularVel >= maxAngularVelocity * maneuveringRatio:
+		curAngularVel = maxAngularVelocity * maneuveringRatio
+	if curAngularVel <= -maxAngularVelocity * maneuveringRatio:
+		curAngularVel = -maxAngularVelocity * maneuveringRatio
 
 	if curAngularJerk == 0.0:
 		curAngularVel -= curAngularVel * angularDrag * delta
@@ -135,3 +145,25 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("FireMissiles"):
 		missileLauncher.StartLaunching()
 	
+	if event.is_action_pressed("Debug_TakeDamage"):
+		health.Damage(10)
+
+func UpdateEmitter() -> void:
+	var healthPercentage : float = float(health.curHealth) / float(health.maxHealth)
+	
+	if healthPercentage > 0.5:
+		smokeEmitter.emitting = false
+		return
+		
+	smokeEmitter.emitting = true
+	
+	smokeEmitter.amount_ratio = 0.1 / healthPercentage
+
+func UpdateManeuveringRatio() -> void:
+	var healthPercentage := float(health.curHealth) / float(health.maxHealth)
+	
+	if healthPercentage > 0.5:
+		maneuveringRatio = 1.0
+		return
+		
+	maneuveringRatio = clampf(healthPercentage * 2.0, 0.5, 1.0)

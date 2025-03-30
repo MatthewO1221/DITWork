@@ -1,5 +1,5 @@
 class_name ArrangeHandAction
-extends BenignAction
+extends Action
 
 
 var handContainer : HandContainer

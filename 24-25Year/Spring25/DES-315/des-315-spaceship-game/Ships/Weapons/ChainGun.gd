@@ -41,7 +41,7 @@ func Fire() -> void:
 	
 	var forwardVector = -ship.transform.y.normalized() as Vector2
 	
-	forwardVector = forwardVector.rotated(deg_to_rad(randf_range(-projectileSpread, projectileSpread)))
+	forwardVector = forwardVector.rotated(deg_to_rad(randf_range(-projectileSpread * control.GetValue(), projectileSpread * control.GetValue())))
 	
 	bullet.linear_velocity = forwardVector * projectileSpeed
 	

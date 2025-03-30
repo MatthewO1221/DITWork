@@ -1,5 +1,5 @@
 class_name FlipCardAction
-extends BenignAction
+extends Action
 
 
 var card : CardBase

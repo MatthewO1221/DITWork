@@ -33,7 +33,7 @@ func Unpause() -> void:
 	get_tree().paused = false
 	
 	var easingMethod := CustomCurve.new(Tween.TransitionType.TRANS_BOUNCE, Tween.EaseType.EASE_IN)
-	var translateAction := UITranslateAction.new(false, false, "PauseIn", 1.0, 0.0, false, self, Vector2(1000, 0), easingMethod)
+	var translateAction := UITranslateAction.new(false, false, "PauseIn", 1.0, 0.0, false, self, Vector2(1500, 0), easingMethod)
 
 	actionList.PushBack(translateAction)
 	

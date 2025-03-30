@@ -1,5 +1,5 @@
 class_name Asteroid
-extends StaticBody2D
+extends RigidBody2D
 
 
 

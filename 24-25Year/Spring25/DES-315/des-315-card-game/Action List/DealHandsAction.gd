@@ -1,5 +1,5 @@
 class_name DealHandsAction
-extends BenignAction
+extends Action
 
 
 var handContainers : Array[HandContainer]

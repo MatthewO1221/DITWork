@@ -40,6 +40,10 @@ func _ready() -> void:
 	ShuffleDeck()
 	get_viewport().set_physics_object_picking_sort(true)
 	get_viewport().set_physics_object_picking_first_only(true)
+	playerScore = 0
+	bot1Score = 0
+	bot2Score = 0
+	bot3Score = 0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
@@ -268,22 +272,43 @@ func GetActionListText(list: ActionList) -> String:
 	var actionDict = list.lists
 	
 	for key in actionDict.keys():
-		var actions = actionDict[key]
+		
+		var actions : Array[Action] = actionDict[key]
+		
+		if actions.is_empty():
+			continue
 		
 		returnString = returnString + key + "\n"
 		
 		for action in actions:
 			var children = action.children
 			
-			returnString = returnString + "\t" + action.GetActionType() + "\n"
+				
 			
+			returnString = returnString + "\t" + action.GetActionType()
+			
+			if "duration" in action and "timePassed" in action:
+				returnString += " | " + str(snappedf(action.TimeLeft(), 0.01))
+			
+			returnString += "\n"
 			for child in children:
 				var grandChildren = child.children
 				
-				returnString = returnString + "\t\t" + child.GetActionType() + "\n"
+				returnString = returnString + "\t\t" + child.GetActionType()
+				
+				if "duration" in child and "timePassed" in child:
+					returnString += " | " + str(snappedf(child.TimeLeft(), 0.01))
+					
+				returnString += "\n"
 				
 				for grandChild in grandChildren:
-					returnString = returnString + "\t\t\t" + grandChild.GetActionType() + "\n"
+					
+					returnString = returnString + "\t\t\t" + grandChild.GetActionType()
+					
+					if "duration" in grandChild and "timePassed" in grandChild:
+						returnString += " | " + str(snappedf(grandChild.TimeLeft(), 0.01))
+						
+					returnString += "\n"
 		
 
 	return returnString

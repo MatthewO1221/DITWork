@@ -1,0 +1,1453 @@
+Hand Num,Num Bots,Num Cards
+1,3,7
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+A of Heart,A of Club,3 of Diamond,5 of Spade
+2 of Club,K of Heart,2 of Heart,4 of Diamond
+7 of Heart,8 of Spade,4 of Club,3 of Club
+6 of Spade,4 of Heart,9 of Diamond,A of Spade
+8 of Diamond,8 of Club,6 of Diamond,J of Spade
+Q of Spade,10 of Heart,K of Spade,3 of Spade
+J of Club,10 of Spade,Q of Diamond,6 of Heart
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+1,3,2,2
+Hand Num,Num Bots,Num Cards
+2,2,7
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+A of Club,4 of Heart,5 of Diamond
+K of Spade,8 of Spade,Q of Club
+2 of Heart,9 of Diamond,10 of Spade
+7 of Club,3 of Club,10 of Club
+K of Club,9 of Heart,A of Heart
+8 of Heart,Q of Diamond,9 of Spade
+3 of Diamond,5 of Club,6 of Club
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+2,1,4
+Hand Num,Num Bots,Num Cards
+3,3,7
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+10 of Spade,4 of Spade,3 of Diamond,J of Club
+Q of Diamond,7 of Diamond,A of Heart,10 of Diamond
+5 of Spade,K of Diamond,8 of Spade,A of Spade
+4 of Club,5 of Club,6 of Club,9 of Club
+3 of Club,7 of Spade,4 of Diamond,J of Spade
+7 of Heart,K of Spade,9 of Diamond,3 of Spade
+7 of Club,K of Club,8 of Heart,9 of Spade
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+0,2,1,4
+Hand Num,Num Bots,Num Cards
+4,2,7
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+3 of Diamond,8 of Spade,10 of Club
+4 of Heart,4 of Diamond,4 of Club
+3 of Club,7 of Club,9 of Diamond
+A of Club,8 of Heart,3 of Heart
+6 of Diamond,K of Club,A of Diamond
+J of Club,9 of Spade,K of Spade
+5 of Spade,5 of Diamond,5 of Club
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+3,2,6
+Hand Num,Num Bots,Num Cards
+5,2,6
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+Q of Club,J of Spade,6 of Diamond
+4 of Spade,9 of Club,A of Heart
+10 of Diamond,6 of Spade,3 of Heart
+3 of Spade,Q of Diamond,7 of Heart
+Q of Spade,5 of Club,A of Diamond
+10 of Spade,J of Heart,7 of Spade
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+2,2,2
+Hand Num,Num Bots,Num Cards
+6,2,8
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+2 of Diamond,2 of Spade,8 of Spade
+4 of Spade,J of Diamond,3 of Spade
+8 of Diamond,J of Spade,7 of Spade
+A of Club,4 of Club,K of Heart
+6 of Heart,J of Heart,A of Diamond
+4 of Heart,2 of Heart,9 of Spade
+5 of Heart,5 of Diamond,10 of Club
+Q of Heart,6 of Club,5 of Club
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+2,2,4
+Hand Num,Num Bots,Num Cards
+7,2,8
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+3 of Spade,5 of Diamond,9 of Spade
+7 of Heart,J of Spade,5 of Heart
+6 of Diamond,8 of Spade,10 of Heart
+8 of Diamond,2 of Club,7 of Spade
+10 of Club,A of Club,10 of Spade
+9 of Heart,K of Diamond,5 of Spade
+2 of Spade,4 of Diamond,3 of Club
+3 of Heart,J of Heart,8 of Heart
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+1,5,2
+Hand Num,Num Bots,Num Cards
+8,1,8
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+8 of Club,7 of Club
+6 of Club,6 of Heart
+4 of Diamond,10 of Heart
+10 of Spade,A of Spade
+5 of Spade,10 of Diamond
+6 of Spade,2 of Heart
+Q of Diamond,A of Diamond
+8 of Heart,4 of Club
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+4,5
+Hand Num,Num Bots,Num Cards
+9,2,8
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+5 of Club,10 of Spade,10 of Club
+8 of Heart,8 of Club,8 of Spade
+J of Club,2 of Spade,5 of Spade
+2 of Club,4 of Heart,A of Club
+7 of Club,A of Spade,2 of Heart
+3 of Diamond,9 of Heart,J of Diamond
+5 of Heart,Q of Spade,9 of Diamond
+10 of Heart,2 of Diamond,K of Heart
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+2,4,5
+Hand Num,Num Bots,Num Cards
+10,2,10
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+9 of Club,3 of Club,J of Diamond
+J of Heart,6 of Heart,A of Heart
+K of Club,J of Spade,7 of Spade
+5 of Spade,A of Club,7 of Diamond
+6 of Diamond,5 of Diamond,2 of Diamond
+6 of Club,2 of Heart,10 of Spade
+10 of Heart,8 of Spade,3 of Spade
+Q of Club,4 of Diamond,6 of Spade
+2 of Spade,10 of Diamond,8 of Heart
+4 of Spade,K of Spade,Q of Diamond
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+4,3,3
+Hand Num,Num Bots,Num Cards
+11,1,10
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+Q of Heart,7 of Club
+Q of Diamond,8 of Club
+9 of Heart,J of Diamond
+4 of Club,9 of Spade
+3 of Heart,7 of Heart
+5 of Diamond,2 of Spade
+9 of Club,4 of Heart
+8 of Heart,3 of Diamond
+10 of Diamond,8 of Spade
+5 of Spade,Q of Spade
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+6,4
+Hand Num,Num Bots,Num Cards
+12,3,10
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+7 of Club,K of Club,4 of Club,4 of Spade
+3 of Club,6 of Diamond,10 of Spade,A of Club
+7 of Spade,Q of Heart,J of Spade,2 of Spade
+3 of Spade,10 of Diamond,K of Spade,9 of Club
+3 of Heart,4 of Heart,A of Heart,8 of Club
+A of Diamond,A of Spade,7 of Heart,Q of Club
+6 of Heart,K of Diamond,4 of Diamond,8 of Heart
+2 of Heart,2 of Club,Q of Diamond,5 of Diamond
+3 of Diamond,10 of Club,5 of Heart,Q of Spade
+J of Diamond,8 of Diamond,5 of Club,7 of Diamond
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+2,4,3,2
+Hand Num,Num Bots,Num Cards
+13,3,4
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+3 of Heart,5 of Diamond,5 of Club,K of Club
+J of Heart,5 of Spade,4 of Club,6 of Diamond
+Q of Heart,4 of Spade,6 of Heart,Q of Diamond
+J of Club,A of Club,8 of Club,J of Diamond
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+2,1,0,2
+Hand Num,Num Bots,Num Cards
+14,1,4
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+3 of Spade,J of Spade
+6 of Diamond,A of Club
+6 of Spade,Q of Spade
+9 of Spade,5 of Spade
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+1,3
+Hand Num,Num Bots,Num Cards
+15,2,4
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+7 of Diamond,4 of Heart,K of Club
+A of Spade,10 of Club,K of Spade
+4 of Diamond,7 of Heart,2 of Spade
+8 of Spade,K of Heart,5 of Club
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+1,2,1
+Hand Num,Num Bots,Num Cards
+16,2,1
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+A of Club,8 of Club,Q of Heart
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+1,0,0
+Hand Num,Num Bots,Num Cards
+17,3,1
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+Q of Diamond,10 of Heart,7 of Diamond,3 of Spade
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+1,0,0,0
+Hand Num,Num Bots,Num Cards
+18,3,4
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+J of Heart,6 of Diamond,10 of Club,J of Club
+K of Diamond,9 of Club,4 of Heart,2 of Spade
+5 of Diamond,2 of Heart,9 of Heart,K of Heart
+4 of Spade,7 of Diamond,K of Spade,A of Heart
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+2,0,0,3
+Hand Num,Num Bots,Num Cards
+19,1,4
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+3 of Club,9 of Club
+J of Spade,4 of Diamond
+A of Diamond,3 of Spade
+8 of Diamond,6 of Spade
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+3,1
+Hand Num,Num Bots,Num Cards
+20,1,4
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+9 of Club,J of Heart
+8 of Spade,K of Diamond
+6 of Heart,3 of Heart
+5 of Heart,2 of Heart
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+2,2
+Hand Num,Num Bots,Num Cards
+21,2,4
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+10 of Club,4 of Diamond,5 of Heart
+K of Heart,8 of Spade,3 of Diamond
+2 of Diamond,J of Club,J of Diamond
+Q of Heart,J of Spade,A of Club
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+2,1,2
+Hand Num,Num Bots,Num Cards
+22,2,4
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+2 of Spade,K of Spade,Q of Diamond
+5 of Heart,5 of Diamond,9 of Diamond
+2 of Heart,6 of Heart,3 of Heart
+6 of Spade,4 of Club,3 of Diamond
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+1,2,1
+Hand Num,Num Bots,Num Cards
+23,3,4
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+K of Club,5 of Heart,4 of Club,Q of Club
+4 of Heart,4 of Spade,10 of Spade,6 of Diamond
+6 of Heart,7 of Spade,2 of Diamond,8 of Club
+A of Club,8 of Spade,Q of Spade,J of Heart
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+2,0,1,1
+Hand Num,Num Bots,Num Cards
+24,3,8
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+5 of Heart,9 of Heart,8 of Diamond,K of Club
+4 of Club,J of Diamond,10 of Club,8 of Club
+3 of Heart,4 of Heart,5 of Spade,Q of Club
+Q of Spade,J of Spade,6 of Spade,4 of Diamond
+2 of Spade,9 of Spade,7 of Spade,2 of Heart
+A of Diamond,7 of Heart,K of Diamond,2 of Club
+5 of Diamond,6 of Diamond,2 of Diamond,3 of Diamond
+A of Club,A of Spade,Q of Diamond,7 of Club
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+3,4,0,2
+Hand Num,Num Bots,Num Cards
+25,2,8
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+10 of Spade,5 of Club,4 of Spade
+2 of Spade,9 of Diamond,10 of Club
+2 of Club,7 of Heart,4 of Heart
+3 of Club,5 of Heart,Q of Club
+3 of Heart,8 of Spade,8 of Club
+Q of Spade,6 of Diamond,2 of Heart
+7 of Diamond,4 of Diamond,6 of Heart
+3 of Spade,9 of Club,K of Diamond
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+3,2,4
+Hand Num,Num Bots,Num Cards
+26,2,5
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+7 of Diamond,5 of Heart,J of Diamond
+6 of Heart,4 of Club,9 of Club
+J of Club,Q of Spade,A of Club
+2 of Diamond,7 of Club,Q of Heart
+K of Spade,7 of Spade,10 of Diamond
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+1,0,4
+Hand Num,Num Bots,Num Cards
+27,3,5
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+8 of Diamond,Q of Diamond,J of Heart,8 of Heart
+7 of Diamond,4 of Spade,J of Spade,K of Spade
+K of Heart,K of Club,K of Diamond,J of Club
+10 of Diamond,3 of Club,A of Heart,6 of Spade
+2 of Club,3 of Spade,5 of Club,7 of Spade
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+1,2,2,2
+Hand Num,Num Bots,Num Cards
+28,3,5
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+K of Club,J of Spade,9 of Heart,7 of Club
+5 of Diamond,5 of Spade,7 of Spade,9 of Spade
+7 of Diamond,3 of Diamond,A of Spade,8 of Diamond
+10 of Club,2 of Spade,9 of Club,A of Club
+6 of Diamond,J of Heart,K of Diamond,A of Heart
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+1,0,1,3
+Hand Num,Num Bots,Num Cards
+29,3,5
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+J of Heart,K of Diamond,10 of Diamond,K of Spade
+3 of Heart,10 of Heart,7 of Heart,K of Heart
+9 of Club,9 of Heart,A of Club,4 of Spade
+4 of Heart,3 of Spade,5 of Diamond,5 of Club
+6 of Heart,6 of Spade,2 of Diamond,7 of Spade
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+0,1,2,4
+Hand Num,Num Bots,Num Cards
+30,3,7
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+J of Diamond,10 of Diamond,6 of Club,4 of Diamond
+10 of Heart,2 of Club,3 of Spade,3 of Diamond
+Q of Diamond,10 of Spade,A of Club,4 of Heart
+K of Diamond,4 of Club,8 of Spade,A of Diamond
+8 of Diamond,K of Heart,9 of Club,3 of Club
+J of Heart,5 of Heart,9 of Heart,6 of Spade
+5 of Club,7 of Heart,6 of Diamond,K of Club
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+3,1,1,2
+Hand Num,Num Bots,Num Cards
+31,3,1
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+J of Spade,3 of Spade,6 of Spade,3 of Heart
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+1,0,0,0
+Hand Num,Num Bots,Num Cards
+32,3,1
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+3 of Club,5 of Spade,K of Spade,Q of Diamond
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+0,0,1,0
+Hand Num,Num Bots,Num Cards
+33,3,11
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+2 of Club,J of Heart,5 of Spade,3 of Diamond
+J of Diamond,9 of Spade,6 of Heart,3 of Spade
+6 of Club,Q of Spade,9 of Diamond,J of Spade
+4 of Spade,7 of Diamond,8 of Heart,A of Club
+2 of Heart,3 of Heart,10 of Diamond,5 of Diamond
+8 of Diamond,9 of Heart,7 of Club,Q of Heart
+2 of Spade,Q of Diamond,8 of Club,10 of Spade
+K of Diamond,A of Diamond,J of Club,7 of Heart
+2 of Diamond,6 of Spade,10 of Heart,7 of Spade
+A of Spade,8 of Spade,K of Club,Q of Club
+4 of Heart,4 of Diamond,6 of Diamond,5 of Club
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+2,4,3,2
+Hand Num,Num Bots,Num Cards
+34,3,2
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+3 of Diamond,Q of Diamond,J of Club,9 of Diamond
+5 of Spade,J of Diamond,7 of Spade,Q of Heart
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+0,1,0,1
+Hand Num,Num Bots,Num Cards
+35,3,2
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+10 of Club,Q of Spade,6 of Club,3 of Spade
+4 of Club,7 of Club,A of Spade,2 of Heart
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+0,1,1,0
+Hand Num,Num Bots,Num Cards
+36,3,2
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+2 of Diamond,3 of Heart,9 of Club,K of Spade
+J of Spade,Q of Diamond,7 of Heart,8 of Club
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+0,1,0,1
+Hand Num,Num Bots,Num Cards
+37,3,1
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+7 of Club,3 of Spade,5 of Spade,4 of Heart
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+1,0,0,0
+Hand Num,Num Bots,Num Cards
+38,3,4
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+Q of Diamond,10 of Spade,2 of Diamond,6 of Heart
+Q of Club,A of Diamond,8 of Heart,K of Spade
+7 of Spade,2 of Spade,J of Club,10 of Club
+K of Club,6 of Diamond,2 of Heart,6 of Spade
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+2,1,1,0
+Hand Num,Num Bots,Num Cards
+39,1,4
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+2 of Spade,8 of Club
+9 of Spade,3 of Diamond
+K of Club,4 of Heart
+3 of Club,4 of Diamond
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+2,2
+Hand Num,Num Bots,Num Cards
+40,2,4
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+8 of Club,2 of Spade,K of Club
+6 of Club,K of Diamond,10 of Heart
+8 of Heart,8 of Diamond,2 of Diamond
+5 of Heart,9 of Spade,3 of Heart
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+1,3,1
+Hand Num,Num Bots,Num Cards
+41,3,4
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+J of Club,7 of Heart,Q of Club,A of Spade
+K of Club,Q of Diamond,6 of Spade,4 of Diamond
+A of Club,5 of Club,9 of Heart,8 of Club
+5 of Spade,7 of Spade,6 of Club,9 of Spade
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+2,0,0,2
+Hand Num,Num Bots,Num Cards
+42,3,13
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+Q of Club,9 of Heart,Q of Diamond,Q of Spade
+3 of Heart,K of Spade,7 of Club,7 of Heart
+3 of Spade,K of Diamond,5 of Heart,A of Heart
+6 of Diamond,A of Spade,2 of Spade,Q of Heart
+8 of Club,8 of Diamond,10 of Diamond,A of Diamond
+4 of Heart,2 of Heart,3 of Club,5 of Club
+6 of Club,9 of Spade,2 of Club,9 of Club
+A of Club,J of Club,6 of Heart,K of Club
+6 of Spade,10 of Heart,J of Spade,2 of Diamond
+5 of Spade,3 of Diamond,7 of Diamond,8 of Heart
+5 of Diamond,8 of Spade,4 of Diamond,9 of Diamond
+10 of Club,J of Diamond,7 of Spade,J of Heart
+10 of Spade,K of Heart,4 of Spade,4 of Club
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+2,5,2,8
+Hand Num,Num Bots,Num Cards
+43,3,1
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+Q of Heart,8 of Diamond,7 of Spade,4 of Heart
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+1,0,0,0
+Hand Num,Num Bots,Num Cards
+44,3,1
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+6 of Diamond,2 of Heart,9 of Diamond,8 of Diamond
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+0,0,1,0
+Hand Num,Num Bots,Num Cards
+45,3,3
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+5 of Heart,K of Heart,4 of Club,3 of Diamond
+J of Club,7 of Club,10 of Heart,K of Club
+J of Diamond,Q of Spade,9 of Spade,2 of Heart
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+0,2,0,1
+Hand Num,Num Bots,Num Cards
+46,1,3
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+10 of Spade,K of Diamond
+5 of Diamond,3 of Club
+6 of Spade,7 of Heart
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+1,2
+Hand Num,Num Bots,Num Cards
+47,1,3
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+8 of Spade,6 of Spade
+9 of Diamond,Q of Diamond
+J of Club,9 of Spade
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+2,1
+Hand Num,Num Bots,Num Cards
+48,1,2
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+K of Heart,4 of Spade
+7 of Spade,2 of Club
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+2,0
+Hand Num,Num Bots,Num Cards
+49,1,4
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+8 of Spade,J of Spade
+9 of Heart,3 of Diamond
+6 of Spade,Q of Club
+4 of Diamond,K of Heart
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+1,3
+Hand Num,Num Bots,Num Cards
+50,1,7
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+4 of Club,6 of Club
+A of Spade,4 of Heart
+4 of Diamond,9 of Spade
+10 of Diamond,K of Diamond
+8 of Heart,10 of Spade
+3 of Heart,5 of Heart
+10 of Heart,8 of Club
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+2,5
+Hand Num,Num Bots,Num Cards
+51,1,7
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+8 of Club,K of Club
+7 of Diamond,A of Spade
+K of Diamond,A of Club
+2 of Spade,6 of Club
+Q of Heart,7 of Club
+6 of Spade,5 of Spade
+Q of Club,A of Heart
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+2,5
+Hand Num,Num Bots,Num Cards
+52,1,1
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+K of Club,2 of Club
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+1,0
+Hand Num,Num Bots,Num Cards
+53,1,13
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+5 of Spade,4 of Club
+6 of Spade,4 of Diamond
+Q of Diamond,7 of Heart
+9 of Spade,3 of Diamond
+2 of Diamond,J of Heart
+10 of Spade,A of Heart
+2 of Spade,4 of Heart
+8 of Spade,K of Heart
+10 of Heart,7 of Spade
+3 of Spade,3 of Club
+8 of Club,Q of Spade
+3 of Heart,7 of Club
+8 of Heart,5 of Diamond
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+7,7
+Hand Num,Num Bots,Num Cards
+54,1,13
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+6 of Club,8 of Spade
+9 of Spade,4 of Heart
+3 of Heart,7 of Club
+10 of Heart,6 of Spade
+K of Diamond,K of Spade
+10 of Spade,6 of Heart
+Q of Spade,4 of Spade
+5 of Heart,4 of Diamond
+8 of Diamond,Q of Heart
+A of Heart,9 of Heart
+3 of Club,A of Spade
+10 of Club,2 of Club
+9 of Diamond,2 of Heart
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+9,5
+Hand Num,Num Bots,Num Cards
+55,1,5
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+3 of Diamond,5 of Spade
+8 of Heart,9 of Spade
+7 of Diamond,3 of Spade
+A of Heart,5 of Diamond
+4 of Heart,J of Spade
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+2,3
+Hand Num,Num Bots,Num Cards
+56,2,5
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+6 of Spade,10 of Heart,5 of Heart
+6 of Heart,6 of Club,4 of Diamond
+10 of Club,3 of Heart,2 of Heart
+9 of Spade,2 of Club,K of Club
+5 of Club,7 of Club,7 of Heart
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+2,3,2
+Hand Num,Num Bots,Num Cards
+57,1,5
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+10 of Heart,K of Spade
+4 of Heart,7 of Spade
+5 of Club,5 of Heart
+J of Spade,5 of Spade
+10 of Diamond,4 of Spade
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+3,3
+Hand Num,Num Bots,Num Cards
+58,2,5
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+10 of Spade,3 of Club,7 of Spade
+3 of Diamond,3 of Spade,K of Diamond
+10 of Heart,J of Club,9 of Spade
+Q of Club,4 of Heart,J of Diamond
+9 of Heart,3 of Heart,2 of Heart
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+3,1,1
+Hand Num,Num Bots,Num Cards
+59,2,4
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+4 of Heart,J of Diamond,10 of Club
+9 of Heart,5 of Heart,6 of Heart
+5 of Spade,Q of Club,2 of Heart
+J of Spade,A of Spade,4 of Diamond
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+1,3,0
+Hand Num,Num Bots,Num Cards
+60,3,4
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+8 of Diamond,3 of Spade,K of Spade,8 of Heart
+4 of Heart,10 of Diamond,J of Diamond,5 of Heart
+7 of Diamond,5 of Club,10 of Spade,6 of Heart
+Q of Diamond,A of Diamond,9 of Diamond,4 of Spade
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+0,1,3,0
+Hand Num,Num Bots,Num Cards
+61,3,3
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+9 of Diamond,K of Club,4 of Heart,J of Spade
+7 of Spade,5 of Heart,K of Diamond,7 of Heart
+4 of Club,7 of Diamond,8 of Spade,J of Heart
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+0,1,1,1
+Hand Num,Num Bots,Num Cards
+62,2,3
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+K of Heart,K of Club,3 of Heart
+3 of Spade,8 of Heart,J of Diamond
+Q of Spade,9 of Spade,2 of Spade
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+2,1,1
+Hand Num,Num Bots,Num Cards
+63,2,2
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+4 of Club,4 of Heart,6 of Club
+A of Club,8 of Spade,3 of Heart
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+1,0,1
+Hand Num,Num Bots,Num Cards
+64,2,2
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+3 of Heart,7 of Spade,Q of Spade
+2 of Spade,3 of Diamond,8 of Heart
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+0,0,2
+Hand Num,Num Bots,Num Cards
+65,2,2
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+7 of Diamond,2 of Heart,10 of Spade
+3 of Diamond,3 of Club,9 of Club
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+0,0,2
+Hand Num,Num Bots,Num Cards
+66,3,2
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+5 of Heart,3 of Diamond,A of Spade,5 of Spade
+4 of Club,10 of Spade,2 of Club,K of Spade
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+0,0,1,1
+Hand Num,Num Bots,Num Cards
+67,3,11
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+5 of Diamond,Q of Heart,7 of Club,6 of Heart
+3 of Spade,10 of Club,2 of Club,2 of Diamond
+5 of Spade,Q of Spade,2 of Heart,3 of Heart
+6 of Spade,10 of Spade,7 of Spade,K of Heart
+7 of Heart,9 of Heart,4 of Diamond,J of Spade
+J of Club,9 of Spade,8 of Spade,K of Diamond
+3 of Club,8 of Diamond,6 of Club,9 of Club
+4 of Heart,9 of Diamond,K of Club,A of Diamond
+5 of Club,A of Spade,10 of Diamond,2 of Spade
+Q of Diamond,Q of Club,8 of Club,10 of Heart
+8 of Heart,4 of Spade,4 of Club,6 of Diamond
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+2,5,0,5
+Hand Num,Num Bots,Num Cards
+68,3,11
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+3 of Club,J of Spade,A of Diamond,3 of Diamond
+9 of Diamond,J of Club,8 of Diamond,5 of Diamond
+K of Heart,2 of Diamond,Q of Heart,2 of Heart
+4 of Heart,10 of Club,Q of Diamond,K of Spade
+A of Heart,4 of Diamond,J of Heart,7 of Club
+10 of Spade,K of Club,5 of Spade,7 of Diamond
+A of Spade,2 of Spade,Q of Spade,8 of Club
+Q of Club,7 of Spade,3 of Spade,4 of Club
+J of Diamond,6 of Heart,3 of Heart,5 of Heart
+9 of Spade,4 of Spade,2 of Club,A of Club
+7 of Heart,8 of Spade,K of Diamond,6 of Club
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+5,2,2,2
+Hand Num,Num Bots,Num Cards
+69,2,11
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+10 of Diamond,Q of Heart,Q of Club
+4 of Diamond,3 of Club,2 of Club
+7 of Diamond,9 of Spade,10 of Club
+A of Spade,K of Heart,8 of Spade
+A of Diamond,A of Heart,A of Club
+5 of Diamond,Q of Diamond,9 of Diamond
+5 of Heart,4 of Heart,8 of Club
+2 of Spade,2 of Diamond,7 of Club
+9 of Heart,J of Heart,K of Club
+5 of Spade,10 of Spade,Q of Spade
+6 of Spade,2 of Heart,9 of Club
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+3,3,8
+Hand Num,Num Bots,Num Cards
+70,2,11
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+3 of Club,6 of Club,2 of Spade
+A of Heart,2 of Heart,A of Diamond
+6 of Diamond,2 of Diamond,Q of Spade
+9 of Club,J of Diamond,A of Club
+6 of Heart,5 of Diamond,8 of Club
+J of Heart,10 of Spade,7 of Diamond
+5 of Spade,A of Spade,9 of Heart
+Q of Club,6 of Spade,10 of Diamond
+4 of Spade,K of Diamond,J of Club
+3 of Spade,8 of Heart,10 of Heart
+J of Spade,3 of Heart,7 of Spade
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+4,3,5
+Hand Num,Num Bots,Num Cards
+71,2,2
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+7 of Diamond,K of Diamond,7 of Club
+4 of Spade,A of Spade,2 of Diamond
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+0,2,0
+Hand Num,Num Bots,Num Cards
+72,2,2
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+5 of Heart,4 of Club,8 of Club
+A of Club,A of Diamond,J of Spade
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+1,1,1
+Hand Num,Num Bots,Num Cards
+73,2,13
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+6 of Diamond,10 of Diamond,4 of Club
+8 of Heart,J of Spade,2 of Heart
+7 of Club,3 of Club,A of Club
+5 of Spade,K of Spade,4 of Diamond
+10 of Spade,6 of Spade,8 of Spade
+K of Heart,5 of Club,A of Heart
+7 of Heart,K of Club,A of Spade
+Q of Spade,8 of Club,2 of Club
+3 of Heart,10 of Heart,7 of Diamond
+6 of Club,10 of Club,K of Diamond
+J of Club,4 of Spade,5 of Diamond
+7 of Spade,9 of Spade,3 of Spade
+A of Diamond,2 of Diamond,Q of Heart
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+4,5,4
+Hand Num,Num Bots,Num Cards
+74,2,11
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+3 of Diamond,7 of Diamond,7 of Club
+9 of Club,8 of Heart,6 of Diamond
+J of Diamond,3 of Spade,5 of Heart
+K of Heart,4 of Club,Q of Club
+5 of Spade,J of Heart,A of Heart
+10 of Diamond,J of Spade,6 of Spade
+J of Club,2 of Spade,Q of Heart
+10 of Heart,9 of Heart,4 of Diamond
+4 of Spade,7 of Heart,8 of Spade
+A of Diamond,A of Club,K of Spade
+8 of Diamond,10 of Spade,6 of Club
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+5,4,4
+Hand Num,Num Bots,Num Cards
+75,1,11
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+Q of Heart,A of Heart
+10 of Spade,10 of Club
+8 of Spade,5 of Club
+K of Diamond,10 of Diamond
+A of Club,9 of Diamond
+4 of Diamond,3 of Spade
+9 of Club,J of Spade
+7 of Spade,2 of Heart
+3 of Heart,6 of Diamond
+Q of Diamond,Q of Club
+3 of Diamond,5 of Spade
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+7,6
+Hand Num,Num Bots,Num Cards
+76,2,11
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+7 of Diamond,3 of Club,2 of Spade
+6 of Club,J of Club,9 of Heart
+A of Heart,4 of Spade,4 of Club
+6 of Spade,7 of Club,2 of Heart
+10 of Spade,7 of Spade,K of Heart
+5 of Club,3 of Heart,2 of Diamond
+10 of Diamond,A of Club,10 of Heart
+8 of Diamond,K of Club,3 of Spade
+J of Spade,4 of Diamond,K of Diamond
+9 of Spade,J of Heart,2 of Club
+A of Spade,6 of Diamond,7 of Heart
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+4,5,2
+Hand Num,Num Bots,Num Cards
+77,2,4
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+2 of Diamond,6 of Heart,A of Spade
+10 of Spade,10 of Diamond,8 of Club
+K of Club,A of Diamond,Q of Heart
+J of Diamond,2 of Club,6 of Spade
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+2,2,1
+Hand Num,Num Bots,Num Cards
+78,2,3
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+J of Diamond,A of Spade,8 of Diamond
+K of Club,3 of Spade,7 of Club
+8 of Spade,4 of Club,K of Spade
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+1,1,1
+Hand Num,Num Bots,Num Cards
+79,2,6
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+3 of Heart,J of Spade,Q of Club
+5 of Spade,Q of Heart,2 of Diamond
+A of Heart,8 of Spade,8 of Diamond
+4 of Diamond,2 of Club,9 of Spade
+9 of Diamond,J of Diamond,Q of Spade
+4 of Club,6 of Diamond,K of Heart
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+1,1,4
+Hand Num,Num Bots,Num Cards
+80,2,6
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+10 of Spade,10 of Diamond,A of Heart
+J of Spade,8 of Spade,6 of Diamond
+4 of Spade,5 of Heart,6 of Club
+2 of Heart,4 of Diamond,3 of Club
+Q of Club,3 of Heart,K of Heart
+4 of Heart,2 of Club,A of Diamond
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+1,1,4
+Hand Num,Num Bots,Num Cards
+81,1,6
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+K of Spade,7 of Club
+6 of Club,A of Club
+9 of Spade,A of Heart
+4 of Diamond,7 of Heart
+9 of Club,10 of Spade
+6 of Heart,3 of Spade
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+2,4
+Hand Num,Num Bots,Num Cards
+82,1,7
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+3 of Club,9 of Diamond
+7 of Spade,6 of Heart
+5 of Club,3 of Spade
+2 of Club,8 of Heart
+5 of Spade,Q of Spade
+J of Spade,2 of Diamond
+8 of Diamond,J of Heart
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+3,4
+Hand Num,Num Bots,Num Cards
+83,3,7
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+4 of Spade,5 of Spade,A of Club,8 of Diamond
+J of Spade,10 of Heart,K of Diamond,10 of Club
+2 of Spade,J of Diamond,7 of Club,4 of Diamond
+5 of Diamond,Q of Spade,A of Spade,K of Spade
+K of Heart,9 of Diamond,6 of Heart,J of Club
+K of Club,Q of Heart,7 of Heart,4 of Club
+6 of Club,6 of Diamond,10 of Spade,A of Heart
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+2,1,3,1
+Hand Num,Num Bots,Num Cards
+84,3,5
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+3 of Diamond,9 of Club,2 of Diamond,7 of Heart
+A of Club,6 of Spade,10 of Heart,Q of Club
+9 of Diamond,8 of Spade,8 of Diamond,5 of Diamond
+K of Spade,Q of Heart,7 of Spade,4 of Heart
+Q of Spade,2 of Club,9 of Heart,J of Heart
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+4,1,0,0
+Hand Num,Num Bots,Num Cards
+85,3,1
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+Q of Heart,10 of Club,9 of Spade,4 of Diamond
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+1,0,0,0
+Hand Num,Num Bots,Num Cards
+86,3,1
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+Q of Club,3 of Heart,A of Heart,A of Spade
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+0,0,1,1
+Hand Num,Num Bots,Num Cards
+87,2,1
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+9 of Heart,7 of Diamond,5 of Diamond
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+1,0,0
+Hand Num,Num Bots,Num Cards
+88,2,11
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+5 of Spade,2 of Heart,5 of Diamond
+Q of Club,5 of Heart,8 of Diamond
+3 of Diamond,9 of Spade,7 of Club
+7 of Diamond,4 of Spade,A of Spade
+10 of Spade,4 of Heart,10 of Heart
+6 of Diamond,7 of Heart,Q of Heart
+7 of Spade,Q of Diamond,J of Club
+6 of Heart,8 of Spade,K of Club
+3 of Spade,3 of Heart,8 of Club
+9 of Club,2 of Club,10 of Diamond
+Q of Spade,9 of Diamond,2 of Spade
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+4,2,7
+Hand Num,Num Bots,Num Cards
+89,2,3
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+3 of Club,10 of Club,7 of Heart
+9 of Club,3 of Diamond,5 of Diamond
+Q of Heart,3 of Heart,9 of Heart
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+2,1,0
+Hand Num,Num Bots,Num Cards
+90,1,3
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+8 of Club,Q of Club
+9 of Heart,6 of Diamond
+A of Heart,10 of Heart
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+2,1
+Hand Num,Num Bots,Num Cards
+91,1,9
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+8 of Club,7 of Spade
+J of Club,9 of Club
+7 of Diamond,6 of Heart
+K of Diamond,J of Diamond
+10 of Diamond,7 of Club
+9 of Spade,5 of Club
+A of Diamond,6 of Diamond
+K of Spade,4 of Spade
+J of Spade,10 of Club
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+9,0
+Hand Num,Num Bots,Num Cards
+92,1,9
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+9 of Spade,5 of Heart
+2 of Diamond,5 of Spade
+9 of Club,9 of Diamond
+J of Heart,10 of Heart
+7 of Diamond,4 of Club
+K of Club,4 of Spade
+7 of Spade,7 of Heart
+Q of Heart,6 of Heart
+7 of Club,5 of Diamond
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+8,3
+Hand Num,Num Bots,Num Cards
+93,1,9
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+Q of Heart,3 of Diamond
+5 of Club,6 of Club
+8 of Club,5 of Diamond
+4 of Diamond,A of Spade
+7 of Club,K of Heart
+A of Heart,J of Diamond
+5 of Spade,10 of Club
+2 of Club,7 of Spade
+J of Club,J of Spade
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+4,6
+Hand Num,Num Bots,Num Cards
+94,1,3
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+9 of Club,10 of Diamond
+2 of Club,J of Diamond
+Q of Heart,4 of Spade
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+1,2
+Hand Num,Num Bots,Num Cards
+95,1,6
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+7 of Diamond,Q of Spade
+8 of Club,K of Club
+9 of Spade,10 of Heart
+6 of Spade,7 of Heart
+4 of Club,A of Spade
+9 of Heart,10 of Spade
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+0,6
+Hand Num,Num Bots,Num Cards
+96,1,6
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+5 of Heart,A of Spade
+J of Diamond,7 of Heart
+3 of Club,7 of Spade
+K of Club,2 of Club
+8 of Diamond,3 of Spade
+9 of Spade,8 of Spade
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+4,2
+Hand Num,Num Bots,Num Cards
+97,2,6
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+4 of Spade,Q of Heart,10 of Club
+10 of Diamond,4 of Club,7 of Diamond
+9 of Diamond,2 of Diamond,6 of Diamond
+J of Club,K of Spade,Q of Diamond
+9 of Heart,J of Diamond,A of Spade
+A of Heart,3 of Spade,8 of Spade
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+3,2,1
+Hand Num,Num Bots,Num Cards
+98,3,6
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+4 of Club,2 of Spade,3 of Club,5 of Spade
+3 of Heart,8 of Club,A of Spade,6 of Diamond
+J of Diamond,7 of Heart,K of Spade,4 of Heart
+J of Heart,6 of Heart,5 of Heart,2 of Diamond
+10 of Club,6 of Spade,7 of Diamond,K of Heart
+5 of Club,Q of Spade,8 of Diamond,J of Spade
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+1,1,2,2
+Hand Num,Num Bots,Num Cards
+99,1,6
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+K of Club,K of Spade
+7 of Heart,2 of Spade
+6 of Heart,7 of Club
+3 of Spade,3 of Diamond
+7 of Spade,Q of Club
+3 of Club,9 of Diamond
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+3,5
+Hand Num,Num Bots,Num Cards
+100,3,6
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+K of Diamond,5 of Diamond,10 of Club,9 of Spade
+4 of Diamond,5 of Spade,2 of Diamond,8 of Club
+K of Heart,A of Diamond,5 of Heart,5 of Club
+8 of Heart,4 of Club,J of Heart,J of Spade
+8 of Diamond,2 of Club,K of Club,K of Spade
+7 of Diamond,10 of Heart,7 of Club,10 of Diamond
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+1,2,2,4
+Hand Num,Num Bots,Num Cards
+101,3,6
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+4 of Club,J of Heart,7 of Diamond,2 of Heart
+A of Diamond,A of Club,5 of Heart,6 of Diamond
+4 of Spade,2 of Club,10 of Spade,Q of Spade
+9 of Club,10 of Heart,5 of Club,6 of Club
+3 of Club,6 of Heart,7 of Spade,2 of Diamond
+Q of Diamond,A of Heart,3 of Diamond,Q of Heart
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+1,4,1,1
+Hand Num,Num Bots,Num Cards
+102,3,6
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+8 of Diamond,8 of Heart,K of Club,3 of Spade
+K of Heart,4 of Club,A of Spade,K of Spade
+10 of Heart,3 of Heart,2 of Spade,9 of Spade
+J of Heart,Q of Diamond,8 of Club,3 of Club
+10 of Spade,2 of Club,A of Heart,8 of Spade
+6 of Club,4 of Heart,6 of Spade,6 of Heart
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+2,1,4,1
+Hand Num,Num Bots,Num Cards
+103,3,6
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+6 of Diamond,10 of Club,A of Diamond,3 of Heart
+A of Heart,Q of Club,J of Heart,5 of Club
+4 of Diamond,10 of Spade,2 of Diamond,6 of Club
+10 of Heart,8 of Club,6 of Heart,7 of Diamond
+3 of Club,3 of Diamond,2 of Spade,Q of Spade
+7 of Spade,9 of Spade,A of Spade,5 of Heart
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+2,1,2,1
+Hand Num,Num Bots,Num Cards
+104,3,13
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+10 of Diamond,4 of Diamond,3 of Diamond,Q of Heart
+5 of Club,K of Spade,A of Club,10 of Heart
+K of Diamond,3 of Heart,J of Heart,4 of Heart
+J of Spade,2 of Spade,3 of Club,J of Club
+6 of Heart,Q of Spade,4 of Spade,8 of Spade
+9 of Club,Q of Diamond,10 of Club,2 of Diamond
+A of Diamond,2 of Heart,6 of Club,7 of Diamond
+3 of Spade,7 of Spade,8 of Heart,4 of Club
+5 of Heart,9 of Diamond,8 of Club,J of Diamond
+8 of Diamond,9 of Spade,2 of Club,10 of Spade
+6 of Diamond,5 of Diamond,Q of Club,A of Heart
+5 of Spade,6 of Spade,A of Spade,K of Heart
+7 of Heart,7 of Club,K of Club,9 of Heart
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+3,2,4,5
+Hand Num,Num Bots,Num Cards
+105,1,13
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+3 of Diamond,10 of Spade
+Q of Heart,Q of Spade
+7 of Club,J of Club
+4 of Heart,3 of Spade
+2 of Heart,8 of Spade
+J of Diamond,8 of Diamond
+K of Heart,4 of Diamond
+5 of Heart,J of Spade
+2 of Club,A of Heart
+4 of Club,K of Diamond
+7 of Diamond,7 of Spade
+2 of Diamond,4 of Spade
+9 of Spade,3 of Club
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+6,9
+Hand Num,Num Bots,Num Cards
+106,3,13
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+10 of Heart,7 of Club,A of Club,4 of Diamond
+9 of Club,5 of Diamond,K of Heart,7 of Heart
+10 of Club,K of Spade,A of Diamond,6 of Heart
+Q of Heart,6 of Diamond,10 of Diamond,8 of Club
+6 of Club,2 of Spade,5 of Heart,3 of Diamond
+10 of Spade,8 of Heart,A of Heart,J of Spade
+4 of Spade,2 of Heart,9 of Diamond,7 of Diamond
+Q of Diamond,J of Diamond,J of Club,3 of Club
+5 of Club,9 of Spade,8 of Spade,Q of Club
+K of Club,Q of Spade,9 of Heart,4 of Heart
+3 of Spade,7 of Spade,2 of Diamond,3 of Heart
+4 of Club,A of Spade,J of Heart,K of Diamond
+5 of Spade,8 of Diamond,2 of Club,6 of Spade
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+4,3,5,1
+Hand Num,Num Bots,Num Cards
+107,1,13
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+9 of Diamond,Q of Diamond
+A of Club,7 of Spade
+10 of Club,J of Diamond
+3 of Heart,K of Heart
+10 of Diamond,6 of Club
+4 of Diamond,7 of Heart
+9 of Club,5 of Heart
+2 of Heart,2 of Spade
+6 of Heart,7 of Club
+5 of Club,8 of Heart
+9 of Heart,J of Heart
+3 of Spade,Q of Heart
+Q of Spade,K of Club
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+4,10
+Hand Num,Num Bots,Num Cards
+108,3,13
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+4 of Heart,2 of Heart,A of Club,J of Diamond
+2 of Spade,7 of Spade,3 of Club,A of Heart
+K of Heart,A of Diamond,8 of Club,A of Spade
+J of Club,K of Club,8 of Heart,5 of Heart
+8 of Diamond,9 of Diamond,7 of Diamond,3 of Spade
+5 of Diamond,Q of Heart,J of Spade,Q of Diamond
+8 of Spade,7 of Club,9 of Club,4 of Club
+9 of Heart,10 of Heart,6 of Spade,4 of Spade
+6 of Diamond,2 of Diamond,2 of Club,10 of Spade
+5 of Club,6 of Heart,Q of Club,10 of Diamond
+4 of Diamond,5 of Spade,6 of Club,9 of Spade
+3 of Heart,J of Heart,7 of Heart,K of Spade
+10 of Club,Q of Spade,K of Diamond,3 of Diamond
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+0,5,4,6
+Hand Num,Num Bots,Num Cards
+109,3,13
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+8 of Diamond,10 of Club,K of Spade,Q of Spade
+10 of Diamond,J of Spade,2 of Club,10 of Heart
+A of Spade,3 of Heart,A of Heart,Q of Heart
+K of Diamond,6 of Club,8 of Spade,K of Club
+4 of Diamond,9 of Heart,10 of Spade,3 of Diamond
+6 of Heart,5 of Spade,J of Diamond,J of Heart
+6 of Diamond,Q of Diamond,5 of Heart,7 of Club
+9 of Diamond,5 of Diamond,7 of Diamond,A of Diamond
+2 of Diamond,Q of Club,7 of Heart,6 of Spade
+4 of Spade,4 of Heart,9 of Club,8 of Heart
+2 of Spade,2 of Heart,8 of Club,3 of Spade
+9 of Spade,5 of Club,K of Heart,4 of Club
+3 of Club,7 of Spade,J of Club,A of Club
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+2,3,7,4
+Hand Num,Num Bots,Num Cards
+110,3,2
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+K of Diamond,10 of Heart,A of Club,5 of Spade
+8 of Heart,5 of Diamond,A of Spade,4 of Heart
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+0,0,2,0
+Hand Num,Num Bots,Num Cards
+111,3,12
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+10 of Diamond,4 of Club,5 of Diamond,8 of Diamond
+6 of Club,7 of Heart,4 of Heart,K of Spade
+10 of Spade,8 of Spade,9 of Club,5 of Heart
+Q of Diamond,5 of Club,8 of Heart,9 of Spade
+2 of Club,8 of Club,9 of Heart,3 of Heart
+A of Club,3 of Club,4 of Diamond,3 of Diamond
+K of Diamond,6 of Spade,K of Heart,2 of Spade
+7 of Diamond,A of Spade,7 of Club,A of Diamond
+2 of Diamond,J of Club,9 of Diamond,A of Heart
+10 of Club,10 of Heart,7 of Spade,2 of Heart
+J of Spade,J of Heart,3 of Spade,6 of Heart
+Q of Heart,5 of Spade,4 of Spade,J of Diamond
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+8,3,2,3
+Hand Num,Num Bots,Num Cards
+112,1,12
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+10 of Heart,9 of Spade
+3 of Diamond,3 of Spade
+Q of Club,7 of Heart
+4 of Spade,2 of Spade
+9 of Heart,8 of Diamond
+4 of Heart,2 of Heart
+7 of Spade,6 of Spade
+K of Spade,K of Heart
+5 of Spade,J of Heart
+Q of Diamond,K of Diamond
+J of Spade,A of Diamond
+3 of Club,5 of Diamond
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+8,6
+Hand Num,Num Bots,Num Cards
+113,1,11
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+7 of Heart,8 of Spade
+6 of Club,7 of Club
+5 of Spade,K of Spade
+10 of Diamond,8 of Heart
+Q of Spade,7 of Spade
+9 of Spade,4 of Club
+A of Spade,10 of Heart
+K of Club,6 of Heart
+5 of Heart,9 of Club
+K of Heart,A of Club
+J of Diamond,J of Heart
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+6,6
+Hand Num,Num Bots,Num Cards
+114,1,11
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+7 of Spade,3 of Diamond
+Q of Heart,10 of Spade
+5 of Club,4 of Spade
+6 of Diamond,K of Club
+5 of Spade,K of Heart
+Q of Spade,2 of Club
+A of Spade,2 of Diamond
+3 of Heart,4 of Diamond
+10 of Club,3 of Spade
+4 of Club,5 of Heart
+2 of Spade,6 of Club
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+6,5
+Hand Num,Num Bots,Num Cards
+115,1,11
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+9 of Club,10 of Club
+9 of Spade,5 of Club
+8 of Heart,7 of Heart
+8 of Spade,4 of Club
+6 of Spade,7 of Club
+3 of Diamond,2 of Diamond
+7 of Spade,5 of Heart
+8 of Diamond,9 of Heart
+5 of Spade,K of Diamond
+10 of Heart,Q of Club
+J of Spade,8 of Club
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+6,5
+Hand Num,Num Bots,Num Cards
+116,1,13
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+Q of Diamond,10 of Spade
+5 of Heart,2 of Club
+7 of Heart,J of Club
+4 of Heart,Q of Heart
+3 of Club,10 of Heart
+6 of Club,Q of Club
+10 of Club,Q of Spade
+6 of Heart,9 of Diamond
+9 of Heart,8 of Diamond
+8 of Club,6 of Diamond
+2 of Heart,7 of Club
+5 of Spade,2 of Spade
+K of Club,K of Heart
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+6,8
+Hand Num,Num Bots,Num Cards
+117,3,13
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+10 of Diamond,7 of Club,4 of Diamond,A of Club
+Q of Spade,7 of Diamond,9 of Diamond,3 of Club
+2 of Spade,A of Heart,K of Diamond,9 of Club
+10 of Club,8 of Diamond,6 of Spade,8 of Spade
+7 of Heart,2 of Club,7 of Spade,J of Club
+5 of Spade,K of Heart,5 of Club,10 of Spade
+2 of Heart,J of Heart,6 of Club,2 of Diamond
+A of Spade,J of Diamond,4 of Club,3 of Heart
+3 of Spade,9 of Heart,4 of Spade,K of Club
+8 of Club,6 of Heart,J of Spade,5 of Heart
+3 of Diamond,K of Spade,Q of Diamond,8 of Heart
+10 of Heart,5 of Diamond,9 of Spade,Q of Heart
+6 of Diamond,Q of Club,A of Diamond,4 of Heart
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+3,4,2,4
+Hand Num,Num Bots,Num Cards
+118,3,6
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+Q of Heart,4 of Club,4 of Heart,K of Diamond
+Q of Spade,2 of Club,3 of Diamond,A of Spade
+9 of Club,8 of Diamond,9 of Heart,6 of Spade
+4 of Diamond,7 of Heart,10 of Heart,6 of Diamond
+9 of Diamond,Q of Diamond,6 of Heart,5 of Diamond
+Q of Club,A of Heart,8 of Club,A of Club
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+1,2,2,3
+Hand Num,Num Bots,Num Cards
+119,3,3
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+8 of Club,5 of Heart,4 of Club,3 of Heart
+4 of Spade,6 of Club,5 of Club,K of Club
+A of Club,8 of Spade,Q of Spade,8 of Diamond
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+2,0,0,1
+Hand Num,Num Bots,Num Cards
+120,3,13
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+9 of Diamond,5 of Spade,6 of Club,5 of Heart
+K of Club,A of Diamond,4 of Club,2 of Club
+Q of Diamond,6 of Diamond,K of Diamond,6 of Spade
+4 of Spade,3 of Diamond,Q of Club,2 of Heart
+6 of Heart,A of Spade,K of Spade,8 of Heart
+10 of Club,4 of Diamond,7 of Spade,8 of Diamond
+2 of Diamond,3 of Spade,5 of Diamond,J of Spade
+9 of Club,7 of Diamond,8 of Spade,Q of Heart
+A of Heart,7 of Club,10 of Diamond,J of Diamond
+A of Club,7 of Heart,9 of Heart,9 of Spade
+Q of Spade,10 of Spade,5 of Club,4 of Heart
+J of Heart,2 of Spade,10 of Heart,3 of Heart
+8 of Club,J of Club,3 of Club,K of Heart
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+6,2,2,3
+Hand Num,Num Bots,Num Cards
+121,3,5
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+9 of Heart,6 of Club,J of Club,6 of Diamond
+4 of Heart,A of Heart,4 of Club,Q of Heart
+3 of Club,7 of Diamond,8 of Club,3 of Spade
+A of Club,7 of Heart,5 of Heart,J of Diamond
+K of Spade,A of Spade,10 of Spade,10 of Diamond
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+1,2,2,0
+Hand Num,Num Bots,Num Cards
+122,3,3
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+9 of Heart,J of Diamond,10 of Heart,2 of Spade
+2 of Diamond,J of Heart,9 of Club,6 of Diamond
+6 of Spade,5 of Diamond,5 of Spade,3 of Club
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+1,2,0,0
+Hand Num,Num Bots,Num Cards
+123,3,3
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+6 of Heart,2 of Heart,9 of Diamond,3 of Spade
+4 of Diamond,5 of Diamond,6 of Spade,3 of Club
+4 of Club,K of Spade,5 of Spade,9 of Spade
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+0,1,2,0
+Hand Num,Num Bots,Num Cards
+124,2,3
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+Q of Spade,J of Club,9 of Spade
+3 of Diamond,7 of Club,K of Club
+6 of Spade,2 of Club,10 of Heart
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+1,0,2
+Hand Num,Num Bots,Num Cards
+125,2,5
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+5 of Heart,10 of Diamond,4 of Spade
+10 of Heart,8 of Diamond,4 of Diamond
+Q of Spade,8 of Spade,K of Spade
+7 of Club,A of Diamond,Q of Heart
+J of Club,5 of Spade,8 of Club
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+2,2,1
+Hand Num,Num Bots,Num Cards
+126,2,3
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+6 of Heart,3 of Club,6 of Diamond
+7 of Spade,4 of Spade,9 of Club
+8 of Heart,7 of Club,Q of Diamond
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+1,0,3
+Hand Num,Num Bots,Num Cards
+127,2,6
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+4 of Diamond,10 of Spade,3 of Diamond
+10 of Diamond,3 of Heart,K of Heart
+9 of Spade,K of Diamond,8 of Heart
+J of Club,5 of Club,A of Diamond
+9 of Diamond,A of Club,8 of Spade
+10 of Heart,4 of Club,2 of Heart
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+1,3,2
+Hand Num,Num Bots,Num Cards
+128,2,6
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+4 of Club,Q of Heart,3 of Diamond
+10 of Spade,7 of Heart,K of Spade
+J of Club,4 of Diamond,2 of Diamond
+9 of Heart,9 of Diamond,K of Heart
+A of Heart,J of Spade,J of Diamond
+A of Club,7 of Spade,10 of Diamond
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+3,1,2
+Hand Num,Num Bots,Num Cards
+129,2,2
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+4 of Diamond,8 of Heart,9 of Spade
+Q of Club,8 of Spade,2 of Heart
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+1,0,1
+Hand Num,Num Bots,Num Cards
+130,2,2
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+4 of Heart,Q of Diamond,A of Diamond
+6 of Spade,A of Club,9 of Heart
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+0,1,1
+Hand Num,Num Bots,Num Cards
+131,2,2
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+5 of Heart,3 of Club,8 of Spade
+2 of Diamond,7 of Heart,9 of Spade
+Player Score,Bot1 Score,Bot2 Score,Bot3 Score
+0,0,2
+Hand Num,Num Bots,Num Cards
+132,3,2
+Player Cards,Bot1 Cards,Bot2 Cards,Bot3 Cards
+5 of Diamond,8 of Heart,8 of Diamond,J of Heart
+8 of Spade,7 of Spade,A of

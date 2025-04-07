@@ -15,6 +15,10 @@ extends CharacterBody2D
 @export var angularDrag : float
 
 
+
+@export var minBulletTime := 0.5
+@export var maxBulletTime := 0.1
+
 var curLinearVel : float = 0.0
 var curLinearAccel : float = 0.0
 
@@ -63,6 +67,10 @@ func _physics_process(delta: float) -> void:
 	
 	UpdateManeuveringRatio()
 	
+	if float(health.curHealth) / float(health.maxHealth) <= 0.25:
+		BulletTime()
+	else:
+		Engine.time_scale = 1.0
 	
 func CalculateNewLinearAcceleration(delta: float) -> void:
 	if curLinearAccel > 0.0 and curLinearJerk < 0.0:
@@ -167,3 +175,9 @@ func UpdateManeuveringRatio() -> void:
 		return
 		
 	maneuveringRatio = clampf(healthPercentage * 2.0, 0.5, 1.0)
+
+
+func BulletTime() -> void:
+	var newTimeScale := maxBulletTime + ((minBulletTime - maxBulletTime) * ((float(health.curHealth) / float(health.maxHealth)) / 0.25))
+
+	Engine.time_scale = newTimeScale

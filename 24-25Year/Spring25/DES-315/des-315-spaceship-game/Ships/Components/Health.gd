@@ -5,10 +5,15 @@ extends Node
 
 signal HealthDepleted
 
-@export var maxHealth : int = 100
+signal DamageTaken
+
+@export var maxHealth : float = 100
+@export var regenerates : bool = true
+@export var regenerationRate : float = 0.05
 
 
-var curHealth : int
+var curHealth : float
+
 
 
 func _ready() -> void:
@@ -17,5 +22,11 @@ func _ready() -> void:
 func Damage(damage: int) -> void:
 	curHealth -= damage
 	
+	DamageTaken.emit()
+	
 	if curHealth <= 0:
 		HealthDepleted.emit()
+		
+func _process(delta: float) -> void:
+	if regenerates and curHealth < maxHealth:
+		curHealth += maxHealth * regenerationRate * delta

@@ -27,7 +27,7 @@ var curAngularJerk : float = 0.0
 
 var maneuveringRatio := 1.0
 
-var chaingun : Chaingun = null
+var chaingun : ChaingunComponent = null
 var missileLauncher : MissileLauncher = null
 
 var smokeEmitter : GPUParticles2D = null
@@ -35,7 +35,7 @@ var smokeEmitter : GPUParticles2D = null
 var health : Health = null
 
 func _ready() -> void:
-	chaingun = get_node(get_meta("Chaingun")) as Chaingun
+	chaingun = get_node(get_meta("Chaingun")) as ChaingunComponent
 	missileLauncher = get_node(get_meta("MissileLauncher")) as MissileLauncher
 	
 	smokeEmitter = get_node(get_meta("Particles")) as GPUParticles2D

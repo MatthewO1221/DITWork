@@ -1,10 +1,9 @@
 class_name Bullet
-extends Ammo
+extends Ammunition
 
-
+@export_category("Bullet Variables")
 @export var lifeTime : float = 10.0
-@export var damage : int = 5
-@export var knockbackStrength : float = 10.0
+
 
 
 func _process(delta: float) -> void:

@@ -15,6 +15,10 @@ run/main_scene="uid://ddlmgvas7uipp"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Settings="*res://Game/Settings.gd"
+
 [global_group]
 
 PlayerShip=""

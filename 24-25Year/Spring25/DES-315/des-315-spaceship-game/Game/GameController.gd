@@ -16,10 +16,13 @@ func _ready() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("SmallShip"):
 		SwitchShip(smallShip)
+		PopupText.SetText("Switched to Small Ship")
 	if event.is_action_pressed("MediumShip"):
 		SwitchShip(mediumShip)
+		PopupText.SetText("Switched to Medium Ship")
 	if event.is_action_pressed("LargeShip"):
 		SwitchShip(largeShip)
+		PopupText.SetText("Switched to Large Ship")
 
 func SwitchShip(shipType: PackedScene) -> void:
 	var newShip = shipType.instantiate()

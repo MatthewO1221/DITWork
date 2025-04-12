@@ -13,6 +13,7 @@ extends Weapon
 var timer : float = 0.0
 
 func _ready() -> void:
+	super()
 	firingCurve.Ready()
 
 func StartFiring() -> void:
@@ -38,14 +39,16 @@ func StopFiring() -> void:
 func SpawnAmmo() -> RigidBody2D:
 	var bullet = projectile.instantiate()
 	
-	add_child(bullet)
+	PopupText.SetText("Bullet Spawned")
+	
+	get_tree().current_scene.add_child(bullet)
 	
 	return bullet as RigidBody2D
 
 func Fire(forwardVector : Vector2) -> void:
 	var bullet = SpawnAmmo() as RigidBody2D
 	
-	forwardVector = forwardVector.rotated(deg_to_rad(randf_range(-maxProjectileSpread * firingCurve.GetValue(), maxProjectileSpread * firingCurve.GetValue())))
+	forwardVector = forwardVector.rotated(deg_to_rad(randf_range(-maxProjectileSpread * (firingCurve.GetValue() / firingCurve._maxValue.GetValue()), maxProjectileSpread * (firingCurve.GetValue() / firingCurve._maxValue.GetValue()))))
 	
 	bullet.linear_velocity = forwardVector * projectileSpeed
 	
@@ -53,7 +56,9 @@ func Fire(forwardVector : Vector2) -> void:
 	
 	bullet.global_rotation_degrees = rad_to_deg(forwardVector.angle()) + 90.0
 	
-	var ammo := bullet as Ammo
+	var ammo := bullet as Ammunition
 	
-	ammo.dama
+	var data : Dictionary[String, Variant] = {"Damage" = damage, "knockbackStrength" = knockbackStrength}
+	
+	ammo.ReceiveData(data)
 	

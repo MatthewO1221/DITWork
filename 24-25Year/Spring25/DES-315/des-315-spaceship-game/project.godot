@@ -18,10 +18,12 @@ config/icon="res://icon.svg"
 [autoload]
 
 Settings="*res://Game/Settings.gd"
+PopupText="*res://Ships/Components/PopupText.tscn"
 
 [global_group]
 
 PlayerShip=""
+Camera=""
 
 [input]
 

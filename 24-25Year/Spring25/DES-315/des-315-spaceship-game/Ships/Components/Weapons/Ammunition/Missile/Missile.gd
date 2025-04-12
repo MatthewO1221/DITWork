@@ -1,11 +1,10 @@
 class_name Missile
-extends Ammo
+extends Ammunition
 
 @export_category("Missile Values")
 @export var armingTime : float = 3.0
 @export var burnTime : float = 10.0
 @export var fizzleTime : float = 5.0
-@export var damage : int = 5
 
 @export_category("Physics Values")
 @export var maxLinearVelocity : float
@@ -197,18 +196,8 @@ func UpdateAngularVelocity(delta: float) -> void:
 	if curAngularJerk == 0.0:
 		curAngularVelocity -= curAngularVelocity * angularDrag * delta
 
-func _on_body_entered(body: Node) -> void:
 	
-	if state == MissileStates.Arming:
-		queue_free()
-	
-	var health = body.get_node(body.get_meta("Health")) as Health
-	
-	if health != null:
-		health.Damage(damage)
-		
-		
-		
+func Destroy(other: Node2D) -> void:
 	queue_free()
 
 

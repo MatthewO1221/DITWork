@@ -4,6 +4,10 @@ extends Component
 
 @export var maxHealth : float = 100.0
 
+@export var regenerates : bool = false
+
+@export var regenerationRate : float = 0.0
+
 
 var currentHealth : float
 
@@ -13,7 +17,14 @@ signal HealthDepleted
 signal Healed(health: float)
 
 func _ready() -> void:
+	super()
 	currentHealth = maxHealth
+	
+func _process(delta: float) -> void:
+	if regenerates and currentHealth < maxHealth:
+		currentHealth += regenerationRate * maxHealth * delta
+		
+
 	
 func TakeDamage(damage : float) -> void:
 	currentHealth -= damage

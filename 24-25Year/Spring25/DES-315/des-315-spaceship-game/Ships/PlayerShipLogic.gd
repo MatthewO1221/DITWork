@@ -1,6 +1,7 @@
 class_name PlayerShip
 extends CharacterBody2D
 
+@export var Explosion : PackedScene
 
 @export_category("Physics Values")
 @export var maxLinearVelocity : float
@@ -36,15 +37,34 @@ var missileLauncher : MissileLauncher = null
 
 var smokeEmitter : GPUParticles2D = null
 
-var health : Health = null
+var health : Hitbox = null
+
+var dead : bool = false
+
+@export var deathTimer : float = 5.0
+var curDeathTimer : float = 0.0
 
 func _ready() -> void:
 	chaingun = get_node(get_meta("Chaingun")) as ChaingunComponent
 	missileLauncher = get_node(get_meta("MissileLauncher")) as MissileLauncher
 	
 	smokeEmitter = get_node(get_meta("Particles")) as GPUParticles2D
-	health = get_node(get_meta("Health")) as Health
+	health = get_node(get_meta("Health")) as Hitbox
+	
+	health.HealthDepleted.connect(Die)
 func _physics_process(delta: float) -> void:
+	
+	if curDeathTimer >= deathTimer:
+		curDeathTimer = 0.0
+		dead = false
+		health.currentHealth = health.maxHealth
+		global_position = Vector2.ZERO
+	
+	if dead:
+		curDeathTimer += delta
+		Engine.time_scale = 1
+		return
+	
 	var forwardVector = -transform.y
 	
 	CalculateNewLinearAcceleration(delta)
@@ -67,10 +87,12 @@ func _physics_process(delta: float) -> void:
 	
 	UpdateManeuveringRatio()
 	
-	if float(health.curHealth) / float(health.maxHealth) <= 0.25:
+	if float(health.currentHealth) / float(health.maxHealth) <= 0.25 and health.currentHealth > 0.0:
 		BulletTime()
 	else:
 		Engine.time_scale = 1.0
+		
+	
 	
 func CalculateNewLinearAcceleration(delta: float) -> void:
 	if curLinearAccel > 0.0 and curLinearJerk < 0.0:
@@ -154,10 +176,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		missileLauncher.StartLaunching()
 	
 	if event.is_action_pressed("Debug_TakeDamage"):
-		health.Damage(10)
+		health.TakeDamage(10)
 
 func UpdateEmitter() -> void:
-	var healthPercentage : float = float(health.curHealth) / float(health.maxHealth)
+	var healthPercentage : float = float(health.currentHealth) / float(health.maxHealth)
 	
 	if healthPercentage > 0.5:
 		smokeEmitter.emitting = false
@@ -168,7 +190,7 @@ func UpdateEmitter() -> void:
 	smokeEmitter.amount_ratio = 0.1 / healthPercentage
 
 func UpdateManeuveringRatio() -> void:
-	var healthPercentage := float(health.curHealth) / float(health.maxHealth)
+	var healthPercentage := float(health.currentHealth) / float(health.maxHealth)
 	
 	if healthPercentage > 0.5:
 		maneuveringRatio = 1.0
@@ -176,8 +198,24 @@ func UpdateManeuveringRatio() -> void:
 		
 	maneuveringRatio = clampf(healthPercentage * 2.0, 0.5, 1.0)
 
-
 func BulletTime() -> void:
-	var newTimeScale := maxBulletTime + ((minBulletTime - maxBulletTime) * ((float(health.curHealth) / float(health.maxHealth)) / 0.25))
+	var newTimeScale := maxBulletTime + ((minBulletTime - maxBulletTime) * ((float(health.currentHealth) / float(health.maxHealth)) / 0.25))
+
+
+	if health.currentHealth <= 0.0:
+		Engine.time_scale = 1
+		return
 
 	Engine.time_scale = newTimeScale
+
+func Die() -> void:
+	dead = true
+	var explosion = Explosion.instantiate()
+	
+	get_tree().current_scene.add_child(explosion)
+	
+	explosion.global_position = global_position
+	
+	explosion.Explode()
+	
+	PopupText.SetText("Ship Destroyed")

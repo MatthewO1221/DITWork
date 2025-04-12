@@ -1,12 +1,16 @@
 class_name HealthBar
-extends Component
+extends Control
 
 
 
 func _ready() -> void:
-	super()
 	
-	var hitbox = parent as Hitbox
+	var hitbox
+	
+	hitbox = get_parent()
+	
+	while hitbox is not Hitbox:
+		hitbox = hitbox.get_parent()
 	
 	$ProgressBar.max_value = hitbox.maxHealth
 	

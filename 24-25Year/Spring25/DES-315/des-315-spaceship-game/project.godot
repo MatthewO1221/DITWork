@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Settings="*res://Game/Settings.gd"
 PopupText="*res://Ships/Components/PopupText.tscn"
+EffectSpawner="*res://Game/EffectSpawner.gd"
 
 [global_group]
 

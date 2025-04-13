@@ -39,7 +39,6 @@ func StopFiring() -> void:
 func SpawnAmmo() -> RigidBody2D:
 	var bullet = projectile.instantiate()
 	
-	PopupText.SetText("Bullet Spawned")
 	
 	get_tree().current_scene.add_child(bullet)
 	

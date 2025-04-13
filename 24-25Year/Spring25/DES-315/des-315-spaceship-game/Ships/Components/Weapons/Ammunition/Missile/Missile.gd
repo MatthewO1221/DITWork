@@ -5,27 +5,10 @@ extends Ammunition
 @export var armingTime : float = 3.0
 @export var burnTime : float = 10.0
 @export var fizzleTime : float = 5.0
+@export var detectionRange : float = 6000.0
+@export var missileSpeed : float = 1000.0
 
-@export_category("Physics Values")
-@export var maxLinearVelocity : float
-@export var maxLinearAcceleration : float
-@export var linearJerk : float
-@export var maxAngularVelocity : float
-@export var maxAngularAcceleration : float
-@export var angularJerk : float
 
-@export var linearDecelerationScalar : float
-@export var angularDecelerationScalar : float
-@export var linearDrag : float
-@export var angularDrag : float
-
-var curLinearVelocity : float = 0.0
-var curLinearAcceleration : float = 0.0
-var curLinearJerk : float = 0.0
-
-var curAngularVelocity : float = 0.0
-var curAngularAcceleration : float = 0.0
-var curAngularJerk : float = 0.0
 
 enum MissileStates
 {
@@ -47,6 +30,35 @@ func _ready() -> void:
 	for child in children:
 		if child is RayCast2D:
 			raycasts.push_back(child)
+			
+			
+	RaycastSetup()
+	
+	
+func RaycastSetup() -> void:
+	
+	var rayCount : int = raycasts.size()
+	var coneAngle : float = deg_to_rad(90) # Full cone in radians
+	var halfAngle : float = coneAngle / 2
+
+	for i in range(rayCount):
+		var ray : RayCast2D = raycasts[i]
+		if ray == null:
+			continue
+		
+		# Calculate normalized spread from -1 to 1
+		var t : float = float(i) / float(rayCount - 1)  # goes from 0 to 1
+		var spreadFactor : float = lerp(-1.0, 1.0, t)   # -1 (left), 0 (center), 1 (right)
+
+		# Calculate angle offset from forward (-Y), rotated in global space
+		var angle : float = spreadFactor * halfAngle
+		
+		# Direction vector pointing in the angle (relative to -Y being forward)
+		var direction := Vector2.UP.rotated(angle)  # UP is -Y
+
+		# Set cast_to relative to missile
+		ray.target_position = direction * detectionRange
+		
 
 func _physics_process(delta: float) -> void:
 	match state:
@@ -59,27 +71,24 @@ func _physics_process(delta: float) -> void:
 			if burnTime <= 0.0:
 				ChangeState(MissileStates.Fizzling)
 				return
-			Search()
-			UpdatePhysics(delta)
+			Search(delta)
 		MissileStates.Homing:
 			burnTime -= delta
 			if burnTime <= 0.0:
 				ChangeState(MissileStates.Fizzling)
 				return
 			Home()
-			UpdatePhysics(delta)
 		MissileStates.Fizzling:
 			fizzleTime -= delta
 			
 			if fizzleTime <= 0.0:
 				queue_free()
-			UpdatePhysics(delta)
 
 	
 	
 
 
-func Search() -> void:
+func Search(delta : float) -> void:
 	for raycast in raycasts:
 		raycast.force_raycast_update()
 		
@@ -88,118 +97,27 @@ func Search() -> void:
 			ChangeState(MissileStates.Homing)
 			return
 			
-	curAngularJerk = angularJerk
+	rotation_degrees += 90 * delta
 
 func Home() -> void:
 	if !is_instance_valid(target):
 		ChangeState(MissileStates.Searching)
 		return
 		
-	var targetPos = target.global_position
+	var direction = (target.global_position - global_position).normalized()
+	rotation = direction.angle() + deg_to_rad(90)  # +90° because -Y is forward
 	
-	var curForward = -transform.y.normalized()
-	
-	var desiredForward = (targetPos - global_position).normalized()
-	
-	var angleOfChange = rad_to_deg(curForward.angle_to(desiredForward))
-	
-	var desiredAngularVelocity = sign(angleOfChange) * maxAngularVelocity * (abs(angleOfChange) / PI)
-	
-	
-	
+	constant_force = direction * missileSpeed
 
-	if curAngularVelocity < desiredAngularVelocity :
-		curAngularJerk = angularJerk
-	elif curAngularVelocity > desiredAngularVelocity:
-		curAngularJerk = -angularJerk
-	else:
-		curAngularJerk = 0.0
-		
-		
-		
-	curLinearJerk = linearJerk
-
-
-
-func UpdatePhysics(delta : float) -> void:
-	UpdateLinearPhysics(delta)
-	UpdateAngularPhysics(delta)
 	
-	linear_velocity = -transform.y.normalized() * curLinearVelocity
-	angular_velocity = curAngularVelocity
-	
-
-
-func UpdateLinearPhysics(delta: float) -> void:
-	UpdateLinearAcceleration(delta)
-	UpdateLinearVelocity(delta)
-	
-func UpdateAngularPhysics(delta: float) -> void:
-	UpdateAngularAcceleration(delta)
-	UpdateAngularVelocity(delta)
-		
-func UpdateLinearAcceleration(delta: float) -> void:
-	if curLinearAcceleration > 0.0 and curLinearJerk < 0.0:
-		curLinearAcceleration += curLinearJerk * delta * linearDecelerationScalar
-	elif curLinearAcceleration < 0.0 and curLinearJerk > 0.0:
-		curLinearAcceleration += curLinearJerk * delta * linearDecelerationScalar
-	else:
-		curLinearAcceleration += curLinearJerk * delta
-		
-	if curLinearAcceleration >= maxLinearAcceleration:
-		curLinearAcceleration = maxLinearAcceleration
-	
-	if curLinearAcceleration <= -maxLinearAcceleration:
-		curLinearAcceleration = -maxLinearAcceleration
-		
-	if curLinearJerk == 0.0:
-		curLinearAcceleration -= curLinearAcceleration * linearDrag * delta
-
-func UpdateLinearVelocity(delta: float) -> void:
-	curLinearVelocity += curLinearAcceleration * delta
-	
-	if curLinearVelocity >= maxLinearVelocity:
-		curLinearVelocity = maxLinearVelocity
-	if curLinearVelocity <= -maxLinearVelocity:
-		curLinearVelocity = -maxLinearVelocity
-		
-	if curLinearJerk == 0.0:
-		curLinearVelocity -= curLinearVelocity * linearDrag * delta
-
-
-func UpdateAngularAcceleration(delta: float) -> void:
-	if curAngularAcceleration > 0.0 and curAngularJerk < 0.0:
-		curAngularAcceleration += curAngularJerk * delta * angularDecelerationScalar
-	elif curAngularAcceleration < 0.0 and curAngularJerk > 0.0:
-		curAngularAcceleration += curAngularJerk * delta * angularDecelerationScalar
-	else:
-		curAngularAcceleration += curAngularJerk * delta
-		
-	if curAngularAcceleration >= maxAngularAcceleration:
-		curAngularAcceleration = maxAngularAcceleration
-	
-	if curAngularAcceleration <= -maxAngularAcceleration:
-		curAngularAcceleration = -maxAngularAcceleration
-		
-	if curAngularJerk == 0.0:
-		curAngularAcceleration -= curAngularAcceleration * angularDrag * delta
-
-
-func UpdateAngularVelocity(delta: float) -> void:
-	curAngularVelocity += curAngularAcceleration * delta
-	
-	if curAngularVelocity >= maxAngularVelocity:
-		curAngularVelocity = maxAngularVelocity
-	if curAngularVelocity <= -maxAngularVelocity:
-		curAngularVelocity = -maxAngularVelocity
-
-	if curAngularJerk == 0.0:
-		curAngularVelocity -= curAngularVelocity * angularDrag * delta
-
 	
 func Destroy(other: Node2D) -> void:
+	EffectSpawner.SpawnExplosion(global_position, Vector2(1,1), 10.0)
 	queue_free()
 
+func Die() -> void:
+	EffectSpawner.SpawnExplosion(global_position, Vector2(1,1), 10.0)
+	queue_free()
 
 func ChangeState(newState : MissileStates) -> void:
 	state = newState

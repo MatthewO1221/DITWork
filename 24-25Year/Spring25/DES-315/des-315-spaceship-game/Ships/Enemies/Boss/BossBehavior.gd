@@ -40,6 +40,10 @@ func Search() -> void:
 		curState = States.Seeking
 		
 func Seek() -> void:
+	if !is_instance_valid(player):
+		curState = States.Searching
+		return
+	
 	var distToPlayer = global_position.distance_to(player.global_position)
 	
 	if distToPlayer > orbitDistance:
@@ -48,8 +52,33 @@ func Seek() -> void:
 		velocity = Vector2.ZERO
 		curState = States.Orbiting
 		
-	look_at(player.global_position)
+	var direction = (player.global_position - global_position).normalized()
+	rotation = direction.angle() + deg_to_rad(90)  # +90° because -Y is forward
+	
+	move_and_slide()
 	
 	
 func Orbit() -> void:
-	pass
+	if !is_instance_valid(player):
+		curState = States.Searching
+		return
+	
+	var toPlayer := global_position.direction_to(player.global_position)
+	
+	var newVelocity : Vector2 = Vector2.ZERO
+	
+	newVelocity += Vector2(toPlayer.y, -toPlayer.x) * orbitSpeed
+	
+	if global_position.distance_to(player.global_position) < orbitDistance:
+		newVelocity += -toPlayer * orbitSpeed
+	
+	velocity = newVelocity
+	
+	var direction = (player.global_position - global_position).normalized()
+	rotation = direction.angle() + deg_to_rad(90)  # +90° because -Y is forward
+	
+	move_and_slide()
+
+func Die() -> void:
+	EffectSpawner.SpawnExplosion(global_position, Vector2(5,5), 30.0)
+	queue_free()

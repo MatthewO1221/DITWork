@@ -51,9 +51,15 @@ func StopLaunching() -> void:
 func SpawnMissile() -> Node2D:
 	var missile = projectile.instantiate()
 	
-	PopupText.SetText("Missile Spawned")
+	
 	
 	get_tree().current_scene.add_child(missile)
+	
+	var ammo := missile as Ammunition
+	
+	var data : Dictionary[String, Variant] = {"Damage" = damage, "knockbackStrength" = knockbackStrength}
+	
+	ammo.ReceiveData(data)
 	
 	return missile
 

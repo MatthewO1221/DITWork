@@ -19,4 +19,7 @@ func _physics_process(delta: float) -> void:
 func Launch() -> void:
 	$MissileLauncher.Launch()
 	missileLaunchTimer.start(missileLaunchTime)
-	
+
+func Die() -> void:
+	super()
+	PopupText.SetText("Boss missile launcher dead!")

@@ -81,4 +81,5 @@ func Orbit() -> void:
 
 func Die() -> void:
 	EffectSpawner.SpawnExplosion(global_position, Vector2(5,5), 30.0)
+	PopupText.SetText("Boss dead!")
 	queue_free()

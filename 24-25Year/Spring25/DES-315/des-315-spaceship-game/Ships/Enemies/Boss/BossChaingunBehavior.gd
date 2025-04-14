@@ -21,6 +21,7 @@ func _physics_process(delta: float) -> void:
 
 func Die() -> void:
 	super()
+	PopupText.SetText("Boss chaingun dead!")
 	
 func StartFiring() -> void:
 	$Chaingun.StartFiring()

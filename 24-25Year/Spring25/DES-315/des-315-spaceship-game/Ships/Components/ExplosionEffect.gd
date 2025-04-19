@@ -28,7 +28,7 @@ func Explode() -> void:
 	
 	ApplyShake()
 	
-	EmitBullets()
+	EmitBullets.call_deferred()
 	
 func EmitBullets() -> void:
 	for i in bulletAmount:
@@ -41,7 +41,7 @@ func EmitBullets() -> void:
 		
 		get_tree().current_scene.add_child(curBullet)
 		
-		curBullet.global_position = global_position
+		curBullet.global_position = global_position + (direction * 500)
 		
 		curBullet.linear_velocity = direction * bulletSpeed
 		

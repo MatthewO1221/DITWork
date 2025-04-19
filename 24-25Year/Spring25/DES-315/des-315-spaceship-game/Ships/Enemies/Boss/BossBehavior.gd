@@ -8,7 +8,8 @@ enum States
 	Orbiting
 }
 
-@export var orbitDistance : float = 1000.0
+@export var minOrbitDistance : float = 1000.0
+@export var maxOrbitDistance : float = 3000.0
 @export var seekSpeed : float = 100.0
 @export var orbitSpeed : float = 100.0
 
@@ -46,14 +47,14 @@ func Seek() -> void:
 	
 	var distToPlayer = global_position.distance_to(player.global_position)
 	
-	if distToPlayer > orbitDistance:
+	if distToPlayer > minOrbitDistance:
 		velocity = (player.global_position - global_position).normalized() * seekSpeed
-	elif distToPlayer <= orbitDistance:
+	elif distToPlayer <= minOrbitDistance:
 		velocity = Vector2.ZERO
 		curState = States.Orbiting
 		
 	var direction = (player.global_position - global_position).normalized()
-	rotation = direction.angle() + deg_to_rad(90)  # +90° because -Y is forward
+	global_rotation = direction.angle() + deg_to_rad(90)  # +90° because -Y is forward
 	
 	move_and_slide()
 	
@@ -69,17 +70,21 @@ func Orbit() -> void:
 	
 	newVelocity += Vector2(toPlayer.y, -toPlayer.x) * orbitSpeed
 	
-	if global_position.distance_to(player.global_position) < orbitDistance:
+	if global_position.distance_to(player.global_position) < minOrbitDistance:
 		newVelocity += -toPlayer * orbitSpeed
+	
+	if global_position.distance_to(player.global_position) > maxOrbitDistance:
+		curState = States.Seeking
+		return
 	
 	velocity = newVelocity
 	
 	var direction = (player.global_position - global_position).normalized()
-	rotation = direction.angle() + deg_to_rad(90)  # +90° because -Y is forward
+	global_rotation = direction.angle() + deg_to_rad(90)  # +90° because -Y is forward
 	
 	move_and_slide()
 
 func Die() -> void:
-	EffectSpawner.SpawnExplosion(global_position, Vector2(5,5), 30.0)
+	EffectSpawner.SpawnExplosion(global_position, Vector2(5,5), 1000.0)
 	PopupText.SetText("Boss dead!")
 	queue_free()

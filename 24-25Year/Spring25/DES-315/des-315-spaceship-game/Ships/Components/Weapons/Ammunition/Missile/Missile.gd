@@ -107,7 +107,7 @@ func Home() -> void:
 	var direction = (target.global_position - global_position).normalized()
 	rotation = direction.angle() + deg_to_rad(90)  # +90° because -Y is forward
 	
-	constant_force = direction * missileSpeed
+	apply_central_force(-transform.y * missileSpeed)
 
 	
 	

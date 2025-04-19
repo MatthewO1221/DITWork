@@ -28,7 +28,7 @@ func _process(delta: float) -> void:
 		return
 		
 	if timer >= 1.0 / firingCurve.GetValue():
-		Fire(-parent.transform.y)
+		Fire(-parent.global_transform.y)
 		timer = 0.0
 
 

@@ -45,17 +45,25 @@ var curAngularJerk : float = 0.0
 var curBulletTimeScale : float = 1.0
 var curManeuveringRatio : float = 1.0
 
+
+var chaingun : ChaingunComponent = null
+var missileLauncher : MissileLauncher = null
+
 func _ready() -> void:
-	pass
+	chaingun = get_node(get_meta("Chaingun")) as ChaingunComponent
+	missileLauncher = get_node(get_meta("MissileLauncher")) as MissileLauncher
 	
 func _physics_process(delta: float) -> void:
 	CalculateNewLinearAcceleration(delta)
 	CalculateNewLinearVelocity(delta)
 	
 	
-	linear_velocity *= linearDampingScalar * delta
+	
+	linear_velocity *= 1.0 - (linearDampingScalar * delta)
 	
 	linear_velocity += -transform.y * curLinearVelocity * delta
+	
+	print(linear_velocity)
 	
 	linear_velocity = linear_velocity.limit_length(maxLinearVelocity)
 	
@@ -63,7 +71,7 @@ func _physics_process(delta: float) -> void:
 	CalculateNewAngularAcceleration(delta)
 	CalculateNewAngularVelocity(delta)
 	
-	angular_velocity *= angularDampingScalar * delta
+	angular_velocity *=  1.0 - (angularDampingScalar * delta)
 	
 	angular_velocity += curAngularVelocity * delta
 	
@@ -76,7 +84,7 @@ func _physics_process(delta: float) -> void:
 		
 		
 func CalculateNewLinearAcceleration(delta : float) -> void:
-	curLinearAcceleration *= linearDampingScalar * delta
+	curLinearAcceleration *= 1.0 - ( linearDampingScalar * delta)
 	
 	if curLinearJerk == 0.0:
 		return
@@ -95,7 +103,7 @@ func CalculateNewLinearAcceleration(delta : float) -> void:
 		
 	
 func CalculateNewLinearVelocity(delta : float) -> void:
-	curLinearVelocity *= linearDampingScalar * delta
+	curLinearVelocity *= 1.0 - (linearDampingScalar * delta)
 	
 	if curLinearAcceleration == 0.0:
 		return
@@ -111,7 +119,7 @@ func CalculateNewLinearVelocity(delta : float) -> void:
 		curLinearVelocity = maxf(curLinearVelocity, -maxLinearVelocity)
 	
 func CalculateNewAngularAcceleration(delta : float) -> void:
-	curAngularAcceleration *= angularDampingScalar * delta
+	curAngularAcceleration *= 1 - (angularDampingScalar * delta)
 	
 	if curAngularJerk == 0.0:
 		return
@@ -127,7 +135,7 @@ func CalculateNewAngularAcceleration(delta : float) -> void:
 		curAngularAcceleration = maxf(curAngularAcceleration, -maxAngularAcceleration)
 	
 func CalculateNewAngularVelocity(delta : float) -> void:
-	curAngularVelocity *= angularDampingScalar * delta
+	curAngularVelocity *= 1.0 - (angularDampingScalar * delta)
 	
 	if curAngularAcceleration == 0.0:
 		return
@@ -367,7 +375,49 @@ func CalculateNewAngularVelocity(delta : float) -> void:
 	#PopupText.SetText("Ship Destroyed")
 
 func UpdateManeuveringRatio(newHealth : float) -> void:
-	pass
+	if newHealth / $Hitbox.maxHealth > 0.5:
+		curManeuveringRatio = maximumManeuveringRatio
+		return
+		
+	var damageRatio = (newHealth / $Hitbox.maxHealth) / 0.5
+	
+	curManeuveringRatio = minimumManeuveringRatio + ((maximumManeuveringRatio - minimumManeuveringRatio) * damageRatio)
 	
 func UpdateBulletTime(newHealth : float) -> void:
-	pass
+	if newHealth / $Hitbox.maxHealth > 0.25:
+		curBulletTimeScale = 1
+		Engine.time_scale = curBulletTimeScale
+		return
+		
+	var damageRatio = (newHealth / $Hitbox.maxHealth) / 0.25
+	
+	curBulletTimeScale = minBulletTimeScale + ((maxBulletTimeScale - minBulletTimeScale) * damageRatio)
+	
+	Engine.time_scale = curBulletTimeScale
+	
+	
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("Move Forward"):
+		curLinearJerk = linearJerk
+	elif event.is_action_released("Move Forward"):
+		curLinearJerk = 0
+	if event.is_action_pressed("Move Backward"):
+		curLinearJerk = -linearJerk
+	elif event.is_action_released("Move Backward"):
+		curLinearJerk = 0
+	if event.is_action_pressed("Rotate Clockwise"):
+		curAngularJerk = angularJerk
+	elif event.is_action_released("Rotate Clockwise"):
+		curAngularJerk = 0
+	if event.is_action_pressed("Rotate Counter-Clockwise"):
+		curAngularJerk = -angularJerk
+	elif event.is_action_released("Rotate Counter-Clockwise"):
+		curAngularJerk = 0
+		
+	if event.is_action_pressed("FireChaingun"):
+		chaingun.StartFiring()
+	elif event.is_action_released("FireChaingun"):
+		chaingun.StopFiring()
+		
+	if event.is_action_pressed("FireMissiles"):
+		missileLauncher.StartLaunching()

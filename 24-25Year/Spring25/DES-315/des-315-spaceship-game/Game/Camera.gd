@@ -31,7 +31,7 @@ func UpdateCameraPos(delta: float) -> void:
 	
 	
 func UpdateCameraZoom() -> void:
-	var curShipSpeed = playerShip.curLinearVel
+	var curShipSpeed = playerShip.curLinearVelocity
 	
 	var curSpeedRatio = curShipSpeed / playerShip.maxLinearVelocity
 	

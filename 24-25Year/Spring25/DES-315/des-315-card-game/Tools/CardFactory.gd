@@ -1,5 +1,6 @@
 extends Node
 
+## The base card scene
 const cardScene = preload("res://Card/Card.tscn")
 
 # Called when the node enters the scene tree for the first time.
@@ -11,6 +12,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
+## Creates a card of the given suit and value
 func CreateCard(value: CardBase.Values, suit: CardBase.Suits) -> Node2D:
 	var newCard = cardScene.instantiate()
 	assert(newCard != null, "Failed to create card of type: " + CardBase.valueMap[value] + " of " + CardBase.suitMap[suit])
@@ -23,18 +25,21 @@ func CreateCard(value: CardBase.Values, suit: CardBase.Suits) -> Node2D:
 	
 	return newCard
 
+## Create a random card
 func CreateRandomCard() -> Node2D:
 	var randValue = CardBase.Suits.values().pick_random()
 	var randSuit = CardBase.Values.values().pick_random()
 	
 	return CreateCard(randValue, randSuit)
 
+## Get the texture of the given value and suit
 func GetTexture(value : CardBase.Values, suit : CardBase.Suits) -> Resource:
 	var textureString = "res://Card/CardSprites/" + CardBase.suitMap[suit] + "_" + CardBase.valueMap[value] + ".png"
 	var cardTexture = load(textureString)
 	
 	return cardTexture
 
+## Generate an entire deck of cards
 func GenerateDeck() -> Array[CardBase]:
 	var deck : Array[CardBase]
 	for suit in CardBase.suitMap:

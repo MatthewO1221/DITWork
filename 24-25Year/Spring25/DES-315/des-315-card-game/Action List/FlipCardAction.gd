@@ -17,8 +17,11 @@ parentAction: Action = null) -> void:
 	card = affects
 	children = []
 	
+	# Get original scale
 	var cardScale = affects.global_scale
 	
+	
+	# First scale down the card
 	var temp1 : CustomCurve = CustomCurve.new(easingMethod.curveType, easingMethod.easeType)
 	
 	var scaleDownAction = ScaleAction.new(true, false, groupName, lastsFor, 0.0, repeats, affects, Vector2.ZERO, temp1, self)
@@ -26,11 +29,12 @@ parentAction: Action = null) -> void:
 	children.push_back(scaleDownAction)
 	
 	
-	
+	# Then flip the card
 	var flipAction = FlipAction.new(true, false, groupName, 0.0, repeats, affects, self)
 	
 	children.push_back(flipAction)
 	
+	# Finally scale the card back up
 	var temp2 : CustomCurve = CustomCurve.new(easingMethod.curveType, easingMethod.easeType)
 	
 	var scaleUpAction = ScaleAction.new(false, false, groupName, lastsFor, 0.0, repeats, affects, cardScale, temp2, self)

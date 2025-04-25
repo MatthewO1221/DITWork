@@ -3,13 +3,11 @@
 importer="csv_translation"
 type="Translation"
 uid="uid://c8k6kapffxa58"
+valid=false
 
 [deps]
 
-files=["res://TelemetryData_13_43_50.Num Bots.translation", "res://TelemetryData_13_43_50.Num Cards.translation"]
-
 source_file="res://TelemetryData_13_43_50.csv"
-dest_files=["res://TelemetryData_13_43_50.Num Bots.translation", "res://TelemetryData_13_43_50.Num Cards.translation"]
 
 [params]
 

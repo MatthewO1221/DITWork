@@ -1,10 +1,10 @@
 class_name DiscardContainer
 extends CardContainer
 
-
+## The offset applied to each card from the one below it, gives discard a 3d look
 @export var offset: Vector2
 
-
+## The cards in the discard pile
 var cards: Array[CardBase]
 
 
@@ -17,7 +17,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	actionList.UpdateAllActions(delta * actionSpeed)
 
-	
+## Offsets all cards, works similarly to [method DeckContainer.OffsetCards]
 func OffsetCards() -> void:
 	
 	for i in cards.size():
@@ -32,18 +32,22 @@ func OffsetCards() -> void:
 		
 		actionList.PushBack(moveAction)
 
+## Make all cards face down
 func HideCards() -> void:
 	for card in cards:
 		card.ShowBack()
-		
+
+## Make all cards face up
 func ShowCards() -> void:
 	for card in cards:
 		card.ShowFace()
 
+## Adds a card to the discard
 func AddCard(card : CardBase) -> void:
 	cards.push_back(card)
 	OffsetCards()
 
+## Adds a card to the discard and uses actions to move it
 func GrabCard(card: CardBase) -> void:
 	
 	AddCard(card)
@@ -62,24 +66,28 @@ func GrabCard(card: CardBase) -> void:
 	
 	OffsetCards()
 	
-	
+## Grabs all cards from given [TrickContainer]
 func GrabCards(trick: TrickContainer) -> void:
 	
 	for card in trick.cards.values():
 		GrabCard(card)
-	
+
+## Returns top card in discard
 func GetTopCard() -> CardBase:
 	return cards.back()
-	
+
+## Removes top card and returns it
 func RemoveTopCard() -> CardBase:
 	var card = GetTopCard()
 	cards.pop_back()
 	return card
-	
+
+## Shuffles discard, does not use shuffle action
 func Shuffle() -> void:
 	cards.shuffle()
 	OffsetCards()
 
+## Clear out discard
 func Reset() -> void:
 	for card in cards:
 		card.queue_free()

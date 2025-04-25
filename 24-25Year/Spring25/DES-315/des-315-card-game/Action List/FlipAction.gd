@@ -16,6 +16,7 @@ parentAction: Action = null) -> void:
 	
 
 func Start() -> void:
+	# Simply flips the card when called
 	entity.Flip()
 
 func GetActionType() -> String:

@@ -3,24 +3,38 @@ extends Node2D
 
 var delay := 0.1
 
-
+## Cards per hand
 @export var handSize := 7
+## @deprecated
 @export var playSpeed := 1.0
+## Number of bots
 @export var botNum := 3
 
+## The deck
 @onready var deck = $DeckContainer
+
+## The player's hand
 @onready var playerHand := $Player as HandContainer
+## Bot 1's hand
 @onready var botHand1 := $Bot1 as HandContainer
+## Bot 2's hand
 @onready var botHand2 := $Bot2 as HandContainer
+## Bot 3's hand
 @onready var botHand3 := $Bot3 as HandContainer
 
+## Action list
 var actionList := ActionList.new()
 
+## Player's score
 var playerScore := 0
+## Bot 1's score
 var bot1Score := 0
+## Bot 2's score
 var bot2Score := 0
+## Bot 3's score
 var bot3Score := 0
 
+# All of this is dumb
 @onready var botName1 = $Control/BotLabel1
 @onready var botName2 = $Control/BotLabel2
 @onready var botName3 = $Control/BotLabel3
@@ -28,16 +42,18 @@ var bot3Score := 0
 @onready var botScore2 = $Control/BotScore2
 @onready var botScore3 = $Control/BotScore3
 
-
+## Whether debug text should be displayed
 var debugMode : bool = false
 
-
+## Sent when hand is finished playing
 signal DonePlaying
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	# Spawn a deck and shuffle it
 	deck.SpawnDeck()
 	ShuffleDeck()
+	# Makes card hovering work better
 	get_viewport().set_physics_object_picking_sort(true)
 	get_viewport().set_physics_object_picking_first_only(true)
 	playerScore = 0
@@ -54,12 +70,6 @@ func _physics_process(delta: float) -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("Deal"):
-		DealHands()
-	if event.is_action_pressed("Shuffle"):
-		ShuffleDeck()
-	if event.is_action_pressed("FlipHand"):
-		FlipHand()
 	#if event.is_action_pressed("Play Cards"):
 		#PlayCards()
 	if event.is_action_pressed("Debug"):
@@ -70,6 +80,7 @@ func _input(event: InputEvent) -> void:
 		else:
 			$ActionDebugger.hide()
 
+## Deals [GameBoard.handSize] cards to each hand
 func DealHands() -> void:
 	
 	var hands : Array[HandContainer] = [playerHand]
@@ -92,6 +103,7 @@ func DealHands() -> void:
 	
 	actionList.PushBack(dealAction)
 
+## Shuffles the deck
 func ShuffleDeck() -> void:
 	
 	var shuffleCurve := CustomCurve.new(Tween.TransitionType.TRANS_LINEAR, Tween.EaseType.EASE_IN)
@@ -100,6 +112,7 @@ func ShuffleDeck() -> void:
 	
 	actionList.PushBack(shuffleAction)
 	
+## Flips all cards in player hand
 func FlipHand() -> void:
 	var easingMethod := CustomCurve.new(Tween.TransitionType.TRANS_LINEAR, Tween.EaseType.EASE_IN)
 	
@@ -107,6 +120,7 @@ func FlipHand() -> void:
 		var flipAction = FlipCardAction.new(true, false, "HandFlip", 1.0, 0.0, false, card, easingMethod)
 		actionList.PushBack(flipAction)
 
+## Plays cards from each hand, given card is picked from player hand, others are random
 func PlayCards(card: CardBase) -> void:
 	var trickContainer = $TrickContainer as TrickContainer
 	
@@ -250,6 +264,40 @@ func UpdateHandSize(newValue : int) -> void:
 	handSize = newValue
 
 func UpdateHandNumber(newValue : int) -> void:
+	
+	var addingHands : bool = botNum < newValue
+	
+	
+	
+	
+	if addingHands:
+		if botNum < 2 and newValue >= 2:
+			var dealCurve := CustomCurve.new(Tween.TransitionType.TRANS_CUBIC, Tween.EaseType.EASE_OUT)
+	
+			var dealAction = DealHandsAction.new(false, false, "Deal", 0.5, 0.0, false, [botHand2], botHand1.hand.size(), deck, 0.1, dealCurve)
+	
+			actionList.PushBack(dealAction)
+			
+		if botNum < 3 and newValue >= 3:
+			var dealCurve := CustomCurve.new(Tween.TransitionType.TRANS_CUBIC, Tween.EaseType.EASE_OUT)
+	
+			var dealAction = DealHandsAction.new(false, false, "Deal", 0.5, 0.0, false, [botHand3], botHand1.hand.size(), deck, 0.1, dealCurve)
+	
+			actionList.PushBack(dealAction)
+	else:
+		if newValue < 3:
+			deck.GrabCards(botHand3.hand.keys())
+			for card in botHand3.hand.keys():
+				botHand3.RemoveCard(card)
+			
+		if newValue < 2:
+			deck.GrabCards(botHand2.hand.keys())
+			
+			for card in botHand2.hand.keys():
+				botHand2.RemoveCard(card)
+				
+		ShuffleDeck()
+	
 	botNum = newValue
 
 

@@ -1,3 +1,4 @@
+## Same as regular Influencer Action, but works on control nodes
 class_name UIInfluencerAction
 extends Action
 

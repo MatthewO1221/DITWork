@@ -1,14 +1,19 @@
+## Influencer Actions are the most common type. They effect entities continuously over time. This covers things 
+## like translation, scale, or rotate actions
 class_name InfluencerAction
 extends Action
 
 
-
+## The entity being affected
 var entity: Node2D
 
+## The function that is called every frame, lambdas for the win
 var actionFunction: Callable
 
+## The "curve" that dictates the value every frame
 var curve : CustomCurve
 
+## How long the action takes
 var duration : float
 var timePassed := 0.0
 
@@ -46,8 +51,10 @@ func Update(delta: float) -> bool:
 		started = true
 		Start()
 	
+	# Leftover from when engine time was having problems, just ticks the time passed
 	UpdateTimePassed(delta)
 	
+	# Call action function
 	actionFunction.call()
 	
 	var temp : Array[Action] = []
@@ -67,7 +74,7 @@ func Update(delta: float) -> bool:
 	return false
 
 
-
+## Set of requirements for if the action is considered finished and can be deleted
 func ActionFinished() -> bool:
 	
 	if children.is_empty():
@@ -91,6 +98,5 @@ func GetPercentDone() -> float:
 
 
 func UpdateTimePassed(delta: float) -> void:
-	var timeScale = Engine.time_scale
 	
 	timePassed += delta

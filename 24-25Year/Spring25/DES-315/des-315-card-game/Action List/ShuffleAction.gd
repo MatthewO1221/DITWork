@@ -17,7 +17,7 @@ parentAction: Action = null) -> void:
 	super(blocksGroups, blocksEverything, groupName, lastsFor, delayedFor, repeats, affects, Shuffle, easingMethod, parentAction)
 	
 	
-	
+	# Pick two random cards to rotate
 	for i in range(2):
 		cardsToRotate.push_back(entity.cards.pick_random())
 	
@@ -28,6 +28,7 @@ parentAction: Action = null) -> void:
 	
 func Shuffle() -> void:
 	
+	# Rotate cards in opposite directions
 	cardsToRotate[0].global_rotation_degrees = curve.GetValue(timePassed, duration)
 	cardsToRotate[1].global_rotation_degrees = curve.GetValueFrom(0.0, -360.0, timePassed, duration)
 

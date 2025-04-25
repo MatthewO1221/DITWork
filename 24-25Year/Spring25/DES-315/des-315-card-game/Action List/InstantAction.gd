@@ -1,8 +1,9 @@
+## Instant Actions affect entities like influencer actions but only occur once, not every frame
 class_name InstantAction
 extends Action
 
 
-
+## The entity being affected
 var entity: Node2D
 
 

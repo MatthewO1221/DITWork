@@ -1,41 +1,53 @@
 extends Node
 
-
+## The telemetry file
 var file : FileAccess
 
+## The path to the telemetry folder, saved in documents
 var telemetryPath := OS.get_system_dir(OS.SYSTEM_DIR_DOCUMENTS) + "/" + "CardGameTelemetry"
 
-
+## Class for all data related to a played hand
 class HandData:
 	
 	func _init(newCardNum: int, newBotNum: int) -> void:
 		cardNum = newCardNum
 		botNum = newBotNum
-		
+	
+	## The number of cards in each hand
 	var cardNum : int
+	## The number of bots in this hand
 	var botNum : int
 	
 	
-	
+	## Array of all player cards played
 	var playerCardsPlayed : Array[String] = []
+	## Array of all cards bot 1 played
 	var bot1CardsPlayed : Array[String] = []
+	## Array of all cards bot 2 played
 	var bot2CardsPlayed : Array[String] = []
+	## Array of all cards bot 3 played
 	var bot3CardsPlayed : Array[String] = []
 	
-	
+	## Players end score
 	var playerEndScore : int = 0
+	## Bot 1's end score
 	var bot1EndScore : int = 0
+	## Bot 2's end score
 	var bot2EndScore : int = 0
+	## Bot 3's end score
 	var bot3EndScore : int = 0
 
-
+## Array of all [HandData] instances for each hand played
 var data : Array[HandData] = []
 
+## The number of the current hand
 var handNum : int = 1
 
 func _ready() -> void:
+	# Make sure directory exists
 	DirAccess.make_dir_absolute(telemetryPath)
 	
+	# Open the directory
 	var directory = DirAccess.open(telemetryPath)
 	
 	if not directory.dir_exists(telemetryPath):
@@ -43,6 +55,7 @@ func _ready() -> void:
 		
 	var timeDateDict = Time.get_datetime_dict_from_system()
 	
+	# The file path for this telemetry file
 	var filePath = telemetryPath + "/" + "TelemetryData" + "_" + str(timeDateDict.hour) + "_" + str(timeDateDict.minute) + "_" + str(timeDateDict.second) + ".csv"
 	
 	
@@ -51,9 +64,10 @@ func _ready() -> void:
 	assert(file.is_open(), "Error opening telemetry file")
 
 
-
+## Called when a new hand is started
 func NewHand(cardNum : int, botNum : int) -> void:
 	
+	# Log the last hand played
 	if !data.is_empty():
 		ExportHand(data.back())
 	
@@ -62,7 +76,7 @@ func NewHand(cardNum : int, botNum : int) -> void:
 	
 	
 
-
+## Logs each time cards are played
 func CardsPlayed(cards: Array[CardBase]) -> void:
 	
 	
@@ -78,7 +92,7 @@ func CardsPlayed(cards: Array[CardBase]) -> void:
 		if i == 3:
 			curHand.bot3CardsPlayed.push_back(cards[i].GetCardName())
 
-
+## Logs each player's score
 func EndScores(scores : Array[int]) -> void:
 	var curHand : HandData = data.back()
 	
@@ -93,8 +107,10 @@ func EndScores(scores : Array[int]) -> void:
 			curHand.bot3EndScore = scores[i]
 
 
-
+## Export a hand to the csv file
 func ExportHand(hand : HandData) -> void:
+	
+	# Each hand is formatted in a specific way using the lines array
 	
 	var lines : Array[PackedStringArray] = []
 	
@@ -167,6 +183,7 @@ func ExportHand(hand : HandData) -> void:
 			
 	handNum += 1
 
+## Close the file when the game is exited
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
 		file.close()
